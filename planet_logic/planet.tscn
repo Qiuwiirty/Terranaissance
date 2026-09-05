@@ -1,0 +1,40 @@
+[gd_scene format=3 uid="uid://cou1fgfhymngy"]
+
+[ext_resource type="Shader" uid="uid://bygy4w4ra8aoj" path="res://textures/planet.gdshader" id="1_53gww"]
+[ext_resource type="Texture2D" uid="uid://by223urmvg2w" path="res://textures/cloud_related/cloudmap.png" id="2_e7m2s"]
+[ext_resource type="Texture2D" uid="uid://c5v61glibq5lm" path="res://textures/planets/mars/mars_elevation.jpg" id="3_08blb"]
+[ext_resource type="Texture2D" uid="uid://bsas3wag8j7cs" path="res://textures/planets/mars/2k_mars.jpg" id="4_f6jup"]
+[ext_resource type="Script" uid="uid://bxkmy3vm6sbrs" path="res://planet_logic/planet.gd" id="5_gvalx"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_otdea"]
+seed = 3
+frequency = 0.0899
+domain_warp_enabled = true
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_psk0j"]
+noise = SubResource("FastNoiseLite_otdea")
+seamless = true
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_d0y5q"]
+render_priority = 0
+shader = ExtResource("1_53gww")
+shader_parameter/map = ExtResource("4_f6jup")
+shader_parameter/elevation_map = ExtResource("3_08blb")
+shader_parameter/cloud_map = ExtResource("2_e7m2s")
+shader_parameter/full_cloud_noise_map = SubResource("NoiseTexture2D_psk0j")
+shader_parameter/normalized_sea_level = 0.0
+shader_parameter/cloud_alpha = 0.845
+shader_parameter/band_count = 5.0
+shader_parameter/color_band1 = Color(0.75, 0.75, 0.75, 1)
+shader_parameter/color_band2 = Color(0.5, 0.5, 0.5, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_op1rt"]
+material = SubResource("ShaderMaterial_d0y5q")
+
+[node name="PlanetMesh" type="MeshInstance3D" unique_id=652982429]
+mesh = SubResource("SphereMesh_op1rt")
+script = ExtResource("5_gvalx")
+
+[node name="TickTimer" type="Timer" parent="." unique_id=980525403]
+
+[connection signal="timeout" from="TickTimer" to="." method="_on_update_tick"]

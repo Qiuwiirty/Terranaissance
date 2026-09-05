@@ -18,6 +18,7 @@ config/icon="res://icon.svg"
 [debug]
 
 gdscript/warnings/untyped_declaration=2
+gdscript/warnings/int_as_enum_without_cast=0
 
 [display]
 

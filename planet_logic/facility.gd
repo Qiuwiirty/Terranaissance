@@ -29,8 +29,8 @@ var planet: Planet
 var city: City
 var category := Category.MISC
 
-var planet_properties_modifier_per_tick: TerraformProperties
-var planet_properties_modifier: TerraformProperties  # Only modify when initialized, unlike per tick. Usually for habitations and permanent things
+var planet_terraform_modifier_per_tick: TerraformProperties
+var planet_terraform_modifier: TerraformProperties  # Only modify when initialized, unlike per tick. Usually for habitations and permanent things
 
 var city_properties_modifier_per_tick: CityProperties
 var city_properties_modifier: CityProperties
@@ -40,20 +40,20 @@ func _init(planet_: Planet, city_: City, modifier_definition : String = "") -> v
 	city = city_
 	if modifier_definition != "":
 		construct_and_set(modifier_definition)
-	planet.planet_properties_modifier_per_tick.add(planet_properties_modifier_per_tick)
-	planet.properties.add(planet_properties_modifier)
+	planet.terraform_modifier_per_tick.add(planet_terraform_modifier_per_tick)
+	planet.terraform_properties.add(planet_terraform_modifier)
 	city.city_properties_modifier_per_tick.add(city_properties_modifier_per_tick)
 	city.properties.add(city_properties_modifier)
 
 func set_planet_modifier_per_tick(mod_per_tick: TerraformProperties) -> void:
-	planet.planet_properties_modifier_per_tick.subtract(planet_properties_modifier_per_tick)
-	planet_properties_modifier_per_tick = mod_per_tick
-	planet.planet_properties_modifier_per_tick.add(planet_properties_modifier_per_tick)
+	planet.terraform_modifier_per_tick.subtract(planet_terraform_modifier_per_tick)
+	planet_terraform_modifier_per_tick = mod_per_tick
+	planet.terraform_modifier_per_tick.add(planet_terraform_modifier_per_tick)
 
 func set_planet_modifier(mod: TerraformProperties) -> void:
-	planet.properties.subtract(planet_properties_modifier)
-	planet_properties_modifier = mod
-	planet.properties.add(planet_properties_modifier)
+	planet.terraform_properties.subtract(planet_terraform_modifier)
+	planet_terraform_modifier = mod
+	planet.terraform_properties.add(planet_terraform_modifier)
 
 func set_city_modifier_per_tick(mod_per_tick: CityProperties) -> void:
 	city.city_properties_modifier_per_tick.subtract(city_properties_modifier_per_tick)
@@ -66,8 +66,8 @@ func set_city_modifier(mod: CityProperties) -> void:
 	city.properties.add(city_properties_modifier)
 
 func delete() -> void:
-	planet.planet_properties_modifier_per_tick.subtract(planet_properties_modifier_per_tick)
-	planet.properties.subtract(planet_properties_modifier)
+	planet.terraform_modifier_per_tick.subtract(planet_terraform_modifier_per_tick)
+	planet.terraform_properties.subtract(planet_terraform_modifier)
 	city.city_properties_modifier_per_tick.subtract(city_properties_modifier_per_tick)
 	city.properties.subtract(city_properties_modifier)
 	free()
@@ -94,9 +94,9 @@ func construct_and_set(text: String) -> void:
 			"+", "-":
 				if property_str in TerraformProperties:
 					if operation_str == "+":
-						planet_properties_modifier.set(property_str, float(value_str))
+						planet_terraform_modifier.set(property_str, float(value_str))
 					else:
-						planet_properties_modifier.set(property_str, -float(value_str))
+						planet_terraform_modifier.set(property_str, -float(value_str))
 				elif property_str in CityProperties:
 					if operation_str == "+":
 						city_properties_modifier.set(property_str, float(value_str))
@@ -105,11 +105,11 @@ func construct_and_set(text: String) -> void:
 			"++", "--":
 				if property_str in TerraformProperties:
 					if operation_str == "++":
-						planet_properties_modifier_per_tick.set(property_str, float(value_str))
+						planet_terraform_modifier_per_tick.set(property_str, float(value_str))
 					else:
-						planet_properties_modifier_per_tick.set(property_str, -float(value_str))
+						planet_terraform_modifier_per_tick.set(property_str, -float(value_str))
 				elif property_str in CityProperties:
 					if operation_str == "++":
-						planet_properties_modifier_per_tick.set(property_str, float(value_str))
+						planet_terraform_modifier_per_tick.set(property_str, float(value_str))
 					else:
-						planet_properties_modifier_per_tick.set(property_str, -float(value_str))
+						planet_terraform_modifier_per_tick.set(property_str, -float(value_str))
