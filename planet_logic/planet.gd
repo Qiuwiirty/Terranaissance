@@ -12,6 +12,7 @@ var outposts : Array
 @onready var mat: Material = mesh.material
 static func _static_init() -> void:
 	var mars := PlanetProperties.new()
+	mars.name = "Mars"
 	mars.axial_tilt = 25.19
 	mars.orbital_tilt = 1.85
 	mars.max_elevation = 2150000
@@ -19,6 +20,8 @@ static func _static_init() -> void:
 	mars.elevation_map = load("uid://c5v61glibq5lm")
 	planets_template["mars"] = mars
 	
+func _enter_tree() -> void:
+	Game.planet = self
 func _ready() -> void:
 	planet_properties = planets_template["mars"]
 	terraform_properties = TerraformProperties.new()
@@ -33,6 +36,17 @@ func update_planet_properties() -> void:
 	planet_properties.update_representative_color()
 func update_appearance_sea_level() -> void:
 	mesh.material.set_shader_parameter("normalized_sea_level", terraform_properties.water / planet_properties.max_elevation)
+func update_cities_light() -> void:
+	#x, y = position. z = size of the city light
+	var cities_light : PackedVector3Array
+	for city in cities:
+		cities_light.append(Vector3(
+			city.geoposition.x,
+			city.geoposition.y,
+			city.geoposition.z
+		))
+	cities_light.resize(100)
+	mat.set_shader_parameter("cities", cities_light)
 func prepare_gas_giant_appearance() -> void: #Not actually turning into gas giant but the appearance look like gas giant
 	#Might be an overkill just to create gas giant cloud, but i don't care lol (also: it adds variety :D )
 	var frequency_curve : Curve = load("uid://chkym846di8e3")
@@ -49,3 +63,15 @@ func prepare_gas_giant_appearance() -> void: #Not actually turning into gas gian
 	mat.set_shader_parameter("full_cloud_noise_map", new_noise_tex)
 	mat.set_shader_parameter("color_band1", planet_properties.representative_color)
 	mat.set_shader_parameter("color_band2", planet_properties.representative_color * 0.7)
+
+
+func _on_planet_input_event(camera: Node, event: InputEvent, event_position: Vector3, normal: Vector3, shape_idx: int) -> void:
+	if event is InputEventMouseButton and event.is_pressed():
+		var new_city := City.new()
+		var lat_lon := Game.get_latitude_longitude(event_position)
+		var elevation := planet_properties.get_elevation(lat_lon)
+		var city_name := await Game.in_game_ui.create_new_city_popup.request_create_new_city_name(Vector3(lat_lon.x, lat_lon.y, elevation.r))
+		new_city.name = city_name
+		new_city.geoposition = Vector3(lat_lon.x, lat_lon.y, elevation.r)
+		cities.append(new_city)
+		update_cities_light()

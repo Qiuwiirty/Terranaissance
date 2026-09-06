@@ -2,13 +2,15 @@
 
 [ext_resource type="Texture2D" uid="uid://b8877um7h72hc" path="res://textures/space_panaroma.png" id="1_onkyh"]
 [ext_resource type="Script" uid="uid://cv6b0uyswunua" path="res://addons/lens_effects/lens_flare_compositor_effect.gd" id="2_d0y5q"]
-[ext_resource type="Script" uid="uid://bte5lj7n5wt1e" path="res://directional_light_3d.gd" id="3_tcg2k"]
+[ext_resource type="Script" uid="uid://bte5lj7n5wt1e" path="res://sun.gd" id="3_tcg2k"]
 [ext_resource type="Script" uid="uid://cmlnn8vwkbqfv" path="res://addons/lens_effects/world_environment.gd" id="3_wp8oq"]
 [ext_resource type="Shader" uid="uid://bygy4w4ra8aoj" path="res://textures/planet.gdshader" id="4_d0y5q"]
-[ext_resource type="Script" uid="uid://bxkmy3vm6sbrs" path="res://planet_logic/planet.gd" id="5_d0y5q"]
+[ext_resource type="Script" uid="uid://dwxp7q0tdvnyo" path="res://camera.gd" id="5_asrgw"]
 [ext_resource type="Texture2D" uid="uid://bsas3wag8j7cs" path="res://textures/planets/mars/2k_mars.jpg" id="5_ncg7h"]
+[ext_resource type="PackedScene" uid="uid://cou1fgfhymngy" path="res://planet_logic/planet.tscn" id="5_sraih"]
 [ext_resource type="Texture2D" uid="uid://by223urmvg2w" path="res://textures/cloud_related/cloudmap.png" id="5_u640v"]
 [ext_resource type="Texture2D" uid="uid://c5v61glibq5lm" path="res://textures/planets/mars/mars_elevation.jpg" id="6_u640v"]
+[ext_resource type="PackedScene" uid="uid://22bu52lfk44d" path="res://UI/in_game_ui.tscn" id="11_asrgw"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_k8ryn"]
 panorama = ExtResource("1_onkyh")
@@ -34,6 +36,21 @@ metadata/_custom_type_script = "uid://cv6b0uyswunua"
 [sub_resource type="Compositor" id="Compositor_3uw2p"]
 compositor_effects = Array[CompositorEffect]([SubResource("CompositorEffect_vdppx")])
 
+[sub_resource type="Gradient" id="Gradient_u640v"]
+offsets = PackedFloat32Array(0.37692308, 1)
+colors = PackedColorArray(0, 0, 0, 0, 0.8, 0.627451, 0.3764706, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_e7m2s"]
+frequency = 0.0272
+fractal_octaves = 6
+fractal_gain = 0.765
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_53gww"]
+width = 2096
+height = 1024
+noise = SubResource("FastNoiseLite_e7m2s")
+color_ramp = SubResource("Gradient_u640v")
+
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_otdea"]
 seed = 3
 frequency = 0.0899
@@ -43,39 +60,44 @@ domain_warp_enabled = true
 noise = SubResource("FastNoiseLite_otdea")
 seamless = true
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_d0y5q"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_asrgw"]
 render_priority = 0
 shader = ExtResource("4_d0y5q")
 shader_parameter/map = ExtResource("5_ncg7h")
 shader_parameter/elevation_map = ExtResource("6_u640v")
 shader_parameter/cloud_map = ExtResource("5_u640v")
 shader_parameter/full_cloud_noise_map = SubResource("NoiseTexture2D_psk0j")
+shader_parameter/city_light_map = SubResource("NoiseTexture2D_53gww")
 shader_parameter/normalized_sea_level = 0.0
-shader_parameter/cloud_alpha = 0.845
+shader_parameter/cloud_alpha = 0.0
 shader_parameter/band_count = 5.0
 shader_parameter/color_band1 = Color(0.75, 0.75, 0.75, 1)
 shader_parameter/color_band2 = Color(0.5, 0.5, 0.5, 1)
+shader_parameter/cities = PackedVector3Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
 
-[sub_resource type="SphereMesh" id="SphereMesh_op1rt"]
-material = SubResource("ShaderMaterial_d0y5q")
+[sub_resource type="SphereMesh" id="SphereMesh_2cpxq"]
+material = SubResource("ShaderMaterial_asrgw")
+radial_segments = 128
+rings = 128
 
 [node name="World" type="Node3D" unique_id=103247040]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=991046078 node_paths=PackedStringArray("sun")]
+unique_name_in_owner = true
 environment = SubResource("Environment_qlfj0")
 compositor = SubResource("Compositor_3uw2p")
 script = ExtResource("3_wp8oq")
-sun = NodePath("../DirectionalLight3D")
+sun = NodePath("../Sun")
 
-[node name="PlanetMesh" type="MeshInstance3D" parent="." unique_id=1393533627]
-transform = Transform3D(-0.637424, 0, 0.77051324, 0, 1, 0, -0.77051324, 0, -0.637424, 0, 0, 0)
-mesh = SubResource("SphereMesh_op1rt")
-script = ExtResource("5_d0y5q")
-
-[node name="TickTimer" type="Timer" parent="PlanetMesh" unique_id=1849763086]
-
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1629821819]
+[node name="Sun" type="DirectionalLight3D" parent="." unique_id=1629821819]
 script = ExtResource("3_tcg2k")
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=1511715542]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.2085476)
+visible = false
+script = ExtResource("5_asrgw")
+
+[node name="PlanetMesh" parent="." unique_id=652982429 instance=ExtResource("5_sraih")]
+mesh = SubResource("SphereMesh_2cpxq")
+
+[node name="InGameUI" parent="." unique_id=1347753977 instance=ExtResource("11_asrgw")]

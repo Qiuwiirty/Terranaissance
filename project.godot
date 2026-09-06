@@ -15,9 +15,14 @@ run/main_scene="uid://wmbo1u5a47r5"
 config/features=PackedStringArray("4.7", "Forward Plus")
 config/icon="res://icon.svg"
 
+[autoload]
+
+Game="*uid://3hcjjcuxc8gd"
+
 [debug]
 
 gdscript/warnings/untyped_declaration=2
+gdscript/warnings/static_called_on_instance=0
 gdscript/warnings/int_as_enum_without_cast=0
 
 [display]
@@ -36,4 +41,5 @@ project/assembly_name="Genesiis"
 [rendering]
 
 rendering_device/driver.windows="d3d12"
+environment/defaults/default_clear_color=Color(0, 0, 0, 1)
 occlusion_culling/use_occlusion_culling=true

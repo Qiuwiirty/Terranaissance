@@ -1,0 +1,41 @@
+[gd_scene format=3 uid="uid://cbb4111q3cksw"]
+
+[ext_resource type="Script" uid="uid://c4fjq1j3ib6dn" path="res://UI/simple_popup.gd" id="1_p7nce"]
+
+[node name="SimplePopup" type="PanelContainer" unique_id=224112140]
+custom_minimum_size = Vector2(250, 125)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_p7nce")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=695569886]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer" unique_id=1161947297]
+layout_mode = 2
+alignment = 2
+
+[node name="Title" type="Label" parent="VBoxContainer/HBoxContainer" unique_id=1532387795]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Popup!"
+horizontal_alignment = 1
+
+[node name="Close" type="Button" parent="VBoxContainer/HBoxContainer" unique_id=202251099]
+layout_mode = 2
+text = "X"
+flat = true
+
+[node name="TitleLiness" type="HSeparator" parent="VBoxContainer" unique_id=1488881069]
+layout_mode = 2
+
+[connection signal="button_up" from="VBoxContainer/HBoxContainer/Close" to="." method="close"]

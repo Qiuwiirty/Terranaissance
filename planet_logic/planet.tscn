@@ -23,13 +23,16 @@ shader_parameter/elevation_map = ExtResource("3_08blb")
 shader_parameter/cloud_map = ExtResource("2_e7m2s")
 shader_parameter/full_cloud_noise_map = SubResource("NoiseTexture2D_psk0j")
 shader_parameter/normalized_sea_level = 0.0
-shader_parameter/cloud_alpha = 0.845
+shader_parameter/cloud_alpha = 2.525
 shader_parameter/band_count = 5.0
 shader_parameter/color_band1 = Color(0.75, 0.75, 0.75, 1)
 shader_parameter/color_band2 = Color(0.5, 0.5, 0.5, 1)
+shader_parameter/cities = PackedVector3Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
 
 [sub_resource type="SphereMesh" id="SphereMesh_op1rt"]
 material = SubResource("ShaderMaterial_d0y5q")
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_qlfj0"]
 
 [node name="PlanetMesh" type="MeshInstance3D" unique_id=652982429]
 mesh = SubResource("SphereMesh_op1rt")
@@ -37,4 +40,10 @@ script = ExtResource("5_gvalx")
 
 [node name="TickTimer" type="Timer" parent="." unique_id=980525403]
 
+[node name="Area3D" type="Area3D" parent="." unique_id=1266514868]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=177418550]
+shape = SubResource("SphereShape3D_qlfj0")
+
 [connection signal="timeout" from="TickTimer" to="." method="_on_update_tick"]
+[connection signal="input_event" from="Area3D" to="." method="_on_planet_input_event"]

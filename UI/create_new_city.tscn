@@ -1,0 +1,28 @@
+[gd_scene format=3 uid="uid://dqq3t8i3dufpc"]
+
+[ext_resource type="PackedScene" uid="uid://cbb4111q3cksw" path="res://UI/simple_popup.tscn" id="1_bnux5"]
+[ext_resource type="Script" uid="uid://sh88hn6unbvv" path="res://UI/create_new_city.gd" id="2_8u4os"]
+
+[node name="CreateNewCity" unique_id=224112140 instance=ExtResource("1_bnux5")]
+script = ExtResource("2_8u4os")
+
+[node name="Title" parent="VBoxContainer/HBoxContainer" parent_id_path=PackedInt32Array(1161947297) index="0" unique_id=1532387795]
+text = "Create new city"
+
+[node name="CityNameInput" type="LineEdit" parent="VBoxContainer" parent_id_path=PackedInt32Array(695569886) index="2" unique_id=117021872]
+unique_name_in_owner = true
+layout_mode = 2
+placeholder_text = "City Name..."
+alignment = 1
+
+[node name="CityInfo" type="Label" parent="VBoxContainer" parent_id_path=PackedInt32Array(695569886) index="3" unique_id=784698108]
+layout_mode = 2
+text = "Coordinates: X Y
+Elevation: X above sea level
+(X, Y, Z)"
+horizontal_alignment = 1
+
+[node name="Create" type="Button" parent="VBoxContainer" parent_id_path=PackedInt32Array(695569886) index="4" unique_id=344811675]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Create"
