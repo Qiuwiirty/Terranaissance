@@ -1,4 +1,4 @@
-extends MeshInstance3D
+extends Node3D
 class_name Planet
 static var planets_template: Dictionary[String, PlanetProperties]
 @onready var tick_timer : Timer = $TickTimer
@@ -9,7 +9,7 @@ var terraform_modifier_per_tick : TerraformProperties
 var cities : Array[City]
 var outposts : Array
 
-@onready var mat: Material = mesh.material
+@onready var mat: Material = $PlanetMesh.mesh.material
 static func _static_init() -> void:
 	var mars := PlanetProperties.new()
 	mars.name = "Mars"
@@ -26,24 +26,34 @@ func _ready() -> void:
 	planet_properties = planets_template["mars"]
 	terraform_properties = TerraformProperties.new()
 	update_planet_properties()
+	update_cities_light()
 	prepare_gas_giant_appearance()
+func _process(_delta: float) -> void:
+	if !Game.sun.visible: mat.set_shader_parameter("sun_active", false); return
+	if Game.sun.rotate_light:
+		mat.set_shader_parameter("sun_active", true)
+		var sun_dir: Vector3 = Game.sun.global_transform.basis.z
+		mat.set_shader_parameter("sun_direction", sun_dir)
 func _on_update_tick() -> void:
 	terraform_properties.add(terraform_modifier_per_tick)
 func update_planet_properties() -> void:
+	rotation_degrees.z = planet_properties.axial_tilt
+	Game.sun.sun_container.rotation_degrees.x = planet_properties.orbital_tilt
 	mat.set_shader_parameter("map", planet_properties.map)
 	mat.set_shader_parameter("elevation_map", planet_properties.elevation_map)
 	update_appearance_sea_level()
 	planet_properties.update_representative_color()
 func update_appearance_sea_level() -> void:
-	mesh.material.set_shader_parameter("normalized_sea_level", terraform_properties.water / planet_properties.max_elevation)
+	mat.set_shader_parameter("normalized_sea_level", terraform_properties.water / planet_properties.max_elevation)
 func update_cities_light() -> void:
 	#x, y = position. z = size of the city light
 	var cities_light : PackedVector3Array
 	for city in cities:
+		var uv := Game.lat_lon_to_uv(Vector2(city.geoposition.x, city.geoposition.y))
 		cities_light.append(Vector3(
-			city.geoposition.x,
-			city.geoposition.y,
-			city.geoposition.z
+			uv.x,
+			uv.y,
+			city.population
 		))
 	cities_light.resize(100)
 	mat.set_shader_parameter("cities", cities_light)
@@ -65,7 +75,7 @@ func prepare_gas_giant_appearance() -> void: #Not actually turning into gas gian
 	mat.set_shader_parameter("color_band2", planet_properties.representative_color * 0.7)
 
 
-func _on_planet_input_event(camera: Node, event: InputEvent, event_position: Vector3, normal: Vector3, shape_idx: int) -> void:
+func _on_planet_input_event(_camera: Node, event: InputEvent, event_position: Vector3, _normal: Vector3, _shape_idx: int) -> void:
 	if event is InputEventMouseButton and event.is_pressed():
 		var new_city := City.new()
 		var lat_lon := Game.get_latitude_longitude(event_position)

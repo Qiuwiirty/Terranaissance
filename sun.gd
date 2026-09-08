@@ -1,9 +1,28 @@
 extends DirectionalLight3D
 class_name Sun
+enum StarType {
+	O,
+	B,
+	A,
+	F,
+	G,
+	K,
+	M
+}
+var sun_to_plant_color: Dictionary[StarType, Array] = {
+	StarType.O: [Color.WHITE, Color.ANTIQUE_WHITE],
+	StarType.B: [Color.MISTY_ROSE, Color.PALE_GREEN],
+	StarType.A: [Color.PINK, Color.LIGHT_GREEN],
+	StarType.F: [Color.MAGENTA, Color.INDIGO, Color.GREEN_YELLOW, Color.GOLD],
+	StarType.G: [Color.DEEP_SKY_BLUE, Color.TURQUOISE, Color.GREEN, Color.CORAL, Color.PURPLE],
+	StarType.K: [Color.GOLDENROD, Color.RED, Color.NAVY_BLUE, Color.TEAL, Color.WEB_MAROON, Color.SEA_GREEN],
+	StarType.M: [Color.DARK_RED, Color.CRIMSON, Color.DARK_BLUE, Color.DARK_SLATE_GRAY, Color.BLACK]
+}
+@onready var sun_container := get_parent()
 @onready var world_environment: WorldEnvironment = %WorldEnvironment
 @onready var lens_flare: LensFlareEffect = world_environment.compositor.compositor_effects[0]
 @export var rotate_light: bool = true
-@export var rotation_speed: float = 100.
+@export var rotation_speed: float = 10.
 func _ready() -> void:
 	Game.sun = self
 func set_sun_visibility(mode: bool) -> void:

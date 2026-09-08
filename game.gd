@@ -13,12 +13,7 @@ static func get_latitude_longitude(pos: Vector3) -> Vector2:
 	var longitude_deg: float = rad_to_deg(lon_rad)
 	
 	return Vector2(latitude_deg, longitude_deg)
-
-static func get_uv_of_latitude_longitude(lat_lon: Vector2) -> Vector2:
-	var u: float = (deg_to_rad(lat_lon.y) / (2.0 * PI)) + 0.5
-	var v: float = 0.5 - (deg_to_rad(lat_lon.x) / PI)
-	return Vector2(u, v)
-
+	
 static func lat_lon_to_pixel(lat_lon: Vector2, image_size: Vector2i) -> Vector2i:
 	var u := (lat_lon.y + 180.0) / 360.0
 	
@@ -28,3 +23,8 @@ static func lat_lon_to_pixel(lat_lon: Vector2, image_size: Vector2i) -> Vector2i
 	var pixel_y := clampi(int(v * image_size.y), 0, image_size.y - 1)
 	
 	return Vector2i(pixel_x, pixel_y)
+
+static func lat_lon_to_uv(lat_lon: Vector2) -> Vector2:
+	var u: float = (deg_to_rad(lat_lon.y) / (2.0 * PI)) + 0.5
+	var v: float = 0.5 - (deg_to_rad(lat_lon.x) / PI)
+	return Vector2(u, v)
