@@ -1,10 +1,11 @@
-  shader_type spatial;
+shader_type spatial;
 uniform sampler2D map;
 uniform sampler2D elevation_map;
 uniform sampler2D cloud_map;
 uniform sampler2D full_cloud_noise_map;
 uniform sampler2D city_light_map: filter_nearest;
 uniform float normalized_sea_level: hint_range(0.0, 1.0); //this is relative 0.0-1.0, calculate the relative of sea level with max sea level
+uniform float normalized_temperature; //0.0 is the ideal temperature
 uniform float cloud_alpha;
 uniform float band_count = 5.;
 uniform vec3 color_band1: source_color = vec3(.75);
@@ -13,6 +14,8 @@ uniform vec3 color_band2: source_color = vec3(.5);
 uniform vec3[100] cities; //x, y = position, z = size
 
 uniform vec3 sun_direction = vec3(1.0, 0.0, 0.0);
+uniform vec3 biomass_color: source_color = vec3(0.0, 1.0, 0.0);
+uniform float biomass_coverage = 0.;
 uniform float sun_active = 1.0;
 vec3 gas_giant(vec2 uv) { //I mean it is not really gas giant, but it kinda look like it
 	float noise = texture(full_cloud_noise_map, uv).r;
@@ -34,23 +37,30 @@ vec3 uv_to_sphere(vec2 uv) {
 		cos(lat) * sin(lon)
 		);
 }
-bool get_underwater(vec2 uv) {
-	float elevation = texture(elevation_map, uv).r;
-	return max(elevation, 0.00001) <= normalized_sea_level;
-}
-
 vec4 get_cloud(vec2 uv) {
 	vec2 cloud_uv = uv;
 	cloud_uv.x += TIME * 0.005;
 	return texture(cloud_map, cloud_uv);
 }
 void fragment() {
-	if (cloud_alpha < 5.)
+	if (cloud_alpha < 5.) // now that i look at this code again.. this look wrong cuz using conditional branch. eh, maybe not that signficant
 	{
+		float elevation = texture(elevation_map, UV).r;
+		float latitude = abs(UV.y - 0.5) * 2.0;
+		float temperature = normalized_temperature - elevation - (latitude * 0.1);
+		float coastal_factor = 1.0 - smoothstep(
+			normalized_sea_level,
+			normalized_sea_level + 0.2,
+			elevation
+		);
+		//Add by biomass_coverage for good measure lol
+		float biomass_suitability = max(max(1.0 - abs(temperature), 0.0), coastal_factor) * biomass_coverage + (biomass_coverage * 0.5);
+		bool underwater = max(elevation, 0.00001) <= normalized_sea_level;
 		vec3 land = texture(map, UV).rgb;
+		land *= mix(vec3(1.0), biomass_color, biomass_suitability);
 		vec3 sea = vec3(0.0, 0.0, 1.0);
 		vec4 cloud = get_cloud(UV);
-		vec3 land_sea = mix(land, sea, float(get_underwater(UV)));
+		vec3 land_sea = mix(land, sea, float(underwater));
 		vec3 land_sea_cloud = mix(land_sea, cloud.rgb, cloud.a * cloud_alpha);
 		ALBEDO = land_sea_cloud;
 		
@@ -70,6 +80,8 @@ void fragment() {
 		for (int i = 0; i < 100; i++) 
 		{
 			vec3 city = cities[i];
+			if (city.z <= 0.0)
+        continue;
 			vec3 city_pos = uv_to_sphere(city.xy);
 			float angle = acos(dot(surface_pos, city_pos));
 			float circle =
@@ -78,7 +90,7 @@ void fragment() {
 		}
 		
 		vec3 city_emission =
-		texture(city_light_map, UV).rgb * city_light * (1.0 - cloud.a * cloud_alpha) * float(!get_underwater(UV));
+		texture(city_light_map, UV).rgb * city_light * (1.0 - cloud.a * cloud_alpha) * float(!underwater);
 		
 		EMISSION = city_emission * night;
 	} else

@@ -1,60 +1,35 @@
 [gd_scene format=3 uid="uid://cou1fgfhymngy"]
 
-[ext_resource type="Shader" uid="uid://bygy4w4ra8aoj" path="res://planet_logic/planet.gdshader" id="1_53gww"]
-[ext_resource type="Texture2D" uid="uid://bdvrkedru28bt" path="res://textures/city_light.tres" id="2_08blb"]
-[ext_resource type="Texture2D" uid="uid://by223urmvg2w" path="res://textures/cloud_related/cloudmap.png" id="2_e7m2s"]
-[ext_resource type="Texture2D" uid="uid://c5v61glibq5lm" path="res://textures/planets/mars/mars_elevation.jpg" id="3_08blb"]
-[ext_resource type="Texture2D" uid="uid://bsas3wag8j7cs" path="res://textures/planets/mars/2k_mars.jpg" id="4_f6jup"]
+[ext_resource type="Material" uid="uid://rtv4nkpd0yej" path="res://planet_logic/normmas.tres" id="2_3gnlv"]
 [ext_resource type="Script" uid="uid://bxkmy3vm6sbrs" path="res://planet_logic/planet.gd" id="5_gvalx"]
-[ext_resource type="Shader" uid="uid://c1jxsncrdyogt" path="res://planet_logic/atmosphere.gdshader" id="7_08blb"]
-
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_otdea"]
-seed = 3
-frequency = 0.0899
-domain_warp_enabled = true
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_psk0j"]
-noise = SubResource("FastNoiseLite_otdea")
-seamless = true
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_d0y5q"]
-render_priority = 0
-shader = ExtResource("1_53gww")
-shader_parameter/map = ExtResource("4_f6jup")
-shader_parameter/elevation_map = ExtResource("3_08blb")
-shader_parameter/cloud_map = ExtResource("2_e7m2s")
-shader_parameter/full_cloud_noise_map = SubResource("NoiseTexture2D_psk0j")
-shader_parameter/city_light_map = ExtResource("2_08blb")
-shader_parameter/normalized_sea_level = 0.1730000082175
-shader_parameter/cloud_alpha = 1.5
-shader_parameter/band_count = 5.0
-shader_parameter/color_band1 = Color(0.75, 0.75, 0.75, 1)
-shader_parameter/color_band2 = Color(0.5, 0.5, 0.5, 1)
-shader_parameter/cities = PackedVector3Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
-shader_parameter/sun_direction = Vector3(1, 0, 0)
-shader_parameter/sun_active = 1.0
+[ext_resource type="Shader" uid="uid://c1jxsncrdyogt" path="res://planet_logic/shader/atmosphere.gdshader" id="7_08blb"]
 
 [sub_resource type="SphereMesh" id="SphereMesh_op1rt"]
-material = SubResource("ShaderMaterial_d0y5q")
+material = ExtResource("2_3gnlv")
+radial_segments = 128
+rings = 64
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_qlfj0"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_8vgsh"]
 render_priority = 0
 shader = ExtResource("7_08blb")
-shader_parameter/atmosphere_color = Color(0.2, 0.5, 1, 1)
-shader_parameter/atmosphere_strength = 2.0
+shader_parameter/atmosphere_color = Color(0, 0.6666667, 1, 1)
+shader_parameter/atmosphere_strength = 0.0
 shader_parameter/atmosphere_power = 4.0
 
 [sub_resource type="SphereMesh" id="SphereMesh_qlfj0"]
 material = SubResource("ShaderMaterial_8vgsh")
 radius = 0.501
 height = 1.002
+radial_segments = 128
+rings = 64
 
 [node name="Planet" type="Node3D" unique_id=1955991424]
 script = ExtResource("5_gvalx")
 
 [node name="TickTimer" type="Timer" parent="." unique_id=1354782346]
+autostart = true
 
 [node name="PlanetMesh" type="MeshInstance3D" parent="." unique_id=893211228]
 mesh = SubResource("SphereMesh_op1rt")
