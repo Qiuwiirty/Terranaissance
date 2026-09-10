@@ -1,5 +1,8 @@
 extends SimplePopup
 class_name CreateNewCityPopup
+func close() -> void:
+	super()
+	Game.planet.in_creating_city = false
 func request_create_new_city_name(coords: Vector3) -> String:
 	open()
 	$VBoxContainer/CityInfo.text = str(

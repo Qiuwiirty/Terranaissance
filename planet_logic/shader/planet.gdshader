@@ -16,7 +16,7 @@ uniform vec3[100] cities; //x, y = position, z = size
 uniform vec3 sun_direction = vec3(1.0, 0.0, 0.0);
 uniform vec3 biomass_color: source_color = vec3(0.0, 1.0, 0.0);
 uniform float biomass_coverage = 0.;
-uniform float sun_active = 1.0;
+uniform bool sun_active = true;
 vec3 gas_giant(vec2 uv) { //I mean it is not really gas giant, but it kinda look like it
 	float noise = texture(full_cloud_noise_map, uv).r;
 	
@@ -69,7 +69,7 @@ void fragment() {
 		float day = smoothstep(-0.2, 0.1, sunlight);
 		float night = 1.0;
 		
-		if (sun_active > 0.5) {
+		if (sun_active) {
 			vec3 sun_dir_view = (VIEW_MATRIX * vec4(sun_direction, 0.0)).xyz;
 			float sunlight = dot(NORMAL, normalize(sun_dir_view));
 			float day = smoothstep(-0.2, 0.1, sunlight);
@@ -80,8 +80,7 @@ void fragment() {
 		for (int i = 0; i < 100; i++) 
 		{
 			vec3 city = cities[i];
-			if (city.z <= 0.0)
-        continue;
+			if (city.z <= 0.0) continue;
 			vec3 city_pos = uv_to_sphere(city.xy);
 			float angle = acos(dot(surface_pos, city_pos));
 			float circle =

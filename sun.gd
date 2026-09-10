@@ -26,20 +26,23 @@ static var sun_to_biomass_colors: Dictionary[StarType, Array] = {
 @export var rotation_speed: float = 10.
 
 @export var star_type : StarType = StarType.G
+
+@export var light_intensity: float = 1.0
 func _ready() -> void:
 	Game.sun = self
 func set_sun_visibility(mode: bool) -> void:
 	if mode:
-		show()
+		light_energy = light_intensity
 		lens_flare.enabled = true
 	else:
-		hide()
+		light_energy = 0.0
 		lens_flare.enabled = false
 func set_sun_color(color: Color) -> void:
 	light_color = color
 	lens_flare.sun_color = color
 func set_sun_intensity(intensity: float) -> void:
 	light_energy = intensity
+	light_intensity = intensity
 	lens_flare.Effect_Multiplier = 3.593 * intensity
 func _process(delta: float) -> void:
 	if rotate_light:

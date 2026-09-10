@@ -13,6 +13,8 @@ var outposts : Array
 var biomass_color: Color = Color.GREEN
 @onready var mat: Material = $PlanetMesh.mesh.material
 @onready var atmosphere : MeshInstance3D = $AtmosphereMesh
+
+var in_creating_city := false
 static func _static_init() -> void:
 	var mars := PlanetProperties.new()
 	mars.name = "Mars"
@@ -33,7 +35,7 @@ func _ready() -> void:
 	start()
 	
 func _process(_delta: float) -> void:
-	if !Game.sun.visible: mat.set_shader_parameter("sun_active", false); return
+	if Game.sun.light_energy == 0: mat.set_shader_parameter("sun_active", false); return
 	if Game.sun.rotate_light:
 		mat.set_shader_parameter("sun_active", true)
 		var sun_dir: Vector3 = Game.sun.global_transform.basis.z
@@ -77,9 +79,9 @@ func update_cities_light() -> void:
 	for city in cities:
 		var uv := Game.lat_lon_to_uv(Vector2(city.geoposition.x, city.geoposition.y))
 		cities_light.append(Vector3(
-			uv.x,
+			-uv.x,
 			uv.y,
-			city.population
+			0.1
 		))
 	cities_light.resize(100)
 	mat.set_shader_parameter("cities", cities_light)
@@ -102,11 +104,13 @@ func prepare_gas_giant_appearance() -> void: #Not actually turning into gas gian
 
 
 func _on_planet_input_event(_camera: Node, event: InputEvent, event_position: Vector3, _normal: Vector3, _shape_idx: int) -> void:
-	if event is InputEventMouseButton and event.is_pressed() and event.button_index == MOUSE_BUTTON_LEFT:
+	if not in_creating_city and event is InputEventMouseButton and event.is_pressed() and event.button_index == MOUSE_BUTTON_LEFT:
 		var new_city := City.new()
-		var lat_lon := Game.get_latitude_longitude(event_position)
+		var lat_lon := Game.get_latitude_longitude(to_local(event_position))
 		var elevation := planet_properties.get_elevation(lat_lon)
+		in_creating_city = true
 		var city_name := await Game.in_game_ui.create_new_city_popup.request_create_new_city_name(Vector3(lat_lon.x, lat_lon.y, elevation.r))
+		in_creating_city = false
 		new_city.name = city_name
 		new_city.geoposition = Vector3(lat_lon.x, lat_lon.y, elevation.r)
 		cities.append(new_city)

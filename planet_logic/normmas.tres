@@ -33,4 +33,4 @@ shader_parameter/cities = PackedVector3Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
 shader_parameter/sun_direction = Vector3(1, 0, 0)
 shader_parameter/biomass_color = Color(0, 1, 0, 1)
 shader_parameter/biomass_coverage = 0.0
-shader_parameter/sun_active = 1.0
+shader_parameter/sun_active = false
