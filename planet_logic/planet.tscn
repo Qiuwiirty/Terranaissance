@@ -37,9 +37,11 @@ mesh = SubResource("SphereMesh_op1rt")
 [node name="Area3D" type="Area3D" parent="." unique_id=1266514868]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=177418550]
+visible = false
 shape = SubResource("SphereShape3D_qlfj0")
 
 [node name="AtmosphereMesh" type="MeshInstance3D" parent="." unique_id=1275912232]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.556511e-06, 0.012625895, -0.00037562847)
 mesh = SubResource("SphereMesh_qlfj0")
 
 [connection signal="timeout" from="TickTimer" to="." method="_on_update_tick"]

@@ -21,8 +21,6 @@ var oxygen := 0.0 #in ppm
 var water := 0.0 #in cm
 var biomass := 0.0 #in mt
 var revenue := 0.0
-var population := 0.0 #total population
-var habitations := 0.0
 
 func closeness(value: float, ideal: float) -> float:
 	return clampf(1.0 - abs(value - ideal) / ideal, 0.0, 1.0)

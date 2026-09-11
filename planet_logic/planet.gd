@@ -81,7 +81,7 @@ func update_cities_light() -> void:
 		cities_light.append(Vector3(
 			-uv.x,
 			uv.y,
-			0.1
+			sqrt(city.properties.population) * 0.001
 		))
 	cities_light.resize(100)
 	mat.set_shader_parameter("cities", cities_light)
@@ -105,12 +105,12 @@ func prepare_gas_giant_appearance() -> void: #Not actually turning into gas gian
 
 func _on_planet_input_event(_camera: Node, event: InputEvent, event_position: Vector3, _normal: Vector3, _shape_idx: int) -> void:
 	if not in_creating_city and event is InputEventMouseButton and event.is_pressed() and event.button_index == MOUSE_BUTTON_LEFT:
-		var new_city := City.new()
 		var lat_lon := Game.get_latitude_longitude(to_local(event_position))
 		var elevation := planet_properties.get_elevation(lat_lon)
 		in_creating_city = true
 		var city_name := await Game.in_game_ui.create_new_city_popup.request_create_new_city_name(Vector3(lat_lon.x, lat_lon.y, elevation.r))
 		in_creating_city = false
+		var new_city := City.new(self, true)
 		new_city.name = city_name
 		new_city.geoposition = Vector3(lat_lon.x, lat_lon.y, elevation.r)
 		cities.append(new_city)
