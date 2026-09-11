@@ -13,6 +13,7 @@ enum Category {
 	HABITATIONS,
 	MISC
 }
+#the name is still placeholder, maybe change it later?
 static var facilities_tech : Dictionary[StringName, String] = {
 	#Heat
 	&"Cooler Alpha": "-- 4 heat",

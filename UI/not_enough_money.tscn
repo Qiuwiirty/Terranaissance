@@ -1,0 +1,27 @@
+[gd_scene format=3 uid="uid://bn4kr6ugpqna3"]
+
+[ext_resource type="PackedScene" uid="uid://cbb4111q3cksw" path="res://UI/simple_popup.tscn" id="1_syxxk"]
+[ext_resource type="Script" uid="uid://crhwdj6gagms7" path="res://UI/not_enough_money.gd" id="2_kaq55"]
+
+[node name="NotEnoughMoney" unique_id=224112140 instance=ExtResource("1_syxxk")]
+script = ExtResource("2_kaq55")
+
+[node name="Title" parent="VBoxContainer/HBoxContainer" parent_id_path=PackedInt32Array(1161947297) index="0" unique_id=1532387795]
+text = "Not enough terras!"
+
+[node name="Description" type="RichTextLabel" parent="VBoxContainer" parent_id_path=PackedInt32Array(695569886) index="2" unique_id=1772954960]
+unique_name_in_owner = true
+layout_mode = 2
+bbcode_enabled = true
+text = "A"
+fit_content = true
+
+[node name="Control" type="Control" parent="VBoxContainer" parent_id_path=PackedInt32Array(695569886) index="3" unique_id=1784173841]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Ok" type="Button" parent="VBoxContainer" parent_id_path=PackedInt32Array(695569886) index="4" unique_id=407743487]
+layout_mode = 2
+text = "Ok"
+
+[connection signal="button_up" from="VBoxContainer/Ok" to="." method="close"]

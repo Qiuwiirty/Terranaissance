@@ -105,10 +105,14 @@ func prepare_gas_giant_appearance() -> void: #Not actually turning into gas gian
 
 func _on_planet_input_event(_camera: Node, event: InputEvent, event_position: Vector3, _normal: Vector3, _shape_idx: int) -> void:
 	if not in_creating_city and event is InputEventMouseButton and event.is_pressed() and event.button_index == MOUSE_BUTTON_LEFT:
+		var price := 1000000 * (Game.planet.cities.size() + 1)
+		if price > Game.terras:
+			Game.in_game_ui.not_enough_money.notice(price, "build", "city")
+			return
 		var lat_lon := Game.get_latitude_longitude(to_local(event_position))
 		var elevation := planet_properties.get_elevation(lat_lon)
 		in_creating_city = true
-		var city_name := await Game.in_game_ui.create_new_city_popup.request_create_new_city_name(Vector3(lat_lon.x, lat_lon.y, elevation.r))
+		var city_name := await Game.in_game_ui.create_new_city_popup.request_create_new_city_name(Vector3(lat_lon.x, lat_lon.y, elevation.r), price)
 		in_creating_city = false
 		var new_city := City.new(self, true)
 		new_city.name = city_name

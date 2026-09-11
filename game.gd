@@ -4,6 +4,8 @@ var planet: Planet
 var sun: Sun
 var in_game_ui: InGameUI
 
+#Basically the currency (only specific to that planet tho.)
+var terras := 0.0
 static func get_latitude_longitude(pos: Vector3) -> Vector2:
 	var dir: Vector3 = pos.normalized()
 	var lat_rad: float = asin(dir.y)

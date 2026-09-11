@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://bpgjjxawsfebs" path="res://UI/in_game_ui.gd" id="1_jpmjn"]
 [ext_resource type="Script" uid="uid://dir0viqet3san" path="res://UI/control_panel.gd" id="1_r4raw"]
 [ext_resource type="PackedScene" uid="uid://dqq3t8i3dufpc" path="res://UI/create_new_city.tscn" id="2_d0vji"]
+[ext_resource type="PackedScene" uid="uid://bn4kr6ugpqna3" path="res://UI/not_enough_money.tscn" id="4_d0vji"]
 
 [node name="InGameUI" type="CanvasLayer" unique_id=1347753977]
 script = ExtResource("1_jpmjn")
@@ -44,6 +45,9 @@ text = "Enable sunlight"
 [node name="SunRotation" type="CheckButton" parent="ControlPanel/VBoxContainer" unique_id=649849736]
 layout_mode = 2
 text = "Sun rotation"
+
+[node name="NotEnoughMoney" parent="." unique_id=1830622854 instance=ExtResource("4_d0vji")]
+visible = false
 
 [connection signal="item_selected" from="ControlPanel/VBoxContainer/HBoxContainer/OptionButton" to="ControlPanel" method="_on_view_mode_selected"]
 [connection signal="toggled" from="ControlPanel/VBoxContainer/EnableSunLight" to="ControlPanel" method="_on_enable_sun_light_toggled"]

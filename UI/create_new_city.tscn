@@ -19,7 +19,8 @@ alignment = 1
 layout_mode = 2
 text = "Coordinates: X Y
 Elevation: X above sea level
-(X, Y, Z)"
+(X, Y, Z)
+Going to cost 100 Tr"
 horizontal_alignment = 1
 
 [node name="Create" type="Button" parent="VBoxContainer" parent_id_path=PackedInt32Array(695569886) index="4" unique_id=344811675]
