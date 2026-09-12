@@ -1,11 +1,16 @@
 extends Node
-
-var planet: Planet
-var sun: Sun
-var in_game_ui: InGameUI
+signal planet_available
+static var planet: Planet
+static var sun: Sun
+static var in_game_ui: InGameUI
 
 #Basically the currency (only specific to that planet tho.)
-var terras := 0.0
+static var terras := 0.0
+
+##set the main planet
+func set_planet(new_planet: Planet) -> void:
+	planet = new_planet
+	planet_available.emit()
 static func get_latitude_longitude(pos: Vector3) -> Vector2:
 	var dir: Vector3 = pos.normalized()
 	var lat_rad: float = asin(dir.y)
@@ -30,3 +35,9 @@ static func lat_lon_to_uv(lat_lon: Vector2) -> Vector2:
 	var u: float = (deg_to_rad(lat_lon.y) / (2.0 * PI)) + 0.5
 	var v: float = 0.5 - (deg_to_rad(lat_lon.x) / PI)
 	return Vector2(u, v)
+
+##Sometimes planet not available when on main menu or such, so you gotta use this
+func get_planet() -> Planet:
+	if !planet:
+		await planet_available
+	return planet

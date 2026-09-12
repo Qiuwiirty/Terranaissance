@@ -1,5 +1,7 @@
 extends Node3D
 class_name Planet
+signal city_created(city: City)
+signal city_destroyed(city: City)
 const OXYGEN_GRADIENT: Gradient = preload("uid://w3mrnkqo8pl2")
 static var planets_template: Dictionary[String, PlanetProperties]
 @onready var tick_timer : Timer = $TickTimer
@@ -35,7 +37,7 @@ func _enter_tree() -> void:
 func _ready() -> void:
 	planet_properties = planets_template["mars"]
 	start()
-	
+	planet_available.emit()
 func _process(_delta: float) -> void:
 	if Game.sun.light_energy == 0: mat.set_shader_parameter("sun_active", false); return
 	if Game.sun.rotate_light:
@@ -125,3 +127,4 @@ func _on_planet_input_event(_camera: Node, event: InputEvent, event_position: Ve
 		new_city.geoposition = Vector3(lat_lon.x, lat_lon.y, elevation.r)
 		cities.append(new_city)
 		update_cities_light()
+		city_created.emit(new_city)
