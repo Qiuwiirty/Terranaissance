@@ -11,6 +11,7 @@ anchor_right = 0.75
 anchor_bottom = 0.75
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 1
 script = ExtResource("1_fsu2r")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=518055742]
@@ -42,14 +43,27 @@ Habitations: 0"
 fit_content = true
 autowrap_mode = 0
 
-[node name="TabContainer" type="TabContainer" parent="VBoxContainer" unique_id=834329066]
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer" unique_id=954030111]
 layout_mode = 2
 size_flags_vertical = 3
-current_tab = 0
 
-[node name="Facility" type="VBoxContainer" parent="VBoxContainer/TabContainer" unique_id=1164919973]
+[node name="TabContainer" type="TabContainer" parent="VBoxContainer/HBoxContainer" unique_id=834329066]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+current_tab = 0
+tab_0/title = "Facilities"
+
+[node name="FacilitiesContainer" type="VBoxContainer" parent="VBoxContainer/HBoxContainer/TabContainer" unique_id=1164919973]
+unique_name_in_owner = true
 layout_mode = 2
 metadata/_tab_index = 0
+metadata/_tab_name = "Facilities"
+
+[node name="Action" type="VBoxContainer" parent="VBoxContainer/HBoxContainer" unique_id=563744543]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.5
 
 [node name="Close" type="Button" parent="." unique_id=569224568]
 layout_mode = 1

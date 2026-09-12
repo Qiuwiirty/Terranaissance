@@ -73,7 +73,7 @@ layout_mode = 2
 [node name="RichTextLabel" type="RichTextLabel" parent="Buildings/BuildingsContainer" unique_id=1214506937]
 layout_mode = 2
 bbcode_enabled = true
-text = "[font_size=20][b] City"
+text = "[font_size=20][b] Cities"
 fit_content = true
 
 [node name="Cities" type="VBoxContainer" parent="Buildings/BuildingsContainer" unique_id=1343946081]

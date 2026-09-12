@@ -78,7 +78,7 @@ static var facilities_tech : Dictionary[StringName, String] = {
 var city: City
 var name: StringName = &"Unnamed"
 var category := Category.MISC
-
+var cached_facform := ""
 var planet_terraform_modifier_per_tick: TerraformProperties = TerraformProperties.new()
 var planet_terraform_modifier: TerraformProperties = TerraformProperties.new() # Only modify when initialized, unlike per tick. Usually for habitations and permanent things
 
@@ -130,7 +130,8 @@ enum FacilityFormat {
 	VALUE, #Value to add/decreased
 	PROPERTY, #Property to edit (e.g. heat)
 } # example : "-- 1 heat ,+ 5 habitations"
-## Construct property modifiers in a human readable format in string. Format is: "property operation value, property ..." (Operation: (+ add, - subtract. ++ add per tick, -- subtract per tick))
+
+## Construct property modifiers in a human readable format in string (I called it facform lol). Format is: "property operation value, property ..." (Operation: (+ add, - subtract. ++ add per tick, -- subtract per tick))
 ##
 ## It's constructed in 2 part. "metadata. modifiers" like for example "name=Cooler Alpha, category=TEMPERATURE.-- 4 heat, + 2 habitations"
 ## For enum, you must input int and not string like PRESSURE (instead 1)
@@ -158,6 +159,7 @@ func construct_and_set(text: String) -> void:
 	var sections := parts[FacilityPart.MODIFIERS].split(",")
 	for section in sections:
 		section = section.strip_edges()
+		cached_facform = section
 		var sub_sections := section.split(" ")
 		var operation_str := sub_sections[FacilityFormat.OPERATION]
 		var value_str := sub_sections[FacilityFormat.VALUE]
@@ -193,3 +195,49 @@ func construct_and_set(text: String) -> void:
 					push_error("Unrecognized property that does not exist in both: ", property_str, " text: ", text)
 			_:
 				push_error("Unrecognized operation that does not exist: ", property_str, " text: ", text)
+func get_facform(with_metadata: bool = false) -> String:
+	if with_metadata:
+		return "name=%s, category=%s.%s" % [name, category, cached_facform]
+	return cached_facform
+#this isn't necessary because.. just cache the modifiers. It does come in handy when don't use that construct and set 
+#func _deconstruct_modifier(modifier: Object, add_operation: String, sub_operation: String) -> Array[String]:
+	#var result: Array[String] = []
+	#
+	#for property in modifier.get_property_list():
+		#var property_name: String = property.name
+		##ignore godot builtin objects thing
+		#if property_name.begins_with("_"):
+			#continue
+			#
+		#var value : Variant = modifier.get(property_name)
+		#
+		#if typeof(value) != TYPE_FLOAT and typeof(value) != TYPE_INT:
+			#continue
+			#
+		#if is_zero_approx(float(value)):
+			#continue
+			#
+		#var operation := add_operation if value > 0 else sub_operation
+		#var absolute_value := absf(float(value))
+		#
+		#result.append("%s %s %s" % [operation, absolute_value, property_name ])
+		#
+	#return result
+	#
+#func get_facform(with_metadata: bool = false) -> String:
+	#var modifiers: Array[String] = []
+	#modifiers.append_array(_deconstruct_modifier(planet_terraform_modifier, "+", "-"))
+	#modifiers.append_array(_deconstruct_modifier(city_properties_modifier, "+", "-"))
+	#
+	##per tick use double (to indicate that happened every tick obviously)
+	#modifiers.append_array(_deconstruct_modifier(planet_terraform_modifier_per_tick, "++", "--"))
+	#modifiers.append_array(_deconstruct_modifier(city_properties_modifier_per_tick, "++", "--"))
+	#
+	#var result := ""
+	#
+	#if with_metadata:
+		#result += "name=%s, category=%s." % [name, category]
+		#
+	#result += ", ".join(modifiers)
+	#
+	#return result
