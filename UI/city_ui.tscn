@@ -1,0 +1,38 @@
+[gd_scene format=3 uid="uid://brjyplip73xlc"]
+
+[ext_resource type="Texture2D" uid="uid://d0iod5dehoncb" path="res://textures/city_placeholder.svg" id="1_ufpq0"]
+
+[node name="CityUI" type="PanelContainer" unique_id=571675716]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=518055742]
+layout_mode = 2
+
+[node name="Heading" type="HBoxContainer" parent="VBoxContainer" unique_id=2085922983]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer/Heading" unique_id=133831358]
+layout_mode = 2
+texture = ExtResource("1_ufpq0")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer/Heading" unique_id=2017628050]
+layout_mode = 2
+size_flags_horizontal = 3
+bbcode_enabled = true
+text = "[font_size=30] [b] City name :3 [/b]
+Population: 0
+Habitations: 0"
+fit_content = true
+
+[node name="TabContainer" type="TabContainer" parent="VBoxContainer" unique_id=834329066]
+layout_mode = 2
+size_flags_vertical = 3
+current_tab = 0
+
+[node name="Facility" type="VBoxContainer" parent="VBoxContainer/TabContainer" unique_id=1164919973]
+layout_mode = 2
+metadata/_tab_index = 0

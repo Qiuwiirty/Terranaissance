@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://3kya33kagpc7"]
+
+[ext_resource type="Script" uid="uid://bafeaumfpjk6r" path="res://UI/facility_item_ui.gd" id="1_x473l"]
+[ext_resource type="Texture2D" uid="uid://ds3t4gw3sh4yw" path="res://textures/terraforming_icons/fire.svg" id="2_x473l"]
+
+[node name="FacilityItemUI" type="HBoxContainer" unique_id=1389878678]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_x473l")
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=2022939294]
+layout_mode = 2
+texture = ExtResource("2_x473l")
+expand_mode = 2
+
+[node name="Button" type="Button" parent="." unique_id=460839211]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Cooler Alpha"

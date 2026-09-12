@@ -10,6 +10,7 @@ script = ExtResource("1_jpmjn")
 
 [node name="CreateNewCity" parent="." unique_id=224112140 instance=ExtResource("2_d0vji")]
 visible = false
+pivot_offset_ratio = Vector2(0, 0)
 
 [node name="ControlPanel" type="PanelContainer" parent="." unique_id=2080219811]
 offset_bottom = 21.035
@@ -48,6 +49,28 @@ text = "Sun rotation"
 
 [node name="NotEnoughMoney" parent="." unique_id=1830622854 instance=ExtResource("4_d0vji")]
 visible = false
+pivot_offset_ratio = Vector2(0, 0)
+
+[node name="Buildings" type="PanelContainer" parent="." unique_id=356736766]
+custom_maximum_size = Vector2(200, -1)
+anchors_preset = -1
+anchor_left = 0.9
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="BuildingsContainer" type="VBoxContainer" parent="Buildings" unique_id=1672375040]
+layout_mode = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Buildings/BuildingsContainer" unique_id=1214506937]
+layout_mode = 2
+bbcode_enabled = true
+text = "[b] City"
+fit_content = true
+
+[node name="Cities" type="VBoxContainer" parent="Buildings/BuildingsContainer" unique_id=1343946081]
+layout_mode = 2
 
 [connection signal="item_selected" from="ControlPanel/VBoxContainer/HBoxContainer/OptionButton" to="ControlPanel" method="_on_view_mode_selected"]
 [connection signal="toggled" from="ControlPanel/VBoxContainer/EnableSunLight" to="ControlPanel" method="_on_enable_sun_light_toggled"]

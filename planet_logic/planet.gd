@@ -15,6 +15,8 @@ var biomass_color: Color = Color.GREEN
 @onready var atmosphere : MeshInstance3D = $AtmosphereMesh
 
 var in_creating_city := false
+
+var total_population : int
 static func _static_init() -> void:
 	var mars := PlanetProperties.new()
 	mars.name = "Mars"
@@ -43,6 +45,10 @@ func _process(_delta: float) -> void:
 func _on_update_tick() -> void:
 	terraform_properties.add(terraform_modifier_per_tick)
 	update_appearance()
+	var pop: float = 0.0
+	for city in cities:
+		pop += city.properties.population
+	total_population = floori(pop)
 func _define_biomass_color() -> void:
 	var rng := RandomNumberGenerator.new()
 	rng.seed = planet_properties.name.hash()

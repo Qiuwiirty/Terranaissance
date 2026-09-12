@@ -3,62 +3,76 @@ class_name Facility
 ## (NOTICE: When freed or deleted, call delete() first!)
 ## A unit that provides modification to city.planet or city
 enum Category {
-	TEMPERATURE,
-	PRESSURE,
-	OXYGEN,
-	WATER,
-	BIOMASS,
-	REVENUE,
-	POPULATION,
-	HABITATIONS,
-	MISC
+	TEMPERATURE, #0
+	PRESSURE, #1
+	OXYGEN, #2
+	WATER, #3
+	BIOMASS, #4
+	REVENUE, #5
+	POPULATION, #6
+	HABITATIONS, #7
+	MISC #8
+}
+#The icon are mostly from noto font emoji
+const CATEGORY_TO_TEXTURE: Dictionary[Facility.Category, Texture2D] = {
+	Category.TEMPERATURE: preload("uid://ds3t4gw3sh4yw"),
+	Category.PRESSURE: preload("uid://b2kpn1wp7ohdm"),
+	Category.OXYGEN: preload("uid://bi8pbh57x84pu"),
+	Category.WATER: preload("uid://bbeisdub76ybi"),
+	Category.BIOMASS: preload("uid://drlvtre1ictnp")
 }
 #the name is still placeholder, maybe change it later?
 static var facilities_tech : Dictionary[StringName, String] = {
-	#Heat
-	&"Cooler Alpha": "-- 4 heat",
-	&"Cooler Beta": "-- 40 heat, ++ 3000 revenue",
-	&"Cooler Gamma": "-- 100 heat,-- 20 biomass,-- 5000 revenue",
-	&"Heating Alpha": "++ 4 heat",
-	&"Heating Beta": "++ 60 heat, ++ 10 pressure",
-	&"Heating Gamma": "++ 120 heat, -- 10 water, -- 20 biomass",
-	#Pressure
-	&"Depressurization Alpha": "-- 4 pressure",
-	&"Depressurization Beta": "--  40 pressure, ++ 9 biomass",
-	&"Depressurization Gamma": "--  100 pressure, ++ 20 water, ++ 10 heat",
-	&"Pressurization Alpha": "++ 4 pressure",
-	&"Pressurization Beta": "++ 60 pressure, ++ 10 oxygen",
-	&"Pressurization Gamma": "++ 100 pressure, ++ 20 oxygen, ++ 2000 revenue",
-	#Oxygen
-	&"Oxygenation Alpha": "--  4 oxygen",
-	&"Oxygenation Beta": "--  40 oxygen, ++ 10 pressure",
-	&"Oxygenation Gamma": "--  80 oxygen, ++ 20 water",
-	&"Deoxygenation Alpha": "++ 4 oxygen",
-	&"Deoxygenation Beta": "++ 60 oxygen, --  10 pressure",
-	&"Deoxygenation Gamma": "++ 120 oxygen, ++ 17 biomass, --  10 pressure",
-	#Water
-	&"Water Depletion Alpha": "--  4 water",
-	&"Water Depletion Beta": "--  40 water, ++ 10 oxygen",
-	&"Water Depletion Gamma": "--  120 water, --  10 pressure, ++ 3000 revenue",
-	&"Flooding Alpha": "++ 4 water",
-	&"Flooding Beta": "++ 40 water, ++ 10 pressure",
-	&"Flooding Gamma": "++ 120 water, -- 9 biomass, ++ 8000 revenue",
-	#Biomass
-	&"Aquatic Alpha": "++ 8 biomass, --  4 water",
-	&"Aquatic Beta": "++ 30 biomass, ++ 30 oxygen",
-	&"Aquatic Gamma": "++ 100 biomass, --  10 water, ++ 3000 biomass",
-	&"Forestation Alpha": "++ 4 biomass",
-	&"Forestation Beta": "++ 20 biomass, ++ 8 oxygen",
-	&"Forestation Gamma": "++ 80 biomass, ++ 16 oxygen",
-	#Habitation
-	&"Habitation Alpha": "+ 100 habitat",
-	&"Habitation Beta": "+ 750 habitat, + 4 pressure",
-	&"Habitation Gamma": "+ 3000 habitat, ++ 1 habitat, -- 2 biomass",
-	&"Population Alpha": "++ 4 population",
-	&"Population Beta": "++ 30 population, - 4 oxygen",
-	&"Population Gamma": "++ 120 population, + 2000 revenue"
+	# Heat
+	&"Cooler Alpha": "n=Cooler Alpha,c=0.-- 4 heat",
+	&"Cooler Beta": "n=Cooler Beta,c=0.-- 40 heat,++ 3000 revenue",
+	&"Cooler Gamma": "n=Cooler Gamma,c=0.-- 100 heat,-- 20 biomass,-- 5000 revenue",
+	&"Heating Alpha": "n=Heating Alpha,c=0.++ 4 heat",
+	&"Heating Beta": "n=Heating Beta,c=0.++ 60 heat,++ 10 pressure",
+	&"Heating Gamma": "n=Heating Gamma,c=0.++ 120 heat,-- 10 water,-- 20 biomass",
+
+	# Pressure
+	&"Depressurization Alpha": "n=Depressurization Alpha,c=1.-- 4 pressure",
+	&"Depressurization Beta": "n=Depressurization Beta,c=1.-- 40 pressure,++ 9 biomass",
+	&"Depressurization Gamma": "n=Depressurization Gamma,c=1.-- 100 pressure,++ 20 water,++ 10 heat",
+	&"Pressurization Alpha": "n=Pressurization Alpha,c=1.++ 4 pressure",
+	&"Pressurization Beta": "n=Pressurization Beta,c=1.++ 60 pressure,++ 10 oxygen",
+	&"Pressurization Gamma": "n=Pressurization Gamma,c=1.++ 100 pressure,++ 20 oxygen,++ 2000 revenue",
+
+	# Oxygen
+	&"Oxygenation Alpha": "n=Oxygenation Alpha,c=2.-- 4 oxygen",
+	&"Oxygenation Beta": "n=Oxygenation Beta,c=2.-- 40 oxygen,++ 10 pressure",
+	&"Oxygenation Gamma": "n=Oxygenation Gamma,c=2.-- 80 oxygen,++ 20 water",
+	&"Deoxygenation Alpha": "n=Deoxygenation Alpha,c=2.++ 4 oxygen",
+	&"Deoxygenation Beta": "n=Deoxygenation Beta,c=2.++ 60 oxygen,-- 10 pressure",
+	&"Deoxygenation Gamma": "n=Deoxygenation Gamma,c=2.++ 120 oxygen,++ 17 biomass,-- 10 pressure",
+
+	# Water
+	&"Water Depletion Alpha": "n=Water Depletion Alpha,c=3.-- 4 water",
+	&"Water Depletion Beta": "n=Water Depletion Beta,c=3.-- 40 water,++ 10 oxygen",
+	&"Water Depletion Gamma": "n=Water Depletion Gamma,c=3.-- 120 water,-- 10 pressure,++ 3000 revenue",
+	&"Flooding Alpha": "n=Flooding Alpha,c=3.++ 4 water",
+	&"Flooding Beta": "n=Flooding Beta,c=3.++ 40 water,++ 10 pressure",
+	&"Flooding Gamma": "n=Flooding Gamma,c=3.++ 120 water,-- 9 biomass,++ 8000 revenue",
+
+	# Biomass
+	&"Aquatic Alpha": "n=Aquatic Alpha,c=4.++ 8 biomass,-- 4 water",
+	&"Aquatic Beta": "n=Aquatic Beta,c=4.++ 30 biomass,++ 30 oxygen",
+	&"Aquatic Gamma": "n=Aquatic Gamma,c=4.++ 100 biomass,-- 10 water,++ 3000 revenue",
+	&"Forestation Alpha": "n=Forestation Alpha,c=4.++ 4 biomass",
+	&"Forestation Beta": "n=Forestation Beta,c=4.++ 20 biomass,++ 8 oxygen",
+	&"Forestation Gamma": "n=Forestation Gamma,c=4.++ 80 biomass,++ 16 oxygen",
+
+	# Habitation
+	&"Habitation Alpha": "n=Habitation Alpha,c=7.+ 100 habitat",
+	&"Habitation Beta": "n=Habitation Beta,c=7.+ 750 habitat,+ 4 pressure",
+	&"Habitation Gamma": "n=Habitation Gamma,c=7.+ 3000 habitat,++ 1 habitat,-- 2 biomass",
+	&"Population Alpha": "n=Population Alpha,c=6.++ 4 population",
+	&"Population Beta": "n=Population Beta,c=6.++ 30 population,- 4 oxygen",
+	&"Population Gamma": "n=Population Gamma,c=6.++ 120 population,+ 2000 revenue"
 }
 var city: City
+var name: StringName = &"Unnamed"
 var category := Category.MISC
 
 var planet_terraform_modifier_per_tick: TerraformProperties = TerraformProperties.new()
@@ -103,19 +117,41 @@ func delete() -> void:
 	city.properties.subtract(city_properties_modifier)
 	free()
 
+enum FacilityPart {
+	METADATA,
+	MODIFIERS
+}
 enum FacilityFormat {
 	OPERATION, #How is it operated (+ add, - subtract. ++ add per tick, -- subtract per tick)
 	VALUE, #Value to add/decreased
 	PROPERTY, #Property to edit (e.g. heat)
 } # example : "-- 1 heat ,+ 5 habitations"
 ## Construct property modifiers in a human readable format in string. Format is: "property operation value, property ..." (Operation: (+ add, - subtract. ++ add per tick, -- subtract per tick))
+##
+## It's constructed in 2 part. "metadata. modifiers" like for example "name=Cooler Alpha, category=TEMPERATURE.-- 4 heat, + 2 habitations"
+## For enum, you must input int and not string like PRESSURE (instead 1)
 func construct_and_set(text: String) -> void:
 	const ALIAS : Dictionary[String, String] = { #A format may use alias and need to convert
 		"heat": "temperature",
 		"o2": "oxygen",
-		"habitat": "habitations"
+		"habitat": "habitations",
+		"n": "name",
+		"c": "category"
 	}
-	var sections := text.split(",")
+	var parts := text.split(".", true)
+	
+	var meta_sections := parts[FacilityPart.METADATA].split(",")
+	for meta_section in meta_sections:
+		meta_section = meta_section.strip_edges()
+		var sub_meta_section := meta_section.split("=")
+		var name_mod := sub_meta_section[0] #0 will always be the name that be modified
+		if ALIAS.has(name_mod): name_mod = ALIAS[name_mod]
+		var value_mod := sub_meta_section[1]
+		if name_mod in self:
+			set(name_mod, value_mod)
+		else:
+			push_error("Unrecgonized metadata name modifier!: ", name_mod)
+	var sections := parts[FacilityPart.MODIFIERS].split(",")
 	for section in sections:
 		section = section.strip_edges()
 		var sub_sections := section.split(" ")

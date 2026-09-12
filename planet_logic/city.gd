@@ -11,6 +11,8 @@ var governor : Variant
 
 var properties : CityProperties = CityProperties.new()
 var properties_modifier_per_tick : CityProperties = CityProperties.new()
+func run() -> void:
+	properties.population *= 1.008
 func _init(planet_: Planet, create_habitat := true) -> void:
 	planet = planet_
 	if create_habitat:
