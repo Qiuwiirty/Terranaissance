@@ -14,9 +14,11 @@ script = ExtResource("1_n1v18")
 layout_mode = 2
 
 [node name="CityButton" type="Button" parent="VBoxContainer" unique_id=1033909541]
+unique_name_in_owner = true
 layout_mode = 2
 text = "City name"
 flat = true
+alignment = 0
 
 [node name="InformationContainer" type="HBoxContainer" parent="VBoxContainer" unique_id=1796678140]
 layout_mode = 2
@@ -25,3 +27,5 @@ layout_mode = 2
 unique_name_in_owner = true
 layout_mode = 2
 text = "Population: 0"
+
+[connection signal="button_up" from="VBoxContainer/CityButton" to="." method="_on_city_button_up"]

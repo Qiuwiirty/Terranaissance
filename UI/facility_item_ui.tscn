@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://3kya33kagpc7"]
 
 [ext_resource type="Script" uid="uid://bafeaumfpjk6r" path="res://UI/facility_item_ui.gd" id="1_x473l"]
-[ext_resource type="Texture2D" uid="uid://ds3t4gw3sh4yw" path="res://textures/terraforming_icons/fire.svg" id="2_x473l"]
+[ext_resource type="Texture2D" uid="uid://ds3t4gw3sh4yw" path="res://textures/icons/fire.svg" id="2_x473l"]
 
 [node name="FacilityItemUI" type="HBoxContainer" unique_id=1389878678]
 anchors_preset = 15

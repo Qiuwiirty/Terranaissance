@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://drlvtre1ictnp"
-path="res://.godot/imported/biomass.svg-e1181f3fa34eb6b88c35b3931c0a07dd.ctex"
+uid="uid://kbyfni1muopb"
+path="res://.godot/imported/moon.svg-267673007fbcb66c022e39a48fc38ce8.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://textures/terraforming_icons/biomass.svg"
-dest_files=["res://.godot/imported/biomass.svg-e1181f3fa34eb6b88c35b3931c0a07dd.ctex"]
+source_file="res://textures/icons/moon.svg"
+dest_files=["res://.godot/imported/moon.svg-267673007fbcb66c022e39a48fc38ce8.ctex"]
 
 [params]
 

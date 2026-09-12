@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://tt10vx6tyh3k"
-path="res://.godot/imported/city.svg-56935784e75ad8f643d8cf0712940e1e.ctex"
+uid="uid://b2kpn1wp7ohdm"
+path="res://.godot/imported/pressure.svg-1dfa57a6c41f1c1bde003154f6df1494.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://textures/city.svg"
-dest_files=["res://.godot/imported/city.svg-56935784e75ad8f643d8cf0712940e1e.ctex"]
+source_file="res://textures/icons/pressure.svg"
+dest_files=["res://.godot/imported/pressure.svg-1dfa57a6c41f1c1bde003154f6df1494.ctex"]
 
 [params]
 

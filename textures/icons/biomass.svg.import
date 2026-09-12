@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ds3t4gw3sh4yw"
-path="res://.godot/imported/fire.svg-aa9c767eacbaf87c5b9adb81c0c452dd.ctex"
+uid="uid://drlvtre1ictnp"
+path="res://.godot/imported/biomass.svg-6e9c13018993502e5c4ff85d569cfb70.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://textures/terraforming_icons/fire.svg"
-dest_files=["res://.godot/imported/fire.svg-aa9c767eacbaf87c5b9adb81c0c452dd.ctex"]
+source_file="res://textures/icons/biomass.svg"
+dest_files=["res://.godot/imported/biomass.svg-6e9c13018993502e5c4ff85d569cfb70.ctex"]
 
 [params]
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://da5o8jj66i7p"
-path="res://.godot/imported/misc.svg-b99e2e3d2ba01de747dbdd1beabc7f74.ctex"
+uid="uid://bi8pbh57x84pu"
+path="res://.godot/imported/oxygen.svg-7c037c1badd0b9b121287a13288c666f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://textures/terraforming_icons/misc.svg"
-dest_files=["res://.godot/imported/misc.svg-b99e2e3d2ba01de747dbdd1beabc7f74.ctex"]
+source_file="res://textures/icons/oxygen.svg"
+dest_files=["res://.godot/imported/oxygen.svg-7c037c1badd0b9b121287a13288c666f.ctex"]
 
 [params]
 

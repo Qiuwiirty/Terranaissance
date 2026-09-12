@@ -2,11 +2,17 @@
 
 [ext_resource type="Script" uid="uid://bpgjjxawsfebs" path="res://UI/in_game_ui.gd" id="1_jpmjn"]
 [ext_resource type="Script" uid="uid://dir0viqet3san" path="res://UI/control_panel.gd" id="1_r4raw"]
+[ext_resource type="PackedScene" uid="uid://brjyplip73xlc" path="res://UI/city_ui.tscn" id="2_b4smu"]
 [ext_resource type="PackedScene" uid="uid://dqq3t8i3dufpc" path="res://UI/create_new_city.tscn" id="2_d0vji"]
 [ext_resource type="PackedScene" uid="uid://bn4kr6ugpqna3" path="res://UI/not_enough_money.tscn" id="4_d0vji"]
+[ext_resource type="Script" uid="uid://pm1isfkioakk" path="res://UI/buildings.gd" id="6_ix84t"]
 
 [node name="InGameUI" type="CanvasLayer" unique_id=1347753977]
 script = ExtResource("1_jpmjn")
+
+[node name="CityUI" parent="." unique_id=571675716 instance=ExtResource("2_b4smu")]
+visible = false
+pivot_offset_ratio = Vector2(1, 0)
 
 [node name="CreateNewCity" parent="." unique_id=224112140 instance=ExtResource("2_d0vji")]
 visible = false
@@ -59,6 +65,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 0
 grow_vertical = 2
+script = ExtResource("6_ix84t")
 
 [node name="BuildingsContainer" type="VBoxContainer" parent="Buildings" unique_id=1672375040]
 layout_mode = 2
@@ -66,10 +73,11 @@ layout_mode = 2
 [node name="RichTextLabel" type="RichTextLabel" parent="Buildings/BuildingsContainer" unique_id=1214506937]
 layout_mode = 2
 bbcode_enabled = true
-text = "[b] City"
+text = "[font_size=20][b] City"
 fit_content = true
 
 [node name="Cities" type="VBoxContainer" parent="Buildings/BuildingsContainer" unique_id=1343946081]
+unique_name_in_owner = true
 layout_mode = 2
 
 [connection signal="item_selected" from="ControlPanel/VBoxContainer/HBoxContainer/OptionButton" to="ControlPanel" method="_on_view_mode_selected"]

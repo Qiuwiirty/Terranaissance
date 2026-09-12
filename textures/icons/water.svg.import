@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bbeisdub76ybi"
-path="res://.godot/imported/water.svg-f544065adce249ff02b7cc1d3395c24f.ctex"
+path="res://.godot/imported/water.svg-86a26c6521cac2d59254810dfc27eed9.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://textures/terraforming_icons/water.svg"
-dest_files=["res://.godot/imported/water.svg-f544065adce249ff02b7cc1d3395c24f.ctex"]
+source_file="res://textures/icons/water.svg"
+dest_files=["res://.godot/imported/water.svg-86a26c6521cac2d59254810dfc27eed9.ctex"]
 
 [params]
 

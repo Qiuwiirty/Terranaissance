@@ -1,32 +1,46 @@
 [gd_scene format=3 uid="uid://brjyplip73xlc"]
 
-[ext_resource type="Texture2D" uid="uid://d0iod5dehoncb" path="res://textures/city_placeholder.svg" id="1_ufpq0"]
+[ext_resource type="Script" uid="uid://cy7lnseavg3hb" path="res://UI/city_ui.gd" id="1_fsu2r"]
+[ext_resource type="Texture2D" uid="uid://tt10vx6tyh3k" path="res://textures/icons/city.svg" id="1_ufpq0"]
 
-[node name="CityUI" type="PanelContainer" unique_id=571675716]
+[node name="CityUI" type="Panel" unique_id=1053576626]
+anchors_preset = -1
+anchor_left = 0.25
+anchor_top = 0.25
+anchor_right = 0.75
+anchor_bottom = 0.75
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_fsu2r")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=518055742]
+layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-
-[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=518055742]
-layout_mode = 2
+metadata/_edit_use_anchors_ = true
 
 [node name="Heading" type="HBoxContainer" parent="VBoxContainer" unique_id=2085922983]
+unique_name_in_owner = true
 layout_mode = 2
 
-[node name="TextureRect" type="TextureRect" parent="VBoxContainer/Heading" unique_id=133831358]
+[node name="CityDisplay" type="TextureRect" parent="VBoxContainer/Heading" unique_id=133831358]
 layout_mode = 2
 texture = ExtResource("1_ufpq0")
+expand_mode = 2
 
-[node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer/Heading" unique_id=2017628050]
+[node name="Description" type="RichTextLabel" parent="VBoxContainer/Heading" unique_id=2017628050]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 bbcode_enabled = true
-text = "[font_size=30] [b] City name :3 [/b]
+text = "[font_size=20][b] City name :3 [/b][/font_size]
 Population: 0
 Habitations: 0"
 fit_content = true
+autowrap_mode = 0
 
 [node name="TabContainer" type="TabContainer" parent="VBoxContainer" unique_id=834329066]
 layout_mode = 2
@@ -36,3 +50,16 @@ current_tab = 0
 [node name="Facility" type="VBoxContainer" parent="VBoxContainer/TabContainer" unique_id=1164919973]
 layout_mode = 2
 metadata/_tab_index = 0
+
+[node name="Close" type="Button" parent="." unique_id=569224568]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -8.0
+offset_bottom = 8.0
+grow_horizontal = 0
+text = "X"
+flat = true
+
+[connection signal="button_up" from="Close" to="." method="close"]

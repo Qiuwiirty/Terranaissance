@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b2kpn1wp7ohdm"
-path="res://.godot/imported/pressure.svg-4d99fcfc6226d5e085681557a011faf4.ctex"
+uid="uid://ds3t4gw3sh4yw"
+path="res://.godot/imported/fire.svg-14bdba5a8e4ce2952e10f22811ec6532.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://textures/terraforming_icons/pressure.svg"
-dest_files=["res://.godot/imported/pressure.svg-4d99fcfc6226d5e085681557a011faf4.ctex"]
+source_file="res://textures/icons/fire.svg"
+dest_files=["res://.godot/imported/fire.svg-14bdba5a8e4ce2952e10f22811ec6532.ctex"]
 
 [params]
 

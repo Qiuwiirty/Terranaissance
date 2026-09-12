@@ -37,7 +37,6 @@ func _enter_tree() -> void:
 func _ready() -> void:
 	planet_properties = planets_template["mars"]
 	start()
-	planet_available.emit()
 func _process(_delta: float) -> void:
 	if Game.sun.light_energy == 0: mat.set_shader_parameter("sun_active", false); return
 	if Game.sun.rotate_light:
@@ -120,11 +119,11 @@ func _on_planet_input_event(_camera: Node, event: InputEvent, event_position: Ve
 		var lat_lon := Game.get_latitude_longitude(to_local(event_position))
 		var elevation := planet_properties.get_elevation(lat_lon)
 		in_creating_city = true
-		var city_name := await Game.in_game_ui.create_new_city_popup.request_create_new_city_name(Vector3(lat_lon.x, lat_lon.y, elevation.r), price)
+		var city_name := await Game.in_game_ui.create_new_city_popup.request_create_new_city_name(Vector3(lat_lon.x, lat_lon.y, elevation), price)
 		in_creating_city = false
 		var new_city := City.new(self, true)
 		new_city.name = city_name
-		new_city.geoposition = Vector3(lat_lon.x, lat_lon.y, elevation.r)
+		new_city.geoposition = Vector3(lat_lon.x, lat_lon.y, elevation)
 		cities.append(new_city)
 		update_cities_light()
 		city_created.emit(new_city)

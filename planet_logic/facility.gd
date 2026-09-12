@@ -23,7 +23,7 @@ const CATEGORY_TO_TEXTURE: Dictionary[Facility.Category, Texture2D] = {
 	Category.REVENUE: preload("uid://css0gk1xlxis0"),
 	Category.POPULATION: preload("uid://dak1q80vgqll8"),
 	Category.HABITATIONS: preload("uid://dak1q80vgqll8"), #use the same as population
-	Category.MISC: preload("")
+	Category.MISC: preload("uid://da5o8jj66i7p")
 }
 #the name is still placeholder, maybe change it later?
 static var facilities_tech : Dictionary[StringName, String] = {

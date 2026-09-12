@@ -1,4 +1,4 @@
-extends PanelContainer
+extends Control
 class_name SimplePopup
 const ANIM_DURATION := 0.1
 var _dragging: bool

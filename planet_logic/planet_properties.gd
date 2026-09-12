@@ -8,7 +8,7 @@ const OXYGEN_REQUIREMENT = 210000
 @export var elevation_map : Texture2D
 @export var map : Texture2D
 @export var radius := 100.0 #km
-@export var max_elevation := 0.0
+@export var max_elevation := 1.0
 @export var starting_terraform_properties: TerraformProperties = TerraformProperties.new()
 @export_category("Misc settings") #not 100% essential but optional and good to have
 @export var axial_tilt := 0.0
@@ -42,6 +42,9 @@ func update_max_biomass() -> void:
 	max_biomass = 0.01 * (4 * PI * radius * radius)
 
 #endregion
-func get_elevation(lat_lon: Vector2) -> Color:
+func get_elevation_color(lat_lon: Vector2) -> Color:
 	var pos := Game.lat_lon_to_pixel(lat_lon, img.get_size())
-	return img.get_pixel(pos.x, pos.y)
+	return img.get_pixel(pos.x, pos.y) 
+func get_elevation(lat_lon: Vector2) -> float:
+	var pos := Game.lat_lon_to_pixel(lat_lon, img.get_size())
+	return img.get_pixel(pos.x, pos.y).r * max_elevation 
