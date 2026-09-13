@@ -77,8 +77,13 @@ static var facilities_tech : Dictionary[StringName, String] = {
 }
 var city: City
 var name: StringName = &"Unnamed"
+##Upgrade, it's basically modifier multiplier (*1.5)
+var level : int = 1
+##This will impact the displayed icon in the UI too
 var category := Category.MISC
+##Important for the game to show what it does
 var cached_facform := ""
+
 var planet_terraform_modifier_per_tick: TerraformProperties = TerraformProperties.new()
 var planet_terraform_modifier: TerraformProperties = TerraformProperties.new() # Only modify when initialized, unlike per tick. Usually for habitations and permanent things
 
@@ -105,20 +110,43 @@ func set_planet_modifier(mod: TerraformProperties) -> void:
 	city.planet.terraform_properties.add(planet_terraform_modifier)
 
 func set_city_modifier_per_tick(mod_per_tick: CityProperties) -> void:
-	city.city_properties_modifier_per_tick.subtract(city_properties_modifier_per_tick)
+	city.properties_modifier_per_tick.subtract(city_properties_modifier_per_tick)
 	city_properties_modifier_per_tick = mod_per_tick
-	city.city_properties_modifier_per_tick.add(city_properties_modifier_per_tick)
+	city.properties_modifier_per_tick.add(city_properties_modifier_per_tick)
 
 func set_city_modifier(mod: CityProperties) -> void:
 	city.properties.subtract(city_properties_modifier)
 	city_properties_modifier = mod
 	city.properties.add(city_properties_modifier)
 
-func delete() -> void:
+func set_level(new_level: int) -> void:
+	_remove_modifiers_from_objects() #remove the modifier first because don't wanna add something again
+	var old_multiplier := 1.0 + (level - 1) * 0.5
+	var new_multiplier := 1.0 + (new_level - 1) * 0.5
+	var ratio := new_multiplier / old_multiplier
+	
+	planet_terraform_modifier.mutiply_float(ratio)
+	city_properties_modifier.mutiply_float(ratio)
+	planet_terraform_modifier_per_tick.mutiply_float(ratio)
+	city_properties_modifier_per_tick.mutiply_float(ratio)
+	
+	level = new_level
+	_apply_modifiers_to_objects() #update it
+##If precedeed by _apply_modifiers_to_objects, then you essentially make it goes back (aka changes nothing). But this is useful when wanting to update (_remove, do some thing, then _apply
+func _remove_modifiers_from_objects() -> void:
 	city.planet.terraform_modifier_per_tick.subtract(planet_terraform_modifier_per_tick)
 	city.planet.terraform_properties.subtract(planet_terraform_modifier)
-	city.city_properties_modifier_per_tick.subtract(city_properties_modifier_per_tick)
 	city.properties.subtract(city_properties_modifier)
+	city.properties_modifier_per_tick.subtract(city_properties_modifier_per_tick)
+
+func _apply_modifiers_to_objects() -> void:
+	city.planet.terraform_modifier_per_tick.add(planet_terraform_modifier_per_tick)
+	city.planet.terraform_properties.add(planet_terraform_modifier)
+	city.properties.add(city_properties_modifier)
+	city.properties_modifier_per_tick.add(city_properties_modifier_per_tick)
+
+func delete() -> void:
+	_remove_modifiers_from_objects()
 	free()
 
 enum FacilityPart {

@@ -65,6 +65,13 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 0.5
 
+[node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer/HBoxContainer/Action" unique_id=1296903760]
+layout_mode = 2
+bbcode_enabled = true
+text = "[center] Habitation Alpha
+[font_size=12] Level I"
+fit_content = true
+
 [node name="Close" type="Button" parent="." unique_id=569224568]
 layout_mode = 1
 anchors_preset = 1

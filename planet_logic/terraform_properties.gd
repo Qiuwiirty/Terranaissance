@@ -39,3 +39,19 @@ func subtract(other: TerraformProperties) -> void:
 	water -= other.water
 	biomass -= other.biomass
 	revenue -= other.revenue
+
+func mutiply(other: TerraformProperties) -> void:
+	temperature *= other.temperature
+	pressure *= other.pressure
+	oxygen *= other.oxygen
+	water *= other.water
+	biomass *= other.biomass
+	revenue *= other.revenue
+	
+func mutiply_float(value: float) -> void:
+	temperature *= value
+	pressure *= value
+	oxygen *= value
+	water *= value
+	biomass *= value
+	revenue *= value
