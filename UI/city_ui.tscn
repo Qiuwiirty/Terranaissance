@@ -60,17 +60,42 @@ layout_mode = 2
 metadata/_tab_index = 0
 metadata/_tab_name = "Facilities"
 
-[node name="Action" type="VBoxContainer" parent="VBoxContainer/HBoxContainer" unique_id=563744543]
+[node name="RightPanel" type="PanelContainer" parent="VBoxContainer/HBoxContainer" unique_id=294384246]
+unique_name_in_owner = true
+editor_description = "This must only have one child at a time, and show action panel or information depending on which stuff is clicked"
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 0.5
 
-[node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer/HBoxContainer/Action" unique_id=1296903760]
+[node name="Facility" type="VBoxContainer" parent="VBoxContainer/HBoxContainer/RightPanel" unique_id=2126241787]
+unique_name_in_owner = true
+visible = false
 layout_mode = 2
+
+[node name="FacInformation" type="RichTextLabel" parent="VBoxContainer/HBoxContainer/RightPanel/Facility" unique_id=1296903760]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
 bbcode_enabled = true
 text = "[center] Habitation Alpha
-[font_size=12] Level I"
+[font_size=12] Level I
+[left]Unfortunately, no description for now :("
 fit_content = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/HBoxContainer/RightPanel/Facility" unique_id=411898298]
+layout_mode = 2
+
+[node name="FacUpgrade" type="Button" parent="VBoxContainer/HBoxContainer/RightPanel/Facility/HBoxContainer" unique_id=1490211680]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Upgrade"
+
+[node name="FacDemolish" type="Button" parent="VBoxContainer/HBoxContainer/RightPanel/Facility/HBoxContainer" unique_id=1876929785]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Demolish"
 
 [node name="Close" type="Button" parent="." unique_id=569224568]
 layout_mode = 1
