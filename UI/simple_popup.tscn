@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://c4fjq1j3ib6dn" path="res://UI/simple_popup.gd" id="1_p7nce"]
 
 [node name="SimplePopup" type="PanelContainer" unique_id=224112140]
+visible = false
 custom_minimum_size = Vector2(250, 125)
 anchors_preset = 8
 anchor_left = 0.5

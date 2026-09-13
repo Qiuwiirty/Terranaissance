@@ -4,6 +4,8 @@ const ANIM_DURATION := 0.1
 var _dragging: bool
 var _drag_offset: Vector2
 #Logic from CL pop up lol
+func _enter_tree() -> void:
+	pivot_offset_ratio = Vector2(0.5, 0.5)
 func open() -> void:
 	show()
 	scale = Vector2(0.8, 0.8)
@@ -37,3 +39,6 @@ func _gui_input(event: InputEvent) -> void:
 			
 	elif event is InputEventMouseMotion and _dragging:
 		global_position = get_global_mouse_position() - _drag_offset
+func _unhandled_input(event: InputEvent) -> void:
+	if is_visible_in_tree() and event is InputEventKey and event.keycode == KEY_ESCAPE and event.is_pressed():
+		close()
