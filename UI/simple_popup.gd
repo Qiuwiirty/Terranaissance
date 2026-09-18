@@ -20,6 +20,7 @@ func open() -> void:
 
 	tween.tween_property(self, "modulate:a", 1.0, ANIM_DURATION)
 	move_to_front.call_deferred()
+	
 func close() -> void:
 	var tween := create_tween().set_parallel(true)
 	tween.set_trans(Tween.TRANS_CUBIC)
@@ -29,8 +30,7 @@ func close() -> void:
 	tween.tween_property(self, "modulate:a", 0.0, ANIM_DURATION)
 	tween.set_parallel(false)
 	tween.tween_callback(hide)
-
-
+	
 func _gui_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton:
 		if event.button_index == MOUSE_BUTTON_LEFT:

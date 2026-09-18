@@ -3,15 +3,13 @@ class_name TerraformProperties
 enum TerraformClassification {
 	HELLISH, #when 200% away from the habitable stat (which is very far away)
 	BARREN, #nothing can survive
+	MICROBE_LIFE,
 	PLANT_LIFE,
 	HABITABLE,
-	PERFECT
+	PERFECT,
 }
-const HABITABILITY_PERCENTAGE: Dictionary[TerraformClassification, float] = {
-	TerraformClassification.PLANT_LIFE: 5., #percent
-	TerraformClassification.HABITABLE: 50.,
-	TerraformClassification.PERFECT: 75
-}
+#Microbe life
+#180k - 
 var habitability_percentage: float:
 	get:
 		return 0.
@@ -55,3 +53,6 @@ func mutiply_float(value: float) -> void:
 	water *= value
 	biomass *= value
 	revenue *= value
+
+func check_habitability_classification(value: float) -> TerraformClassification:
+	return TerraformClassification.BARREN

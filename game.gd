@@ -1,5 +1,6 @@
 extends Node
 signal planet_available
+
 static var planet: Planet
 static var sun: Sun
 static var in_game_ui: InGameUI

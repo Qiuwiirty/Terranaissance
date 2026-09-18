@@ -1,0 +1,67 @@
+[gd_scene format=3 uid="uid://4iw853n2o8im"]
+
+[ext_resource type="Script" uid="uid://c2vtpnn3xflgk" path="res://UI/terraform_indicator.gd" id="1_0om5g"]
+[ext_resource type="Texture2D" uid="uid://ds3t4gw3sh4yw" path="res://textures/icons/fire.svg" id="2_wuun8"]
+[ext_resource type="Gradient" uid="uid://deslbf48gwobe" path="res://planet_logic/ideal_progress_gradient.tres" id="3_yyoda"]
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_3uw2p"]
+gradient = ExtResource("3_yyoda")
+
+[node name="TerraformIndicator" type="MarginContainer" unique_id=1188990834]
+offset_right = 426.0
+offset_bottom = 108.0
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+script = ExtResource("1_0om5g")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=1880629392]
+layout_mode = 2
+
+[node name="Icon" type="TextureRect" parent="HBoxContainer" unique_id=1926278851]
+unique_name_in_owner = true
+layout_mode = 2
+texture = ExtResource("2_wuun8")
+expand_mode = 2
+
+[node name="Control" type="VBoxContainer" parent="HBoxContainer" unique_id=1230945933]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 0
+
+[node name="ArrowIndicator" type="Label" parent="HBoxContainer/Control" unique_id=150699378]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+offset_transform_enabled = true
+offset_transform_pivot = Vector2(1, 0)
+text = "v"
+vertical_alignment = 2
+
+[node name="Progress" type="TextureRect" parent="HBoxContainer/Control" unique_id=2021727865]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.75
+offset_transform_enabled = true
+texture = SubResource("GradientTexture1D_3uw2p")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/Control" unique_id=1344212620]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="MinHabitability" type="Label" parent="HBoxContainer/Control/HBoxContainer" unique_id=197793933]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+text = "0"
+
+[node name="MaxHabitability" type="Label" parent="HBoxContainer/Control/HBoxContainer" unique_id=511345782]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+text = "100"
+horizontal_alignment = 2

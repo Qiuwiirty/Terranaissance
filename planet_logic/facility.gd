@@ -11,7 +11,9 @@ enum Category {
 	REVENUE, #5
 	POPULATION, #6
 	HABITATIONS, #7
-	MISC #8
+	MISC, #8
+	UNDEFINED, #9 This is different from MISC. 
+	#This only happened when the code havent explicitly change the category (which is kinda bad yknow)
 }
 #The icon are mostly from noto font emoji
 const CATEGORY_TO_TEXTURE: Dictionary[Facility.Category, Texture2D] = {
@@ -80,7 +82,7 @@ var name: StringName = &"Unnamed"
 ##Upgrade, it's basically modifier multiplier (*1.5)
 var level : int = 1
 ##This will impact the displayed icon in the UI too
-var category := Category.MISC
+var category := Category.UNDEFINED
 ##Important for the game to show what it does
 var cached_facform := ""
 

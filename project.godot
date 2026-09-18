@@ -27,7 +27,6 @@ gdscript/warnings/int_as_enum_without_cast=0
 
 [display]
 
-window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
 
 [dotnet]
