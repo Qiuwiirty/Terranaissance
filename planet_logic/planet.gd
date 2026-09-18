@@ -6,12 +6,12 @@ const OXYGEN_GRADIENT: Gradient = preload("uid://w3mrnkqo8pl2")
 static var planets_template: Dictionary[String, PlanetProperties]
 @onready var tick_timer : Timer = $TickTimer
 
-@export var planet_properties : PlanetProperties
-@export var terraform_properties : TerraformProperties = TerraformProperties.new()
-@export var terraform_modifier_per_tick : TerraformProperties = TerraformProperties.new()
+var planet_properties : PlanetProperties
+var terraform_properties : TerraformProperties = TerraformProperties.new()
+var terraform_modifier_per_tick : TerraformProperties = TerraformProperties.new()
 var cities : Array[City]
 var outposts : Array
-
+var terras: float = 0
 var biomass_color: Color = Color.GREEN
 @onready var mat: Material = $PlanetMesh.mesh.material
 @onready var atmosphere : MeshInstance3D = $AtmosphereMesh
@@ -55,7 +55,7 @@ func _define_biomass_color() -> void:
 	rng.seed = planet_properties.name.hash()
 	var biomass_colors := Sun.sun_to_biomass_colors[Game.sun.star_type]
 	biomass_color = biomass_colors[rng.randi_range(0, biomass_colors.size() - 1)]
-func start() -> void: #Intended for starting a new world. Which expect everything to be empty so it will override some things (which can definetly reset the data so use carefully)
+func start() -> void: ##Intended for starting a new world. Which expect everything to be empty so it will override some things (which can definetly reset the data so use carefully)
 	terraform_properties = planet_properties.starting_terraform_properties
 	init_planet_properties()
 func init_planet_properties() -> void:

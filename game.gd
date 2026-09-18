@@ -5,9 +5,6 @@ static var planet: Planet
 static var sun: Sun
 static var in_game_ui: InGameUI
 
-#Basically the currency (only specific to that planet tho.)
-static var terras := 10000000000
-
 ##set the main planet
 func set_planet(new_planet: Planet) -> void:
 	planet = new_planet

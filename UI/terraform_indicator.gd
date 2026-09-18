@@ -11,4 +11,4 @@ func _ready() -> void:
 	arrow_indicator.offset_transform_position.x = -character_length / 2
 	icon.texture = Facility.CATEGORY_TO_TEXTURE[category]
 func _update() -> void:
-	icon.modulate
+	pass #TODO: APPLY COLOR TO THE ICON ACCORDING TO THE HABITABILITY
