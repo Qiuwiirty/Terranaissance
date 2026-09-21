@@ -1,5 +1,6 @@
 extends MarginContainer
 static var character_length: float
+var terraform_properties: TerraformProperties
 var category : Facility.Category = Facility.Category.PRESSURE
 @onready var icon: TextureRect = %Icon
 @onready var arrow_indicator : Label = %ArrowIndicator

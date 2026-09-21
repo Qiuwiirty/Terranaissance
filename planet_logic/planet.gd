@@ -28,7 +28,7 @@ static func _static_init() -> void:
 	mars.max_elevation = 2150000
 	
 	mars.starting_terraform_properties.pressure = 610
-	mars.starting_terraform_properties.oxygen = 1520
+	#mars.starting_terraform_properties.oxygen = 1520
 	mars.map = load("uid://bsas3wag8j7cs")
 	mars.elevation_map = load("uid://c5v61glibq5lm")
 	planets_template["mars"] = mars
@@ -77,7 +77,7 @@ func update_appearance() -> void:
 	if terraform_properties.pressure > 0 and terraform_properties.pressure < 500000:
 		atmosphere.show()
 		atmosphere.mesh.material.set_shader_parameter("atmosphere_strength", terraform_properties.pressure / 100000)
-		atmosphere.mesh.material.set_shader_parameter("atmosphere_color", OXYGEN_GRADIENT.sample(terraform_properties.oxygen / 420000))
+		atmosphere.mesh.material.set_shader_parameter("atmosphere_color", terraform_properties.atmosphere_composition.get_atmosphere_color())
 	else:
 		atmosphere.hide()
 func update_cities_light() -> void:
