@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://c2vtpnn3xflgk" path="res://UI/terraform_indicator.gd" id="1_0om5g"]
 [ext_resource type="Texture2D" uid="uid://ds3t4gw3sh4yw" path="res://textures/icons/fire.svg" id="2_wuun8"]
-[ext_resource type="Gradient" uid="uid://deslbf48gwobe" path="res://planet_logic/ideal_progress_gradient.tres" id="3_yyoda"]
+[ext_resource type="Gradient" uid="uid://deslbf48gwobe" path="res://planet_logic/planet_conditions/ideal_progress_gradient.tres" id="3_yyoda"]
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_3uw2p"]
 gradient = ExtResource("3_yyoda")
