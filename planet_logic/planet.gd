@@ -25,8 +25,9 @@ static func _static_init() -> void:
 	mars.radius = 3389.5 #in km btw
 	mars.axial_tilt = 25.19
 	mars.orbital_tilt = 1.85
-	mars.max_elevation = 2150000
+	mars.max_elevation = 2_150_000
 	
+	mars.starting_terraform_properties.temperature = 220_000
 	mars.starting_terraform_properties.pressure = 610
 	#mars.starting_terraform_properties.oxygen = 1520
 	mars.map = load("uid://bsas3wag8j7cs")

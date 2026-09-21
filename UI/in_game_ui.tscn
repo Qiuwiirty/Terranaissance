@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://dqq3t8i3dufpc" path="res://UI/create_new_city.tscn" id="2_d0vji"]
 [ext_resource type="PackedScene" uid="uid://bn4kr6ugpqna3" path="res://UI/not_enough_money.tscn" id="4_d0vji"]
 [ext_resource type="Script" uid="uid://pm1isfkioakk" path="res://UI/buildings.gd" id="6_ix84t"]
+[ext_resource type="Script" uid="uid://c6rcxd4fxsnwm" path="res://UI/control_tab.gd" id="7_ppb6f"]
 [ext_resource type="PackedScene" uid="uid://4iw853n2o8im" path="res://UI/terraform_indicator.tscn" id="7_xfpkw"]
 
 [node name="InGameUI" type="CanvasLayer" unique_id=1347753977]
@@ -90,19 +91,51 @@ anchor_bottom = 0.8
 grow_horizontal = 2
 grow_vertical = 2
 current_tab = 0
-tab_0/title = "Environment"
+tab_0/title = "Planet environment"
+script = ExtResource("7_ppb6f")
 
-[node name="EnvironmentContainer" type="VBoxContainer" parent="ControlTab" unique_id=1275028515]
+[node name="ScrollContainer" type="ScrollContainer" parent="ControlTab" unique_id=2087545349]
 layout_mode = 2
 metadata/_tab_index = 0
-metadata/_tab_name = "Environment"
+metadata/_tab_name = "Planet environment"
 
-[node name="TerraformIndicator" parent="ControlTab/EnvironmentContainer" unique_id=1188990834 instance=ExtResource("7_xfpkw")]
+[node name="EnvironmentContainer" type="VBoxContainer" parent="ControlTab/ScrollContainer" unique_id=1275028515]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="TargetClassificationOptionContainer" type="HBoxContainer" parent="ControlTab/ScrollContainer/EnvironmentContainer" unique_id=1788106225]
 layout_mode = 2
 
-[node name="TerraformIndicator2" parent="ControlTab/EnvironmentContainer" unique_id=334319156 instance=ExtResource("7_xfpkw")]
+[node name="Label" type="Label" parent="ControlTab/ScrollContainer/EnvironmentContainer/TargetClassificationOptionContainer" unique_id=160149836]
 layout_mode = 2
+text = "For... "
+
+[node name="OptionButton" type="OptionButton" parent="ControlTab/ScrollContainer/EnvironmentContainer/TargetClassificationOptionContainer" unique_id=9205724]
+layout_mode = 2
+item_count = 3
+popup/item_0/text = "Microbial life"
+popup/item_0/id = 0
+popup/item_1/text = "Plant life"
+popup/item_1/id = 1
+popup/item_2/text = "Human life"
+popup/item_2/id = 2
+
+[node name="Temperature" parent="ControlTab/ScrollContainer/EnvironmentContainer" unique_id=1188990834 instance=ExtResource("7_xfpkw")]
+layout_mode = 2
+
+[node name="Pressure" parent="ControlTab/ScrollContainer/EnvironmentContainer" unique_id=334319156 instance=ExtResource("7_xfpkw")]
+layout_mode = 2
+category = 1
+
+[node name="Water" parent="ControlTab/ScrollContainer/EnvironmentContainer" unique_id=2090549738 instance=ExtResource("7_xfpkw")]
+layout_mode = 2
+category = 3
+
+[node name="Biomass" parent="ControlTab/ScrollContainer/EnvironmentContainer" unique_id=577861746 instance=ExtResource("7_xfpkw")]
+layout_mode = 2
+category = 4
 
 [connection signal="item_selected" from="ControlPanel/VBoxContainer/HBoxContainer/OptionButton" to="ControlPanel" method="_on_view_mode_selected"]
 [connection signal="toggled" from="ControlPanel/VBoxContainer/EnableSunLight" to="ControlPanel" method="_on_enable_sun_light_toggled"]
 [connection signal="toggled" from="ControlPanel/VBoxContainer/SunRotation" to="ControlPanel" method="_on_sun_rotation_toggled"]
+[connection signal="item_selected" from="ControlTab/ScrollContainer/EnvironmentContainer/TargetClassificationOptionContainer/OptionButton" to="ControlTab" method="_on_target_environment_classification_selected"]

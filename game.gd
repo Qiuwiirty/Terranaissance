@@ -36,7 +36,22 @@ static func lat_lon_to_uv(lat_lon: Vector2) -> Vector2:
 
 static func is_in_range(value: float, range_value: Vector2) -> bool:
 	return value >= range_value.x and value <= range_value.y
-
+static func humanize_number(number : String) -> String:
+	var to_return : String
+	var decimals : String
+	if "." in number:
+		decimals = "." + number.split(".", false, 0)[1]
+	if len(number.replace(decimals, "")) < 4:
+		return number
+	else:
+		var i : int = 0
+		for item in number.replace(decimals, "").reverse():
+			if i == 3:
+				item += ","
+				i = 0
+			to_return = item + to_return
+			i += 1
+		return to_return + decimals
 ##Sometimes planet not available when on main menu or such, so you gotta use this
 func get_planet() -> Planet:
 	if !planet:

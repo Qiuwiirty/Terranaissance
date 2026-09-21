@@ -16,7 +16,7 @@ enum Category {
 	#This only happened when the code havent explicitly change the category (which is kinda bad yknow)
 }
 #The icon are mostly from noto font emoji
-const CATEGORY_TO_TEXTURE: Dictionary[Facility.Category, Texture2D] = {
+const CATEGORY_TO_TEXTURE: Dictionary[Category, Texture2D] = {
 	Category.TEMPERATURE: preload("uid://ds3t4gw3sh4yw"),
 	Category.PRESSURE: preload("uid://b2kpn1wp7ohdm"),
 	Category.ATMOSPHERE: preload("uid://bi8pbh57x84pu"),
