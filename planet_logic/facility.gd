@@ -5,21 +5,21 @@ class_name Facility
 enum Category {
 	TEMPERATURE, #0
 	PRESSURE, #1
-	OXYGEN, #2
+	ATMOSPHERE, #2
 	WATER, #3
 	BIOMASS, #4
 	REVENUE, #5
 	POPULATION, #6
 	HABITATIONS, #7
 	MISC, #8
-	UNDEFINED, #9 This is different from MISC. 
+	UNDEFINED, #9 This sis different from MISC. 
 	#This only happened when the code havent explicitly change the category (which is kinda bad yknow)
 }
 #The icon are mostly from noto font emoji
 const CATEGORY_TO_TEXTURE: Dictionary[Facility.Category, Texture2D] = {
 	Category.TEMPERATURE: preload("uid://ds3t4gw3sh4yw"),
 	Category.PRESSURE: preload("uid://b2kpn1wp7ohdm"),
-	Category.OXYGEN: preload("uid://bi8pbh57x84pu"),
+	Category.ATMOSPHERE: preload("uid://bi8pbh57x84pu"),
 	Category.WATER: preload("uid://bbeisdub76ybi"),
 	Category.BIOMASS: preload("uid://drlvtre1ictnp"),
 	Category.REVENUE: preload("uid://css0gk1xlxis0"),

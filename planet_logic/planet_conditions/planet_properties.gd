@@ -9,6 +9,7 @@ const OXYGEN_REQUIREMENT = 210000
 @export var map : Texture2D
 @export var radius := 100.0 #km
 @export var max_elevation := 1.0
+@export var habitable_water_level := -1. #If left defined, it will set to max elevation / 2
 @export var starting_terraform_properties: TerraformProperties = TerraformProperties.new()
 @export_category("Misc settings") #not 100% essential but optional and good to have
 @export var axial_tilt := 0.0
@@ -29,6 +30,8 @@ var _img: Image
 func init_stuff() -> void:
 	update_representative_color()
 	update_max_biomass()
+	if habitable_water_level < 0:
+		habitable_water_level = max_elevation / 2.
 func update_representative_color() -> void: #get the 'color' of this planet by picking random pixels on the map and average it
 	const ITERATION = 100
 	var average := Color(0, 0, 0)

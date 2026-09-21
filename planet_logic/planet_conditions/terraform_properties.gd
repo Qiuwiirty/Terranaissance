@@ -49,16 +49,18 @@ func mutiply_float(value: float) -> void:
 	water *= value
 	biomass *= value
 	revenue *= value
-const HABITABILITY_RANGES := {
+const HABITABILITY_RANGES : Dictionary[TerraformClassification, Dictionary] = {
 	TerraformClassification.PERFECT: {
 		"temperature": Vector2(275_000.0, 305_000.0),
 		"pressure": Vector2(90_000.0, 110_000.0),
 		"water": 0.90,
+		"biomass": 1.0 #Biomass use a ratio
 	},
 	TerraformClassification.HABITABLE: {
 		"temperature": Vector2(250_000.0, 320_000.0),
 		"pressure": Vector2(50_000.0, 150_000.0),
 		"water": 0.60,
+		"biomass": 0.275
 	},
 	TerraformClassification.PLANT_LIFE: {
 		"temperature": Vector2(210_000.0, 350_000.0),
@@ -71,9 +73,7 @@ const HABITABILITY_RANGES := {
 		"water": 0.10,
 	},
 }
-static func is_in_range(value: float, range_value: Vector2) -> bool:
-	return value >= range_value.x and value <= range_value.y
-func check_habitability_classification(habitable_water_level: float) -> TerraformClassification:
+func check_habitability_classification(habitable_water_level: float, max_biomass: float) -> TerraformClassification:
 	var water_ratio := water / habitable_water_level
 	for classification in [
 		TerraformClassification.PERFECT,
@@ -83,9 +83,10 @@ func check_habitability_classification(habitable_water_level: float) -> Terrafor
 	]:
 		var ranges: Dictionary = HABITABILITY_RANGES[classification]
 		if (
-			is_in_range(temperature, ranges["temperature"])
-			and is_in_range(pressure, ranges["pressure"])
+			Game.is_in_range(temperature, ranges["temperature"])
+			and Game.is_in_range(pressure, ranges["pressure"])
 			and water_ratio >= ranges["water"]
+			and biomass / max_biomass >= ranges["biomass"]
 			and atmosphere_composition.get_habitability() == classification
 		):
 			return classification

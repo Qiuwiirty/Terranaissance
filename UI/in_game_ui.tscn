@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://dqq3t8i3dufpc" path="res://UI/create_new_city.tscn" id="2_d0vji"]
 [ext_resource type="PackedScene" uid="uid://bn4kr6ugpqna3" path="res://UI/not_enough_money.tscn" id="4_d0vji"]
 [ext_resource type="Script" uid="uid://pm1isfkioakk" path="res://UI/buildings.gd" id="6_ix84t"]
+[ext_resource type="PackedScene" uid="uid://4iw853n2o8im" path="res://UI/terraform_indicator.tscn" id="7_xfpkw"]
 
 [node name="InGameUI" type="CanvasLayer" unique_id=1347753977]
 script = ExtResource("1_jpmjn")
@@ -95,6 +96,12 @@ tab_0/title = "Environment"
 layout_mode = 2
 metadata/_tab_index = 0
 metadata/_tab_name = "Environment"
+
+[node name="TerraformIndicator" parent="ControlTab/EnvironmentContainer" unique_id=1188990834 instance=ExtResource("7_xfpkw")]
+layout_mode = 2
+
+[node name="TerraformIndicator2" parent="ControlTab/EnvironmentContainer" unique_id=334319156 instance=ExtResource("7_xfpkw")]
+layout_mode = 2
 
 [connection signal="item_selected" from="ControlPanel/VBoxContainer/HBoxContainer/OptionButton" to="ControlPanel" method="_on_view_mode_selected"]
 [connection signal="toggled" from="ControlPanel/VBoxContainer/EnableSunLight" to="ControlPanel" method="_on_enable_sun_light_toggled"]

@@ -8,8 +8,8 @@
 gradient = ExtResource("3_yyoda")
 
 [node name="TerraformIndicator" type="MarginContainer" unique_id=1188990834]
-offset_right = 426.0
-offset_bottom = 108.0
+offset_right = 382.0
+offset_bottom = 88.0
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
@@ -40,6 +40,7 @@ text = "v"
 vertical_alignment = 2
 
 [node name="Progress" type="TextureRect" parent="HBoxContainer/Control" unique_id=2021727865]
+custom_minimum_size = Vector2(0, 10)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3

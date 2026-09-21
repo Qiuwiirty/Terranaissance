@@ -34,6 +34,9 @@ static func lat_lon_to_uv(lat_lon: Vector2) -> Vector2:
 	var v: float = 0.5 - (deg_to_rad(lat_lon.x) / PI)
 	return Vector2(u, v)
 
+static func is_in_range(value: float, range_value: Vector2) -> bool:
+	return value >= range_value.x and value <= range_value.y
+
 ##Sometimes planet not available when on main menu or such, so you gotta use this
 func get_planet() -> Planet:
 	if !planet:
