@@ -15,7 +15,7 @@ rings = 64
 render_priority = 0
 shader = ExtResource("7_08blb")
 shader_parameter/atmosphere_color = Color(0, 0.6666667, 1, 1)
-shader_parameter/atmosphere_strength = 0.0
+shader_parameter/atmosphere_strength = 1.0
 shader_parameter/atmosphere_power = 4.0
 
 [sub_resource type="SphereMesh" id="SphereMesh_qlfj0"]
@@ -41,7 +41,6 @@ visible = false
 shape = SubResource("SphereShape3D_qlfj0")
 
 [node name="AtmosphereMesh" type="MeshInstance3D" parent="." unique_id=1275912232]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.556511e-06, 0.012625895, -0.00037562847)
 mesh = SubResource("SphereMesh_qlfj0")
 
 [connection signal="timeout" from="TickTimer" to="." method="_on_update_tick"]

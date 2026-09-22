@@ -33,3 +33,8 @@ func mutiply(other: AtmosphereComposition) -> void:
 func mutiply_float(value: float) -> void:
 	oxygen *= value
 	
+func get_elements() -> Dictionary[String, float]:
+	return {"Oxygen": oxygen}
+
+func get_custom_colors() -> Array[Color]:
+	return [Color.AQUAMARINE]
