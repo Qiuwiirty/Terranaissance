@@ -12,6 +12,6 @@ func request_create_new_city_name(coords: Vector3, price: float) -> String:
 		"\n Going to cost ", price, " Tr" 
 	)
 	await %Create.button_up
-	Game.terras -= int(price)
+	Game.planet.planet_state.terras -= int(price)
 	close()
 	return %CityNameInput.text

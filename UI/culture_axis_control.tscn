@@ -1,0 +1,64 @@
+[gd_scene format=3 uid="uid://lrksp85bj7q5"]
+
+[ext_resource type="Script" uid="uid://d1bjagd40rcaa" path="res://planet_logic/culture_axis.gd" id="1_001sm"]
+
+[node name="CultureAxisControl" type="MarginContainer" unique_id=1188990834]
+offset_right = 382.0
+offset_bottom = 88.0
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+script = ExtResource("1_001sm")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=1880629392]
+layout_mode = 2
+
+[node name="Control" type="VBoxContainer" parent="HBoxContainer" unique_id=1230945933]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 0
+
+[node name="Background" type="ColorRect" parent="HBoxContainer/Control" unique_id=1521965039]
+custom_minimum_size = Vector2(0, 10)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.5
+offset_transform_enabled = true
+color = Color(0.1476717, 0.14767182, 0.14767179, 0.5294118)
+
+[node name="CultureValueRect" type="ColorRect" parent="HBoxContainer/Control/Background" unique_id=489838673]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.76, 0.76, 0.76, 1)
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/Control" unique_id=1344212620]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="OppositeSpectrum" type="Label" parent="HBoxContainer/Control/HBoxContainer" unique_id=197793933]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+text = "Industrial"
+
+[node name="Value" type="Label" parent="HBoxContainer/Control/HBoxContainer" unique_id=634756883]
+unique_name_in_owner = true
+layout_mode = 2
+text = "0.0"
+
+[node name="Spectrum" type="Label" parent="HBoxContainer/Control/HBoxContainer" unique_id=511345782]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+text = "Terraform"
+horizontal_alignment = 2

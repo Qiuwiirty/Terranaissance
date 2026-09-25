@@ -6,9 +6,12 @@
 [ext_resource type="PackedScene" uid="uid://dqq3t8i3dufpc" path="res://UI/create_new_city.tscn" id="2_d0vji"]
 [ext_resource type="PackedScene" uid="uid://bn4kr6ugpqna3" path="res://UI/not_enough_money.tscn" id="4_d0vji"]
 [ext_resource type="Script" uid="uid://pm1isfkioakk" path="res://UI/buildings.gd" id="6_ix84t"]
-[ext_resource type="Script" uid="uid://c6rcxd4fxsnwm" path="res://UI/control_tab.gd" id="7_ppb6f"]
+[ext_resource type="Script" uid="uid://dufy65xipdi34" path="res://UI/control_tab.gd" id="7_ppb6f"]
 [ext_resource type="PackedScene" uid="uid://4iw853n2o8im" path="res://UI/terraform_indicator.tscn" id="7_xfpkw"]
+[ext_resource type="Script" uid="uid://c6rcxd4fxsnwm" path="res://UI/environment_container.gd" id="8_q6bn2"]
 [ext_resource type="Script" uid="uid://deidjpxmrc7gl" path="res://addons/piechart/pie_chart.gd" id="9_coab5"]
+[ext_resource type="PackedScene" uid="uid://lrksp85bj7q5" path="res://UI/culture_axis_control.tscn" id="10_5gjrs"]
+[ext_resource type="Script" uid="uid://dp4k88e7s3j4a" path="res://UI/culture_container.gd" id="11_imcl3"]
 
 [node name="InGameUI" type="CanvasLayer" unique_id=1347753977]
 script = ExtResource("1_jpmjn")
@@ -91,27 +94,30 @@ anchor_right = 0.8
 anchor_bottom = 0.8
 grow_horizontal = 2
 grow_vertical = 2
-current_tab = 0
+current_tab = 1
 tab_0/title = "Planet environment"
+tab_1/title = "Culture"
 script = ExtResource("7_ppb6f")
 
-[node name="ScrollContainer" type="ScrollContainer" parent="ControlTab" unique_id=2087545349]
+[node name="EnvironmentScroll" type="ScrollContainer" parent="ControlTab" unique_id=2087545349]
+visible = false
 layout_mode = 2
 metadata/_tab_index = 0
 metadata/_tab_name = "Planet environment"
 
-[node name="EnvironmentContainer" type="VBoxContainer" parent="ControlTab/ScrollContainer" unique_id=1275028515]
+[node name="EnvironmentContainer" type="VBoxContainer" parent="ControlTab/EnvironmentScroll" unique_id=1275028515]
 layout_mode = 2
 size_flags_horizontal = 3
+script = ExtResource("8_q6bn2")
 
-[node name="TargetClassificationOptionContainer" type="HBoxContainer" parent="ControlTab/ScrollContainer/EnvironmentContainer" unique_id=1788106225]
+[node name="TargetClassificationOptionContainer" type="HBoxContainer" parent="ControlTab/EnvironmentScroll/EnvironmentContainer" unique_id=1788106225]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="ControlTab/ScrollContainer/EnvironmentContainer/TargetClassificationOptionContainer" unique_id=160149836]
+[node name="Label" type="Label" parent="ControlTab/EnvironmentScroll/EnvironmentContainer/TargetClassificationOptionContainer" unique_id=160149836]
 layout_mode = 2
 text = "For... "
 
-[node name="OptionButton" type="OptionButton" parent="ControlTab/ScrollContainer/EnvironmentContainer/TargetClassificationOptionContainer" unique_id=9205724]
+[node name="OptionButton" type="OptionButton" parent="ControlTab/EnvironmentScroll/EnvironmentContainer/TargetClassificationOptionContainer" unique_id=9205724]
 layout_mode = 2
 item_count = 3
 popup/item_0/text = "Microbial life"
@@ -121,43 +127,65 @@ popup/item_1/id = 1
 popup/item_2/text = "Human life"
 popup/item_2/id = 2
 
-[node name="Temperature" parent="ControlTab/ScrollContainer/EnvironmentContainer" unique_id=1188990834 instance=ExtResource("7_xfpkw")]
+[node name="Temperature" parent="ControlTab/EnvironmentScroll/EnvironmentContainer" unique_id=1188990834 instance=ExtResource("7_xfpkw")]
 layout_mode = 2
 
-[node name="Pressure" parent="ControlTab/ScrollContainer/EnvironmentContainer" unique_id=334319156 instance=ExtResource("7_xfpkw")]
+[node name="Pressure" parent="ControlTab/EnvironmentScroll/EnvironmentContainer" unique_id=334319156 instance=ExtResource("7_xfpkw")]
 layout_mode = 2
 category = 1
 
-[node name="Water" parent="ControlTab/ScrollContainer/EnvironmentContainer" unique_id=2090549738 instance=ExtResource("7_xfpkw")]
+[node name="Water" parent="ControlTab/EnvironmentScroll/EnvironmentContainer" unique_id=2090549738 instance=ExtResource("7_xfpkw")]
 layout_mode = 2
 category = 3
 
-[node name="Biomass" parent="ControlTab/ScrollContainer/EnvironmentContainer" unique_id=577861746 instance=ExtResource("7_xfpkw")]
+[node name="Biomass" parent="ControlTab/EnvironmentScroll/EnvironmentContainer" unique_id=577861746 instance=ExtResource("7_xfpkw")]
 layout_mode = 2
 category = 4
 
-[node name="HSeparator" type="HSeparator" parent="ControlTab/ScrollContainer/EnvironmentContainer" unique_id=1037349582]
+[node name="HSeparator" type="HSeparator" parent="ControlTab/EnvironmentScroll/EnvironmentContainer" unique_id=1037349582]
 layout_mode = 2
 
-[node name="PieChart" type="Control" parent="ControlTab/ScrollContainer/EnvironmentContainer" unique_id=866920510]
+[node name="PieChart" type="Control" parent="ControlTab/EnvironmentScroll/EnvironmentContainer" unique_id=866920510]
 custom_minimum_size = Vector2(0, 500)
 layout_mode = 2
 script = ExtResource("9_coab5")
-elements = Dictionary[String, float]({
-"Argon": 1600.0,
-"Carbon Monoxide": 700.0,
-"Carbon dioxide": 953000.0,
-"Nitrogen": 27000.0,
-"Oxygen": 1300.0
-})
 title = "Atmospheric composition"
 legend_style = 2
 data_suffix = " ppm"
 label_visibility = 1
 doughnut_shape = false
-color_scale = 2
+color_scale = 3
+
+[node name="CultureScroll" type="ScrollContainer" parent="ControlTab" unique_id=1317150493]
+layout_mode = 2
+metadata/_tab_index = 1
+metadata/_tab_name = "Culture"
+
+[node name="CultureContainer" type="VBoxContainer" parent="ControlTab/CultureScroll" unique_id=1256797974]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("11_imcl3")
+
+[node name="AxisGrid" type="GridContainer" parent="ControlTab/CultureScroll/CultureContainer" unique_id=1609101052]
+layout_mode = 2
+columns = 2
+
+[node name="Terraform" parent="ControlTab/CultureScroll/CultureContainer/AxisGrid" unique_id=561264691 instance=ExtResource("10_5gjrs")]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Centralized" parent="ControlTab/CultureScroll/CultureContainer/AxisGrid" unique_id=73564167 instance=ExtResource("10_5gjrs")]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Economy" parent="ControlTab/CultureScroll/CultureContainer/AxisGrid" unique_id=276553350 instance=ExtResource("10_5gjrs")]
+layout_mode = 2
+
+[node name="Experimental" parent="ControlTab/CultureScroll/CultureContainer/AxisGrid" unique_id=2117181471 instance=ExtResource("10_5gjrs")]
+layout_mode = 2
 
 [connection signal="item_selected" from="ControlPanel/VBoxContainer/HBoxContainer/OptionButton" to="ControlPanel" method="_on_view_mode_selected"]
 [connection signal="toggled" from="ControlPanel/VBoxContainer/EnableSunLight" to="ControlPanel" method="_on_enable_sun_light_toggled"]
 [connection signal="toggled" from="ControlPanel/VBoxContainer/SunRotation" to="ControlPanel" method="_on_sun_rotation_toggled"]
-[connection signal="item_selected" from="ControlTab/ScrollContainer/EnvironmentContainer/TargetClassificationOptionContainer/OptionButton" to="ControlTab" method="_on_target_environment_classification_selected"]
+[connection signal="item_selected" from="ControlTab/EnvironmentScroll/EnvironmentContainer/TargetClassificationOptionContainer/OptionButton" to="ControlTab" method="_on_target_environment_classification_selected"]

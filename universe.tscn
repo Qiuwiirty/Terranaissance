@@ -51,6 +51,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.2085476)
 visible = false
 script = ExtResource("5_asrgw")
 
-[node name="PlanetMesh" parent="." unique_id=652982429 instance=ExtResource("5_sraih")]
+[node name="Planet" parent="." unique_id=652982429 instance=ExtResource("5_sraih")]
 
 [node name="InGameUI" parent="." unique_id=1347753977 instance=ExtResource("11_asrgw")]

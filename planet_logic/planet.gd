@@ -6,12 +6,12 @@ const OXYGEN_GRADIENT: Gradient = preload("uid://w3mrnkqo8pl2")
 static var planets_template: Dictionary[String, PlanetProperties]
 @onready var tick_timer : Timer = $TickTimer
 
+var planet_state: PlanetState
 var planet_properties : PlanetProperties
 var terraform_properties : TerraformProperties = TerraformProperties.new()
 var terraform_modifier_per_tick : TerraformProperties = TerraformProperties.new()
 var cities : Array[City]
 var outposts : Array
-var terras: float = 0
 var biomass_color: Color = Color.GREEN
 @onready var mat: Material = $PlanetMesh.mesh.material
 @onready var atmosphere : MeshInstance3D = $AtmosphereMesh
@@ -29,6 +29,8 @@ static func _static_init() -> void:
 	
 	mars.starting_terraform_properties.temperature = 220_000
 	mars.starting_terraform_properties.pressure = 610
+	mars.starting_complex_atmosphere_composition = ComplexAtmosphereComposition.new()
+	mars.starting_simple_atmosphere_composition = SimpleAtmosphereComposition.new()
 	#mars.starting_terraform_properties.oxygen = 1520
 	mars.map = load("uid://bsas3wag8j7cs")
 	mars.elevation_map = load("uid://c5v61glibq5lm")
@@ -57,6 +59,7 @@ func _define_biomass_color() -> void:
 	var biomass_colors := Sun.sun_to_biomass_colors[Game.sun.star_type]
 	biomass_color = biomass_colors[rng.randi_range(0, biomass_colors.size() - 1)]
 func start() -> void: ##Intended for starting a new world. Which expect everything to be empty so it will override some things (which can definetly reset the data so use carefully)
+	planet_state = PlanetState.new()
 	terraform_properties = planet_properties.starting_terraform_properties
 	init_planet_properties()
 func init_planet_properties() -> void:
@@ -114,7 +117,7 @@ func prepare_gas_giant_appearance() -> void: #Not actually turning into gas gian
 func _on_planet_input_event(_camera: Node, event: InputEvent, event_position: Vector3, _normal: Vector3, _shape_idx: int) -> void:
 	if not in_creating_city and event is InputEventMouseButton and event.is_pressed() and event.button_index == MOUSE_BUTTON_LEFT:
 		var price := 1000000 * (Game.planet.cities.size() + 1)
-		if price > Game.terras:
+		if price > planet_state.terras:
 			Game.in_game_ui.not_enough_money.notice(price, "build", "city")
 			return
 		var lat_lon := Game.get_latitude_longitude(to_local(event_position))

@@ -2,9 +2,9 @@ extends Node
 signal planet_available
 
 static var planet: Planet
+static var current_planet_save: PlanetSave
 static var sun: Sun
 static var in_game_ui: InGameUI
-
 ##set the main planet
 func set_planet(new_planet: Planet) -> void:
 	planet = new_planet
