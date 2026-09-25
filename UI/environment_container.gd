@@ -5,6 +5,7 @@ extends VBoxContainer
 @onready var habitability: Label = $Habitability
 var donut_redraw := false
 func _ready() -> void:
+	target_classification_option.item_selected.connect(_on_target_environment_classification_selected)
 	planet_name.text = str("[b][font_size=25]%s" % Game.planet.planet_properties.name)
 	target_classification_option.selected = 2
 	for terraform_indicator: Control in get_children():
@@ -17,7 +18,7 @@ func _ready() -> void:
 	Game.planet.tick_timer.timeout.connect(_update)
 	_update()
 func _update() -> void:
-	if visible:
+	if is_visible_in_tree():
 		habitability.text = "HABITABILITY: " + Game.terra_classification_to_string(
 				Game.planet.terraform_properties.get_habitability())
 		var atmosphere_composition: AtmosphereComposition = Game.planet.terraform_properties.atmosphere_composition

@@ -18,7 +18,13 @@ var biomass_color: Color = Color.GREEN
 
 var in_creating_city := false
 
-var total_population : int
+var total_population : int = 0
+var total_habitation : int:
+	get:
+		var total := 0
+		for city: City in cities:
+			total += city.properties.habitations
+		return total
 static func _static_init() -> void:
 	var mars := PlanetProperties.new()
 	mars.name = "Mars"

@@ -12,6 +12,7 @@
 [ext_resource type="Script" uid="uid://deidjpxmrc7gl" path="res://addons/piechart/pie_chart.gd" id="9_coab5"]
 [ext_resource type="PackedScene" uid="uid://lrksp85bj7q5" path="res://UI/culture_axis_control.tscn" id="10_5gjrs"]
 [ext_resource type="Script" uid="uid://dp4k88e7s3j4a" path="res://UI/culture_container.gd" id="11_imcl3"]
+[ext_resource type="Script" uid="uid://g58yoauwe1yh" path="res://UI/summary_container.gd" id="13_jkxhx"]
 
 [node name="InGameUI" type="CanvasLayer" unique_id=1347753977]
 script = ExtResource("1_jpmjn")
@@ -94,13 +95,14 @@ anchor_right = 0.8
 anchor_bottom = 0.8
 grow_horizontal = 2
 grow_vertical = 2
-current_tab = 0
+current_tab = 2
 tab_0/title = "Planet environment"
 tab_1/title = "Culture"
-tab_2/title = "Planet statistics"
+tab_2/title = "Planet summaries"
 script = ExtResource("7_ppb6f")
 
 [node name="EnvironmentScroll" type="ScrollContainer" parent="ControlTab" unique_id=2087545349]
+visible = false
 layout_mode = 2
 metadata/_tab_index = 0
 metadata/_tab_name = "Planet environment"
@@ -196,16 +198,24 @@ layout_mode = 2
 [node name="Experimental" parent="ControlTab/CultureScroll/CultureContainer/AxisGrid" unique_id=2117181471 instance=ExtResource("10_5gjrs")]
 layout_mode = 2
 
-[node name="PlanetStatsScroll" type="ScrollContainer" parent="ControlTab" unique_id=458296378]
-visible = false
+[node name="PlanetSummaryScroll" type="ScrollContainer" parent="ControlTab" unique_id=458296378]
 layout_mode = 2
 metadata/_tab_index = 2
-metadata/_tab_name = "Planet statistics"
+metadata/_tab_name = "Planet summaries"
 
-[node name="VBoxContainer" type="VBoxContainer" parent="ControlTab/PlanetStatsScroll" unique_id=433171981]
+[node name="SummaryContainer" type="VBoxContainer" parent="ControlTab/PlanetSummaryScroll" unique_id=433171981]
 layout_mode = 2
+script = ExtResource("13_jkxhx")
+
+[node name="Stats" type="Label" parent="ControlTab/PlanetSummaryScroll/SummaryContainer" unique_id=23364119]
+layout_mode = 2
+text = "Total population: X (+Z/day)
+Habitations: zerooo
+Habitability: BARREN
+Terras: Y
+Cities: Meowmeowmoewmeooo
+More advanced statistics comming soon"
 
 [connection signal="item_selected" from="ControlPanel/VBoxContainer/HBoxContainer/OptionButton" to="ControlPanel" method="_on_view_mode_selected"]
 [connection signal="toggled" from="ControlPanel/VBoxContainer/EnableSunLight" to="ControlPanel" method="_on_enable_sun_light_toggled"]
 [connection signal="toggled" from="ControlPanel/VBoxContainer/SunRotation" to="ControlPanel" method="_on_sun_rotation_toggled"]
-[connection signal="item_selected" from="ControlTab/EnvironmentScroll/EnvironmentContainer/TargetClassificationOptionContainer/OptionButton" to="ControlTab" method="_on_target_environment_classification_selected"]
