@@ -52,6 +52,8 @@ static func humanize_number(number : String) -> String:
 			to_return = item + to_return
 			i += 1
 		return to_return + decimals
+static func terra_classification_to_string(v: int) -> String:
+	return TerraformProperties.TerraformClassification.keys()[v].replace("_", " ")
 ##Sometimes planet not available when on main menu or such, so you gotta use this
 func get_planet() -> Planet:
 	if !planet:

@@ -29,8 +29,15 @@ static func _static_init() -> void:
 	
 	mars.starting_terraform_properties.temperature = 220_000
 	mars.starting_terraform_properties.pressure = 610
-	mars.starting_complex_atmosphere_composition = ComplexAtmosphereComposition.new()
-	mars.starting_simple_atmosphere_composition = SimpleAtmosphereComposition.new()
+	var complex := ComplexAtmosphereComposition.new()
+	complex.carbon_dioxide = 950_000
+	complex.nitrogen = 27_000
+	complex.oxygen = 1300
+	complex.other_toxic_gases = 800  
+	var simple := SimpleAtmosphereComposition.new()
+	simple.oxygen = 1300
+	mars.starting_complex_atmosphere_composition = complex
+	mars.starting_simple_atmosphere_composition = simple
 	#mars.starting_terraform_properties.oxygen = 1520
 	mars.map = load("uid://bsas3wag8j7cs")
 	mars.elevation_map = load("uid://c5v61glibq5lm")

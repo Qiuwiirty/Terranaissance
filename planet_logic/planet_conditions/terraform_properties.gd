@@ -1,15 +1,13 @@
 extends Resource
 class_name TerraformProperties
 enum TerraformClassification {
-	HELLISH, #when 200% away from the habitable stat (which is very far away)
+	HELLISH, #when 200% away from the habitable stat (which is very far away) (not implemented yet)
 	BARREN, #nothing can survive
 	MICROBE_LIFE,
 	PLANT_LIFE,
 	HABITABLE,
 	PERFECT,
 }
-#Microbe life
-#180k - 
 var habitability_percentage: float:
 	get:
 		return 0.
@@ -20,8 +18,6 @@ var water := 0.0 #in cm
 var biomass := 0.0 #in mt
 var revenue := 0.0
 
-func closeness(value: float, ideal: float) -> float:
-	return clampf(1.0 - abs(value - ideal) / ideal, 0.0, 1.0)
 func add(other: TerraformProperties) -> void:
 	temperature += other.temperature
 	atmosphere_composition.add(other.atmosphere_composition)
@@ -73,8 +69,8 @@ const HABITABILITY_RANGES : Dictionary[TerraformClassification, Dictionary] = {
 		"water": 0.10,
 	},
 }
-func check_habitability_classification(habitable_water_level: float, max_biomass: float) -> TerraformClassification:
-	var water_ratio := water / habitable_water_level
+func get_habitability() -> TerraformClassification:
+	var water_ratio := water / Game.planet.planet_properties.habitable_water_level
 	for classification in [
 		TerraformClassification.PERFECT,
 		TerraformClassification.HABITABLE,
@@ -86,7 +82,7 @@ func check_habitability_classification(habitable_water_level: float, max_biomass
 			Game.is_in_range(temperature, ranges["temperature"])
 			and Game.is_in_range(pressure, ranges["pressure"])
 			and water_ratio >= ranges["water"]
-			and biomass / max_biomass >= ranges["biomass"]
+			and biomass / Game.planet.planet_properties.max_biomass >= ranges["biomass"]
 			and atmosphere_composition.get_habitability() == classification
 		):
 			return classification

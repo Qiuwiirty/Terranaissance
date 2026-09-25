@@ -36,7 +36,7 @@ func _gui_input(event: InputEvent) -> void:
 		if event.button_index == MOUSE_BUTTON_LEFT:
 			_dragging = event.pressed
 			_drag_offset = get_global_mouse_position() - global_position
-			
+			accept_event()
 	elif event is InputEventMouseMotion and _dragging:
 		global_position = get_global_mouse_position() - _drag_offset
 func _unhandled_input(event: InputEvent) -> void:

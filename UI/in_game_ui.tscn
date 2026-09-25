@@ -94,13 +94,13 @@ anchor_right = 0.8
 anchor_bottom = 0.8
 grow_horizontal = 2
 grow_vertical = 2
-current_tab = 1
+current_tab = 0
 tab_0/title = "Planet environment"
 tab_1/title = "Culture"
+tab_2/title = "Planet statistics"
 script = ExtResource("7_ppb6f")
 
 [node name="EnvironmentScroll" type="ScrollContainer" parent="ControlTab" unique_id=2087545349]
-visible = false
 layout_mode = 2
 metadata/_tab_index = 0
 metadata/_tab_name = "Planet environment"
@@ -109,6 +109,16 @@ metadata/_tab_name = "Planet environment"
 layout_mode = 2
 size_flags_horizontal = 3
 script = ExtResource("8_q6bn2")
+
+[node name="PlanetName" type="RichTextLabel" parent="ControlTab/EnvironmentScroll/EnvironmentContainer" unique_id=1738822024]
+layout_mode = 2
+bbcode_enabled = true
+text = "[b] [font_size=25]MARS [/font_size] [/b]"
+fit_content = true
+
+[node name="Habitability" type="Label" parent="ControlTab/EnvironmentScroll/EnvironmentContainer" unique_id=633772729]
+layout_mode = 2
+text = "HABITABILITY: BARREN"
 
 [node name="TargetClassificationOptionContainer" type="HBoxContainer" parent="ControlTab/EnvironmentScroll/EnvironmentContainer" unique_id=1788106225]
 layout_mode = 2
@@ -157,6 +167,7 @@ doughnut_shape = false
 color_scale = 3
 
 [node name="CultureScroll" type="ScrollContainer" parent="ControlTab" unique_id=1317150493]
+visible = false
 layout_mode = 2
 metadata/_tab_index = 1
 metadata/_tab_name = "Culture"
@@ -183,6 +194,15 @@ size_flags_horizontal = 3
 layout_mode = 2
 
 [node name="Experimental" parent="ControlTab/CultureScroll/CultureContainer/AxisGrid" unique_id=2117181471 instance=ExtResource("10_5gjrs")]
+layout_mode = 2
+
+[node name="PlanetStatsScroll" type="ScrollContainer" parent="ControlTab" unique_id=458296378]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 2
+metadata/_tab_name = "Planet statistics"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ControlTab/PlanetStatsScroll" unique_id=433171981]
 layout_mode = 2
 
 [connection signal="item_selected" from="ControlPanel/VBoxContainer/HBoxContainer/OptionButton" to="ControlPanel" method="_on_view_mode_selected"]

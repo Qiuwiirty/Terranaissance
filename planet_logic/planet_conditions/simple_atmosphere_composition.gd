@@ -34,7 +34,7 @@ func mutiply_float(value: float) -> void:
 	oxygen *= value
 	
 func get_elements() -> Dictionary[String, float]:
-	return {"Oxygen": oxygen}
+	return {"Oxygen": oxygen, "Other gases": 1_000_000 - oxygen}
 
 func get_custom_colors() -> Array[Color]:
-	return [Color.AQUAMARINE]
+	return [Color.AQUAMARINE, Color.DIM_GRAY]
