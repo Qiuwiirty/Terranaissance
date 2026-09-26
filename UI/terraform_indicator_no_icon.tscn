@@ -1,0 +1,72 @@
+[gd_scene format=3 uid="uid://lxmawm7jad1i"]
+
+[ext_resource type="Script" uid="uid://fi4gxdprrp23" path="res://UI/terraform_indicator_no_icon.gd" id="1_cubj1"]
+[ext_resource type="FontFile" uid="uid://bi45yc0qp2yy8" path="res://NotoSans_Condensed-Regular.ttf" id="2_xdmrf"]
+[ext_resource type="Gradient" uid="uid://deslbf48gwobe" path="res://planet_logic/planet_conditions/gradients/ideal_progress_gradient.tres" id="3_hrsal"]
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_3uw2p"]
+gradient = ExtResource("3_hrsal")
+
+[node name="TerraformIndicatorNoIcon" type="MarginContainer" unique_id=1188990834]
+offset_right = 382.0
+offset_bottom = 88.0
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+script = ExtResource("1_cubj1")
+category = null
+target_life_classification = null
+
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=1880629392]
+layout_mode = 2
+
+[node name="Symbol" type="Label" parent="HBoxContainer" unique_id=265525685]
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_fonts/font = ExtResource("2_xdmrf")
+theme_override_font_sizes/font_size = 33
+text = "O₂"
+vertical_alignment = 1
+
+[node name="Control" type="VBoxContainer" parent="HBoxContainer" unique_id=1230945933]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 0
+
+[node name="ArrowIndicator" type="Label" parent="HBoxContainer/Control" unique_id=150699378]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+offset_transform_enabled = true
+offset_transform_pivot = Vector2(1, 0)
+text = "v"
+vertical_alignment = 2
+
+[node name="Progress" type="TextureRect" parent="HBoxContainer/Control" unique_id=2021727865]
+custom_minimum_size = Vector2(0, 10)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.75
+offset_transform_enabled = true
+texture = SubResource("GradientTexture1D_3uw2p")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/Control" unique_id=1344212620]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="MinHabitability" type="Label" parent="HBoxContainer/Control/HBoxContainer" unique_id=197793933]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+text = "0"
+
+[node name="MaxHabitability" type="Label" parent="HBoxContainer/Control/HBoxContainer" unique_id=511345782]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+text = "100"
+horizontal_alignment = 2

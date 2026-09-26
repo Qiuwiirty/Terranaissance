@@ -73,6 +73,7 @@ func _define_biomass_color() -> void:
 	biomass_color = biomass_colors[rng.randi_range(0, biomass_colors.size() - 1)]
 func start() -> void: ##Intended for starting a new world. Which expect everything to be empty so it will override some things (which can definetly reset the data so use carefully)
 	planet_state = PlanetState.new()
+	planet_state.terras = 0.0
 	terraform_properties = planet_properties.starting_terraform_properties
 	init_planet_properties()
 func init_planet_properties() -> void:

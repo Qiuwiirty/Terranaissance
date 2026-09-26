@@ -95,16 +95,36 @@ anchor_right = 0.8
 anchor_bottom = 0.8
 grow_horizontal = 2
 grow_vertical = 2
-current_tab = 2
-tab_0/title = "Planet environment"
-tab_1/title = "Culture"
-tab_2/title = "Planet summaries"
+current_tab = 3
+tab_0/title = "Planet summary"
+tab_1/title = "Planet environment"
+tab_2/title = "Culture"
+tab_3/title = "Technology"
 script = ExtResource("7_ppb6f")
+
+[node name="PlanetSummaryScroll" type="ScrollContainer" parent="ControlTab" unique_id=458296378]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 0
+metadata/_tab_name = "Planet summary"
+
+[node name="SummaryContainer" type="VBoxContainer" parent="ControlTab/PlanetSummaryScroll" unique_id=433171981]
+layout_mode = 2
+script = ExtResource("13_jkxhx")
+
+[node name="Stats" type="Label" parent="ControlTab/PlanetSummaryScroll/SummaryContainer" unique_id=23364119]
+layout_mode = 2
+text = "Total population: X (+Z/day)
+Habitations: zerooo
+Habitability: BARREN
+Terras: Y
+Cities: Meowmeowmoewmeooo
+More advanced statistics comming soon"
 
 [node name="EnvironmentScroll" type="ScrollContainer" parent="ControlTab" unique_id=2087545349]
 visible = false
 layout_mode = 2
-metadata/_tab_index = 0
+metadata/_tab_index = 1
 metadata/_tab_name = "Planet environment"
 
 [node name="EnvironmentContainer" type="VBoxContainer" parent="ControlTab/EnvironmentScroll" unique_id=1275028515]
@@ -171,7 +191,7 @@ color_scale = 3
 [node name="CultureScroll" type="ScrollContainer" parent="ControlTab" unique_id=1317150493]
 visible = false
 layout_mode = 2
-metadata/_tab_index = 1
+metadata/_tab_index = 2
 metadata/_tab_name = "Culture"
 
 [node name="CultureContainer" type="VBoxContainer" parent="ControlTab/CultureScroll" unique_id=1256797974]
@@ -198,23 +218,91 @@ layout_mode = 2
 [node name="Experimental" parent="ControlTab/CultureScroll/CultureContainer/AxisGrid" unique_id=2117181471 instance=ExtResource("10_5gjrs")]
 layout_mode = 2
 
-[node name="PlanetSummaryScroll" type="ScrollContainer" parent="ControlTab" unique_id=458296378]
+[node name="TechnologyScroll" type="ScrollContainer" parent="ControlTab" unique_id=1558167638]
 layout_mode = 2
-metadata/_tab_index = 2
-metadata/_tab_name = "Planet summaries"
+metadata/_tab_index = 3
+metadata/_tab_name = "Technology"
 
-[node name="SummaryContainer" type="VBoxContainer" parent="ControlTab/PlanetSummaryScroll" unique_id=433171981]
+[node name="TechContainer" type="VBoxContainer" parent="ControlTab/TechnologyScroll" unique_id=407397768]
 layout_mode = 2
-script = ExtResource("13_jkxhx")
+size_flags_horizontal = 3
+size_flags_vertical = 3
 
-[node name="Stats" type="Label" parent="ControlTab/PlanetSummaryScroll/SummaryContainer" unique_id=23364119]
+[node name="Label" type="RichTextLabel" parent="ControlTab/TechnologyScroll/TechContainer" unique_id=1506485879]
 layout_mode = 2
-text = "Total population: X (+Z/day)
-Habitations: zerooo
-Habitability: BARREN
-Terras: Y
-Cities: Meowmeowmoewmeooo
-More advanced statistics comming soon"
+bbcode_enabled = true
+text = "[b][font_size=20] RESEARCH[/font_size][/b]
+Other technologies may also be found on satellites"
+fit_content = true
+
+[node name="HSeparator" type="HSeparator" parent="ControlTab/TechnologyScroll/TechContainer" unique_id=1968590986]
+layout_mode = 2
+
+[node name="TemperatureText" type="RichTextLabel" parent="ControlTab/TechnologyScroll/TechContainer" unique_id=1793454064]
+layout_mode = 2
+size_flags_horizontal = 3
+bbcode_enabled = true
+text = "[img=50]uid://ds3t4gw3sh4yw[/img][b][font_size=25] Temperature"
+fit_content = true
+vertical_alignment = 1
+
+[node name="Temperature" type="VBoxContainer" parent="ControlTab/TechnologyScroll/TechContainer" unique_id=657457976]
+layout_mode = 2
+
+[node name="PressureText" type="RichTextLabel" parent="ControlTab/TechnologyScroll/TechContainer" unique_id=1165998710]
+layout_mode = 2
+size_flags_horizontal = 3
+bbcode_enabled = true
+text = "[img=50]uid://b2kpn1wp7ohdm[/img][b][font_size=25] Pressure"
+fit_content = true
+vertical_alignment = 1
+
+[node name="Pressure" type="VBoxContainer" parent="ControlTab/TechnologyScroll/TechContainer" unique_id=1848555058]
+layout_mode = 2
+
+[node name="AtmosphereText" type="RichTextLabel" parent="ControlTab/TechnologyScroll/TechContainer" unique_id=1777940460]
+layout_mode = 2
+size_flags_horizontal = 3
+bbcode_enabled = true
+text = "[img=50]uid://bi8pbh57x84pu[/img][b][font_size=25] Atmosphere"
+fit_content = true
+vertical_alignment = 1
+
+[node name="Atmosphere" type="VBoxContainer" parent="ControlTab/TechnologyScroll/TechContainer" unique_id=972457226]
+layout_mode = 2
+
+[node name="WaterText" type="RichTextLabel" parent="ControlTab/TechnologyScroll/TechContainer" unique_id=1982815298]
+layout_mode = 2
+size_flags_horizontal = 3
+bbcode_enabled = true
+text = "[img=50]uid://bbeisdub76ybi[/img][b][font_size=25] Water"
+fit_content = true
+vertical_alignment = 1
+
+[node name="Water" type="VBoxContainer" parent="ControlTab/TechnologyScroll/TechContainer" unique_id=1373374793]
+layout_mode = 2
+
+[node name="BiomassText" type="RichTextLabel" parent="ControlTab/TechnologyScroll/TechContainer" unique_id=377006355]
+layout_mode = 2
+size_flags_horizontal = 3
+bbcode_enabled = true
+text = "[img=50]uid://drlvtre1ictnp[img][b][font_size=25] Biomass"
+fit_content = true
+vertical_alignment = 1
+
+[node name="Biomass" type="VBoxContainer" parent="ControlTab/TechnologyScroll/TechContainer" unique_id=1973292354]
+layout_mode = 2
+
+[node name="PopulationText" type="RichTextLabel" parent="ControlTab/TechnologyScroll/TechContainer" unique_id=1327639741]
+layout_mode = 2
+size_flags_horizontal = 3
+bbcode_enabled = true
+text = "[img=50]uid://dak1q80vgqll8[img][b][font_size=25] Population"
+fit_content = true
+vertical_alignment = 1
+
+[node name="Population" type="VBoxContainer" parent="ControlTab/TechnologyScroll/TechContainer" unique_id=780302492]
+layout_mode = 2
 
 [connection signal="item_selected" from="ControlPanel/VBoxContainer/HBoxContainer/OptionButton" to="ControlPanel" method="_on_view_mode_selected"]
 [connection signal="toggled" from="ControlPanel/VBoxContainer/EnableSunLight" to="ControlPanel" method="_on_enable_sun_light_toggled"]

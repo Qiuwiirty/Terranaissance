@@ -5,4 +5,4 @@ func _input(event: InputEvent) -> void:
 			if !visible:
 				open()
 			else:
-				hide()
+				close()
