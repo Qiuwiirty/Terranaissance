@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="Gas" format=3 uid="uid://lisq7sh3xga5"]
+
+[ext_resource type="Script" uid="uid://qswxg1eb4r31" path="res://planet_logic/planet_conditions/gas.gd" id="1_oaef3"]
+
+[resource]
+script = ExtResource("1_oaef3")
+name = "Phospine"
+symbol = "PH₃"
+greenhouse = 10.0
+color = Color(0.82448334, 0.1783197, 0.34238893, 1)
+unique_property = 1
+metadata/_custom_type_script = "uid://qswxg1eb4r31"

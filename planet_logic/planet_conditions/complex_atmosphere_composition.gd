@@ -13,8 +13,12 @@ var methane: float
 var argon: float
 var hydrogen: float
 var helium: float
+var carbon_monoxide: float
+var ammonia: float
 var other_inert_gases: float = 1_000_000 #Default
 var other_toxic_gases: float
+
+var gasses: Dictionary[Gas, float]
 const GAS_COLORS : Array[Color] = [
 	Color.AQUAMARINE,
 	Color.BLUE,
@@ -34,9 +38,52 @@ const GAS_NAMES : Array[StringName] = [
 	&"argon",
 	&"hydrogen",
 	&"helium",
+	&"carbon_monoxide",
+	&"ammonia",
 	&"other_inert_gases",
 	&"other_toxic_gases",
 ]
+const HABITABILITY_RANGES : Dictionary[TerraformProperties.TerraformClassification, Dictionary] = {
+	TerraformProperties.TerraformClassification.PERFECT: 
+		{
+			&"oxygen": Vector2(190_000, 220_000),
+			&"carbon_dioxide": Vector2(300, 1000),
+			&"methane": Vector2(0, 1000),
+			&"sulfur_dioxide": Vector2(0, 1),
+			&"other_toxic_gases": Vector2(0, 5),
+			&"carbon_monoxide": Vector2(0, 10),
+			&"ammonia": Vector2(0, 25),
+		},
+	TerraformProperties.TerraformClassification.HABITABLE: 
+		{
+			&"oxygen": Vector2(175_000, 275_000),
+			&"methane": Vector2(0, 50_000),
+			&"carbon_dioxide": Vector2(200, 10_000),
+			&"sulfur_dioxide": Vector2(0, 5),
+			&"other_toxic_gases": Vector2(0, 10),
+			&"carbon_monoxide": Vector2(0, 35),
+			&"ammonia": Vector2(0, 50),
+		},
+	TerraformProperties.TerraformClassification.PLANT_LIFE: 
+		{
+			&"oxygen": Vector2(150_000, 300_000),
+			&"carbon_dioxide": Vector2(200, 50_000),
+			&"sulfur_dioxide": Vector2(0, 15),
+			&"methane": Vector2(0, 50_000),
+			&"other_toxic_gases": Vector2(0, 25),
+			&"carbon_monoxide": Vector2(0, 20_000),
+			&"ammonia": Vector2(0, 500),
+		},
+	TerraformProperties.TerraformClassification.MICROBE_LIFE: 
+		{
+			&"oxygen": Vector2(0, 400_000),
+			&"carbon_dioxide": Vector2(0, 200_000),
+			&"methane": Vector2(0, 250_000),
+			&"sulfur_dioxide": Vector2(0, 100),
+			&"other_toxic_gases": Vector2(0, 500),
+			&"ammonia": Vector2(0, 10_000)
+		}
+}
 func add_gas(gas: StringName, amount: float) -> void:
 	if amount <= 0.0:
 		return
@@ -114,17 +161,32 @@ func mutiply(other: AtmosphereComposition) -> void:
 func mutiply_float(value: float) -> void:
 	oxygen *= value
 	
-func get_elements() -> Dictionary[String, float]:
+func get_symbols() -> Dictionary[StringName, String]:
 	return {
-		"Oxygen": oxygen,
-		"Nitrogen": nitrogen,
-		"Carbon dioxide": carbon_dioxide,
-		"Sulfur dioxide": sulfur_dioxide,
-		"Methane": methane,
-		"Argon": argon,
-		"Hydrogen": hydrogen,
-		"Helium": helium
+		&"oxygen": "O₂",
+		&"nitrogen": "N₂",
+		&"carbon_dioxide": "CO₂",
+		&"sulfur_dioxide": "SO₂",
+		&"methane": "CH₄",
+		&"argon": "Ar",
+		&"hydrogen": "H₂",
+		&"helium": "He",
+	}
+	
+func get_elements() -> Dictionary[StringName, float]:
+	return {
+		&"oxygen": oxygen,
+		&"nitrogen": nitrogen,
+		&"carbon_dioxide": carbon_dioxide,
+		&"sulfur_dioxide": sulfur_dioxide,
+		&"methane": methane,
+		&"argon": argon,
+		&"hydrogen": hydrogen,
+		&"helium": helium,
 	}
 	
 func get_custom_colors() -> Array[Color]:
 	return GAS_COLORS
+
+func get_habitability_ranges() -> Dictionary[TerraformProperties.TerraformClassification, Dictionary]:
+	return HABITABILITY_RANGES

@@ -54,6 +54,11 @@ static func humanize_number(number : String) -> String:
 		return to_return + decimals
 static func terra_classification_to_string(v: int) -> String:
 	return TerraformProperties.TerraformClassification.keys()[v].replace("_", " ")
+static func get_dict_sentence_case(dict: Dictionary) -> Dictionary[String, Variant]:
+	var new_dict : Dictionary[String, Variant]
+	for key: String in dict.keys():
+		new_dict[key.replace("_", " ").capitalize()] = dict[key]
+	return new_dict
 ##Sometimes planet not available when on main menu or such, so you gotta use this
 func get_planet() -> Planet:
 	if !planet:

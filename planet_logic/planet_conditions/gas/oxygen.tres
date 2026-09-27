@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Gas" format=3 uid="uid://dpncodof1o6e8"]
+
+[ext_resource type="Script" uid="uid://qswxg1eb4r31" path="res://planet_logic/planet_conditions/gas.gd" id="1_8wkpp"]
+
+[resource]
+script = ExtResource("1_8wkpp")
+name = "Oxygen"
+symbol = "O₂"
+color = Color(0, 0.65882355, 1, 1)
+unique_property = 1
+metadata/_custom_type_script = "uid://qswxg1eb4r31"

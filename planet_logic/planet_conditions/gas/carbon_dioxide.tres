@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="Gas" format=3 uid="uid://crpac08h8ntht"]
+
+[ext_resource type="Script" uid="uid://qswxg1eb4r31" path="res://planet_logic/planet_conditions/gas.gd" id="1_4w6l3"]
+
+[resource]
+script = ExtResource("1_4w6l3")
+name = "Carbon dioxide"
+symbol = "CO₂"
+greenhouse = 5.0
+color = Color(1, 0.11764706, 0, 1)
+toxicity_per_ppm = 20.0
+metadata/_custom_type_script = "uid://qswxg1eb4r31"

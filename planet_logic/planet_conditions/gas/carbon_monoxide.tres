@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="Gas" format=3 uid="uid://b3bqhabnaqirb"]
+
+[ext_resource type="Script" uid="uid://qswxg1eb4r31" path="res://planet_logic/planet_conditions/gas.gd" id="1_o3n03"]
+
+[resource]
+script = ExtResource("1_o3n03")
+name = "Carbon monoxide"
+symbol = "CO"
+greenhouse = 1.0
+color = Color(0.26657522, 0.2665752, 0.26657525, 1)
+toxicity_per_ppm = 5000.0
+metadata/_custom_type_script = "uid://qswxg1eb4r31"

@@ -1,5 +1,6 @@
 @abstract class_name AtmosphereComposition
 extends Resource
+
 @abstract func get_habitability() -> TerraformProperties.TerraformClassification
 @abstract func get_atmosphere_color() -> Color
 
@@ -11,5 +12,7 @@ extends Resource
 #@abstract func divide() -> void
 
 #region Statistic purposes
-@abstract func get_custom_colors() -> Array[Color]
-@abstract func get_elements() -> Dictionary[String, float]
+@abstract func get_symbols() -> Dictionary[StringName, String]
+@abstract func get_custom_colors() -> Array[Color] #Used for statistics so no need to be dictionary
+@abstract func get_elements() -> Dictionary[StringName, float]
+@abstract func get_habitability_ranges() -> Dictionary[TerraformProperties.TerraformClassification, Dictionary]

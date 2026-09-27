@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="Gas" format=3 uid="uid://cfqaawi3hecyl"]
+
+[ext_resource type="Script" uid="uid://qswxg1eb4r31" path="res://planet_logic/planet_conditions/gas.gd" id="1_8dyyp"]
+
+[resource]
+script = ExtResource("1_8dyyp")
+name = "Sulfur dioxide"
+symbol = "SO₂"
+greenhouse = -3.0
+color = Color(0.9764706, 0.63529414, 0, 1)
+toxicity_per_ppm = 20000.0
+unique_property = 2
+metadata/_custom_type_script = "uid://qswxg1eb4r31"

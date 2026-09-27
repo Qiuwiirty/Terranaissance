@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="Gas" format=3 uid="uid://hmx13256yl75"]
+
+[ext_resource type="Script" uid="uid://qswxg1eb4r31" path="res://planet_logic/planet_conditions/gas.gd" id="1_mhivl"]
+
+[resource]
+script = ExtResource("1_mhivl")
+name = "Hydrogen"
+symbol = "H₂"
+color = Color(0.8931693, 0.00074256124, 0.90966874, 1)
+metadata/_custom_type_script = "uid://qswxg1eb4r31"

@@ -1,3 +1,4 @@
+@icon("uid://tt10vx6tyh3k")
 extends Resource
 class_name City
 var name := "Ciiity"

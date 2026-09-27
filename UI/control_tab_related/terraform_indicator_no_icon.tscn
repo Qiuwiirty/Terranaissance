@@ -1,30 +1,29 @@
 [gd_scene format=3 uid="uid://lxmawm7jad1i"]
 
-[ext_resource type="Script" uid="uid://fi4gxdprrp23" path="res://UI/terraform_indicator_no_icon.gd" id="1_cubj1"]
-[ext_resource type="FontFile" uid="uid://bi45yc0qp2yy8" path="res://NotoSans_Condensed-Regular.ttf" id="2_xdmrf"]
-[ext_resource type="Gradient" uid="uid://deslbf48gwobe" path="res://planet_logic/planet_conditions/gradients/ideal_progress_gradient.tres" id="3_hrsal"]
+[ext_resource type="Script" uid="uid://fi4gxdprrp23" path="res://UI/control_tab_related/atmosphere_indicator.gd" id="1_whxe3"]
+[ext_resource type="FontFile" uid="uid://bi45yc0qp2yy8" path="res://NotoSans_Condensed-Regular.ttf" id="2_uxxkr"]
+[ext_resource type="Gradient" uid="uid://deslbf48gwobe" path="res://planet_logic/planet_conditions/gradients/ideal_progress_gradient.tres" id="3_n2m3c"]
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_3uw2p"]
-gradient = ExtResource("3_hrsal")
+gradient = ExtResource("3_n2m3c")
 
-[node name="TerraformIndicatorNoIcon" type="MarginContainer" unique_id=1188990834]
+[node name="AtmosphereIndicator" type="MarginContainer" unique_id=1188990834]
 offset_right = 382.0
 offset_bottom = 88.0
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
-script = ExtResource("1_cubj1")
-category = null
-target_life_classification = null
+script = ExtResource("1_whxe3")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=1880629392]
 layout_mode = 2
 
 [node name="Symbol" type="Label" parent="HBoxContainer" unique_id=265525685]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 1
-theme_override_fonts/font = ExtResource("2_xdmrf")
+theme_override_fonts/font = ExtResource("2_uxxkr")
 theme_override_font_sizes/font_size = 33
 text = "O₂"
 vertical_alignment = 1

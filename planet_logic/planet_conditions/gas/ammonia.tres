@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="Gas" format=3 uid="uid://fhr13p5vwgx5"]
+
+[ext_resource type="Script" uid="uid://qswxg1eb4r31" path="res://planet_logic/planet_conditions/gas.gd" id="1_v4pws"]
+
+[resource]
+script = ExtResource("1_v4pws")
+name = "Ammonia"
+symbol = "NH₃"
+greenhouse = 15.0
+color = Color(0.5647059, 0.7529412, 0, 1)
+toxicity_per_ppm = 3333.0
+unique_property = 3
+metadata/_custom_type_script = "uid://qswxg1eb4r31"

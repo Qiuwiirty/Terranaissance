@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://4iw853n2o8im"]
 
-[ext_resource type="Script" uid="uid://c2vtpnn3xflgk" path="res://UI/terraform_indicator.gd" id="1_0om5g"]
+[ext_resource type="Script" uid="uid://c2vtpnn3xflgk" path="res://UI/control_tab_related/terraform_indicator.gd" id="1_0om5g"]
 [ext_resource type="Texture2D" uid="uid://ds3t4gw3sh4yw" path="res://textures/icons/fire.svg" id="2_wuun8"]
 [ext_resource type="Gradient" uid="uid://deslbf48gwobe" path="res://planet_logic/planet_conditions/gradients/ideal_progress_gradient.tres" id="3_yyoda"]
 

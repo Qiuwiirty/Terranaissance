@@ -50,7 +50,7 @@ const HABITABILITY_RANGES : Dictionary[TerraformClassification, Dictionary] = {
 		"temperature": Vector2(275_000.0, 305_000.0),
 		"pressure": Vector2(90_000.0, 110_000.0),
 		"water": 0.90,
-		"biomass": 1.0 #Biomass use a ratio
+		"biomass": 1.0, #Biomass use a ratio
 	},
 	TerraformClassification.HABITABLE: {
 		"temperature": Vector2(250_000.0, 320_000.0),

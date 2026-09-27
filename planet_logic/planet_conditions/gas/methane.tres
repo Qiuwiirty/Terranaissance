@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Gas" format=3 uid="uid://d07683vsu7kid"]
+
+[ext_resource type="Script" uid="uid://qswxg1eb4r31" path="res://planet_logic/planet_conditions/gas.gd" id="1_kbsvt"]
+
+[resource]
+script = ExtResource("1_kbsvt")
+name = "Methane"
+symbol = "CH₄"
+greenhouse = 30.0
+color = Color(0.67058825, 0.4627451, 1, 1)
+metadata/_custom_type_script = "uid://qswxg1eb4r31"

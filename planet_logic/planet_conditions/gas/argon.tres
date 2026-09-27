@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="Gas" format=3 uid="uid://b6j1fcj6vj6ue"]
+
+[ext_resource type="Script" uid="uid://qswxg1eb4r31" path="res://planet_logic/planet_conditions/gas.gd" id="1_enx08"]
+
+[resource]
+script = ExtResource("1_enx08")
+name = "Argon"
+symbol = "Ar"
+color = Color(0.7317694, 0.0007716322, 0.7956645, 1)
+metadata/_custom_type_script = "uid://qswxg1eb4r31"

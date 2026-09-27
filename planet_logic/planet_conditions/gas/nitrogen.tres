@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="Gas" format=3 uid="uid://b2w0p8lyfl28e"]
+
+[ext_resource type="Script" uid="uid://qswxg1eb4r31" path="res://planet_logic/planet_conditions/gas.gd" id="1_t04sf"]
+
+[resource]
+script = ExtResource("1_t04sf")
+name = "Nitrogen"
+symbol = "N₂"
+color = Color(0, 0, 1, 1)
+metadata/_custom_type_script = "uid://qswxg1eb4r31"

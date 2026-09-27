@@ -41,7 +41,9 @@ func _update() -> void:
 			return
 		donut_redraw = false
 		piechart.doughnut_shape = false
-		piechart.set_new_data(Game.planet.terraform_properties.atmosphere_composition.get_elements())
+		piechart.set_new_data(
+				Game.get_dict_sentence_case(Game.planet.terraform_properties.atmosphere_composition.get_elements())
+			)
 		piechart.custom_scale = Game.planet.terraform_properties.atmosphere_composition.get_custom_colors()
 func _update_terraform_indicator_target_life(target: TerraformProperties.TerraformClassification) -> void:
 	for terraform_indicator: Control in get_children():

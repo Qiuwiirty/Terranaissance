@@ -1,5 +1,5 @@
 extends MarginContainer
-class_name TerraformIndicatorNoIcon
+class_name AtmosphereIndicator
 #basically just terraform indicator, i will merge these two soon
 static var character_length: float
 var terraform_properties: TerraformProperties
@@ -7,6 +7,7 @@ var planet_properties: PlanetProperties
 @export var category : Facility.Category = Facility.Category.TEMPERATURE #Atmosphere is a special case, it should use pie chart (if simple then just show one of the properties)
 ##This is basically the "indicator for what type of life". If, it's plant life, then it will set its min and max to the plant life, and even if microbe life can hold the condition, it will stay red (showed cannot support) if plant can't support it 
 @export var target_life_classification: TerraformProperties.TerraformClassification =TerraformProperties.TerraformClassification.PLANT_LIFE
+@onready var symbol : Label = %Symbol
 @onready var arrow_indicator : Label = %ArrowIndicator
 @onready var min_habitability : Label = %MinHabitability
 @onready var max_habitability : Label = %MaxHabitability
@@ -16,7 +17,6 @@ func _ready() -> void:
 	if !character_length:
 		character_length = arrow_indicator.get_theme_font("font").get_string_size(arrow_indicator.text).x
 	arrow_indicator.offset_transform_position.x = -character_length / 2
-	icon.texture = Facility.CATEGORY_TO_TEXTURE[category]
 	match category:
 		Facility.Category.WATER:
 			progress.texture.gradient = load("uid://cer3hf20ku6i3")
@@ -65,19 +65,19 @@ func _update() -> void:
 					(current_value - min_hab) / float(max_hab - min_hab), 0.0, 1.0)
 	var habitability := _get_habitability()
 	if habitability < target_life_classification:
-		icon.modulate = Color.RED
+		symbol.modulate = Color.RED
 		return
 	match habitability:
 		TerraformProperties.TerraformClassification.BARREN:
-			icon.modulate = Color.RED
+			symbol.modulate = Color.RED
 		TerraformProperties.TerraformClassification.MICROBE_LIFE:
-			icon.modulate = Color.MEDIUM_BLUE
+			symbol.modulate = Color.MEDIUM_BLUE
 		TerraformProperties.TerraformClassification.PLANT_LIFE:
-			icon.modulate = Color.DARK_ORANGE
+			symbol.modulate = Color.DARK_ORANGE
 		TerraformProperties.TerraformClassification.HABITABLE:
-			icon.modulate = Color(255, 190, 0)
+			symbol.modulate = Color(255, 190, 0)
 		TerraformProperties.TerraformClassification.PERFECT:
-			icon.modulate = Color.GREEN
+			symbol.modulate = Color.GREEN
 func get_temperature_habitability() -> TerraformProperties.TerraformClassification:
 	for classification in [
 		TerraformProperties.TerraformClassification.PERFECT,
