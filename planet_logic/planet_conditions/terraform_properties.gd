@@ -11,13 +11,18 @@ enum TerraformClassification {
 var habitability_percentage: float:
 	get:
 		return 0.
-var temperature := 0.0 #in mk
-var pressure : float = 0 #pa
-var atmosphere_composition: AtmosphereComposition = SimpleAtmosphereComposition.new()
-var water := 0.0 #in cm
-var biomass := 0.0 #in mt
-var revenue := 0.0
-
+var _temperature := 0.0
+var greenhouse_effect := 0.0 #Inferred from atmosphere composition
+@export var temperature: float : #in mk
+	get:
+		return _temperature + greenhouse_effect
+	set(value):
+		_temperature = value
+@export var pressure : float = 0 ##In pa
+@export var atmosphere_composition: AtmosphereComposition = SimpleAtmosphereComposition.new()
+@export var water := 0.0 ##In cm. If used as a starting condition, this will not correspond directly to the actual sea elevation as it will be converted to ice/vapor
+@export var biomass := 0.0 ##In mt (megatonnes)
+@export var revenue := 0.0 ##In terras money
 func add(other: TerraformProperties) -> void:
 	temperature += other.temperature
 	atmosphere_composition.add(other.atmosphere_composition)
@@ -88,3 +93,22 @@ func get_habitability() -> TerraformClassification:
 			return classification
 			
 	return TerraformClassification.BARREN
+
+#TODO: FIX THIS:::!!!
+##If used upon simple atmosphere composition, the values would be automatically inferred from complex
+func load_from_starting_terraform_properties(other_terraform_properties: TerraformProperties) -> void:
+	var other_starting_atmosphere : AtmosphereComposition = other_terraform_properties.atmosphere_composition
+	if other_starting_atmosphere.get_script() == atmosphere_composition.get_script():
+		atmosphere_composition = other_starting_atmosphere
+		return
+	var other_elements := other_starting_atmosphere.get_elements()
+	if Game.planet.planet_state.terra_mode == PlanetState.TerraMode.SIMPLE:
+		var new_simple_terraform_properties := SimpleAtmosphereComposition.new()
+		if other_elements.has(&"Oxygen"): 
+			new_simple_terraform_properties.oxygen_gas_data = other_elements[&"Oxygen"]
+		atmosphere_composition = new_simple_terraform_properties
+	else:
+		var new_complex_terraform_properties := ComplexAtmosphereComposition.new()
+		if other_elements.has(&"Oxygen"): 
+			new_complex_terraform_properties.gases[&"Oxygen"] = other_elements[&"Oxygen"]
+		atmosphere_composition = new_complex_terraform_properties

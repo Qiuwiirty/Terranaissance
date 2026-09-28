@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://c5v61glibq5lm"
-path.s3tc="res://.godot/imported/mars_elevation.jpg-7cb08157e9be4b83535d6682a0b790b2.s3tc.ctex"
+path.s3tc="res://.godot/imported/mars_elevation.jpg-cc564836f9c630fdf2a487d737832aef.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://textures/planets/mars/mars_elevation.jpg"
-dest_files=["res://.godot/imported/mars_elevation.jpg-7cb08157e9be4b83535d6682a0b790b2.s3tc.ctex"]
+source_file="res://predefined/planets/mars/mars_elevation.jpg"
+dest_files=["res://.godot/imported/mars_elevation.jpg-cc564836f9c630fdf2a487d737832aef.s3tc.ctex"]
 
 [params]
 

@@ -14,5 +14,5 @@ extends Resource
 #region Statistic purposes
 @abstract func get_symbols() -> Dictionary[StringName, String]
 @abstract func get_custom_colors() -> Array[Color] #Used for statistics so no need to be dictionary
-@abstract func get_elements() -> Dictionary[StringName, float]
+@abstract func get_elements() -> Dictionary[StringName, GasData]
 @abstract func get_habitability_ranges() -> Dictionary[TerraformProperties.TerraformClassification, Dictionary]

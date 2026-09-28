@@ -3,8 +3,8 @@
 [ext_resource type="Shader" uid="uid://bygy4w4ra8aoj" path="res://planet_logic/shader/planet.gdshader" id="1_cl0l2"]
 [ext_resource type="Texture2D" uid="uid://bdvrkedru28bt" path="res://textures/city_light.tres" id="2_nq76w"]
 [ext_resource type="Texture2D" uid="uid://by223urmvg2w" path="res://textures/cloud_related/cloudmap.png" id="3_ov4ru"]
-[ext_resource type="Texture2D" uid="uid://c5v61glibq5lm" path="res://textures/planets/mars/mars_elevation.jpg" id="4_edjyj"]
-[ext_resource type="Texture2D" uid="uid://bsas3wag8j7cs" path="res://textures/planets/mars/2k_mars.jpg" id="5_tok8b"]
+[ext_resource type="Texture2D" uid="uid://c5v61glibq5lm" path="res://predefined/planets/mars/mars_elevation.jpg" id="4_edjyj"]
+[ext_resource type="Texture2D" uid="uid://bsas3wag8j7cs" path="res://predefined/planets/mars/2k_mars.jpg" id="5_tok8b"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_otdea"]
 seed = 3

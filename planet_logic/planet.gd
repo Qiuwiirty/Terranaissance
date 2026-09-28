@@ -3,7 +3,6 @@ class_name Planet
 signal city_created(city: City)
 signal city_destroyed(city: City)
 const OXYGEN_GRADIENT: Gradient = preload("uid://w3mrnkqo8pl2")
-static var planets_template: Dictionary[String, PlanetProperties]
 @onready var tick_timer : Timer = $TickTimer
 
 var planet_state: PlanetState
@@ -25,33 +24,10 @@ var total_habitation : int:
 		for city: City in cities:
 			total += city.properties.habitations
 		return total
-static func _static_init() -> void:
-	var mars := PlanetProperties.new()
-	mars.name = "Mars"
-	mars.radius = 3389.5 #in km btw
-	mars.axial_tilt = 25.19
-	mars.orbital_tilt = 1.85
-	mars.max_elevation = 2_150_000
-	
-	mars.starting_terraform_properties.temperature = 220_000
-	mars.starting_terraform_properties.pressure = 610
-	var complex := ComplexAtmosphereComposition.new()
-	complex.carbon_dioxide = 950_000
-	complex.nitrogen = 27_000
-	complex.oxygen = 1300
-	complex.other_toxic_gases = 800  
-	var simple := SimpleAtmosphereComposition.new()
-	simple.oxygen = 1300
-	mars.starting_complex_atmosphere_composition = complex
-	mars.starting_simple_atmosphere_composition = simple
-	#mars.starting_terraform_properties.oxygen = 1520
-	mars.map = load("uid://bsas3wag8j7cs")
-	mars.elevation_map = load("uid://c5v61glibq5lm")
-	planets_template["mars"] = mars
 func _enter_tree() -> void:
 	Game.planet = self
 func _ready() -> void:
-	planet_properties = planets_template["mars"]
+	planet_properties = preload("uid://dcxijvsc4hv8p") #mars
 	start()
 func _process(_delta: float) -> void:
 	if Game.sun.light_energy == 0: mat.set_shader_parameter("sun_active", false); return
@@ -66,6 +42,10 @@ func _on_update_tick() -> void:
 	for city in cities:
 		pop += city.properties.population
 	total_population = floori(pop)
+	var greenhouse_data := _get_greenhouse_and_ppm_sum()
+	terraform_properties.greenhouse_effect = greenhouse_data[0] * log(1+greenhouse_data[1]) * (terraform_properties.pressure / 100) #simplified from greenhouse_data[0] * log(1+greenhouse_data[1]) * (terraform_properties.pressure / 100_000) * 1000
+func _get_greenhouse_and_ppm_sum() -> Array[float]:
+	return [10., 10.]
 func _define_biomass_color() -> void:
 	var rng := RandomNumberGenerator.new()
 	rng.seed = planet_properties.name.hash()
@@ -74,7 +54,7 @@ func _define_biomass_color() -> void:
 func start() -> void: ##Intended for starting a new world. Which expect everything to be empty so it will override some things (which can definetly reset the data so use carefully)
 	planet_state = PlanetState.new()
 	planet_state.terras = 0.0
-	terraform_properties = planet_properties.starting_terraform_properties
+	terraform_properties.load_from_starting_terraform_properties(planet_properties.starting_terraform_properties)
 	init_planet_properties()
 func init_planet_properties() -> void:
 	_define_biomass_color()
@@ -145,3 +125,6 @@ func _on_planet_input_event(_camera: Node, event: InputEvent, event_position: Ve
 		cities.append(new_city)
 		update_cities_light()
 		city_created.emit(new_city)
+
+func fire() -> void:
+	pass
