@@ -10,9 +10,9 @@ enum Category {
 	BIOMASS, #4
 	REVENUE, #5
 	POPULATION, #6
-	HABITATIONS, #7
+	HABITATION, #7
 	MISC, #8
-	UNDEFINED, #9 This sis different from MISC. 
+	UNDEFINED, #9 This is different from MISC. 
 	#This only happened when the code havent explicitly change the category (which is kinda bad yknow)
 }
 #The icon are mostly from noto font emoji
@@ -24,59 +24,80 @@ const CATEGORY_TO_TEXTURE: Dictionary[Category, Texture2D] = {
 	Category.BIOMASS: preload("uid://drlvtre1ictnp"),
 	Category.REVENUE: preload("uid://css0gk1xlxis0"),
 	Category.POPULATION: preload("uid://dak1q80vgqll8"),
-	Category.HABITATIONS: preload("uid://dak1q80vgqll8"), #use the same as population
+	Category.HABITATION: preload("uid://dak1q80vgqll8"), #use the same as population
 	Category.MISC: preload("uid://da5o8jj66i7p")
 }
 #the name is still placeholder, maybe change it later?
-static var facilities_tech : Dictionary[StringName, String] = {
-	# Heat
-	&"Cooler Alpha": "n=Cooler Alpha,c=0.-- 4 heat",
-	&"Cooler Beta": "n=Cooler Beta,c=0.-- 40 heat,++ 3000 revenue",
-	&"Cooler Gamma": "n=Cooler Gamma,c=0.-- 100 heat,-- 20 biomass,-- 5000 revenue",
-	&"Heating Alpha": "n=Heating Alpha,c=0.++ 4 heat",
-	&"Heating Beta": "n=Heating Beta,c=0.++ 60 heat,++ 10 pressure",
-	&"Heating Gamma": "n=Heating Gamma,c=0.++ 120 heat,-- 10 water,-- 20 biomass",
-
-	# Pressure
-	&"Depressurization Alpha": "n=Depressurization Alpha,c=1.-- 4 pressure",
-	&"Depressurization Beta": "n=Depressurization Beta,c=1.-- 40 pressure,++ 9 biomass",
-	&"Depressurization Gamma": "n=Depressurization Gamma,c=1.-- 100 pressure,++ 20 water,++ 10 heat",
-	&"Pressurization Alpha": "n=Pressurization Alpha,c=1.++ 4 pressure",
-	&"Pressurization Beta": "n=Pressurization Beta,c=1.++ 60 pressure,++ 10 oxygen",
-	&"Pressurization Gamma": "n=Pressurization Gamma,c=1.++ 100 pressure,++ 20 oxygen,++ 2000 revenue",
-
-	# Oxygen
-	&"Oxygenation Alpha": "n=Oxygenation Alpha,c=2.-- 4 oxygen",
-	&"Oxygenation Beta": "n=Oxygenation Beta,c=2.-- 40 oxygen,++ 10 pressure",
-	&"Oxygenation Gamma": "n=Oxygenation Gamma,c=2.-- 80 oxygen,++ 20 water",
-	&"Deoxygenation Alpha": "n=Deoxygenation Alpha,c=2.++ 4 oxygen",
-	&"Deoxygenation Beta": "n=Deoxygenation Beta,c=2.++ 60 oxygen,-- 10 pressure",
-	&"Deoxygenation Gamma": "n=Deoxygenation Gamma,c=2.++ 120 oxygen,++ 17 biomass,-- 10 pressure",
-
-	# Water
-	&"Water Depletion Alpha": "n=Water Depletion Alpha,c=3.-- 4 water",
-	&"Water Depletion Beta": "n=Water Depletion Beta,c=3.-- 40 water,++ 10 oxygen",
-	&"Water Depletion Gamma": "n=Water Depletion Gamma,c=3.-- 120 water,-- 10 pressure,++ 3000 revenue",
-	&"Flooding Alpha": "n=Flooding Alpha,c=3.++ 4 water",
-	&"Flooding Beta": "n=Flooding Beta,c=3.++ 40 water,++ 10 pressure",
-	&"Flooding Gamma": "n=Flooding Gamma,c=3.++ 120 water,-- 9 biomass,++ 8000 revenue",
-
-	# Biomass
-	&"Aquatic Alpha": "n=Aquatic Alpha,c=4.++ 8 biomass,-- 4 water",
-	&"Aquatic Beta": "n=Aquatic Beta,c=4.++ 30 biomass,++ 30 oxygen",
-	&"Aquatic Gamma": "n=Aquatic Gamma,c=4.++ 100 biomass,-- 10 water,++ 3000 revenue",
-	&"Forestation Alpha": "n=Forestation Alpha,c=4.++ 4 biomass",
-	&"Forestation Beta": "n=Forestation Beta,c=4.++ 20 biomass,++ 8 oxygen",
-	&"Forestation Gamma": "n=Forestation Gamma,c=4.++ 80 biomass,++ 16 oxygen",
-
-	# Habitation
-	&"Habitation Alpha": "n=Habitation Alpha,c=7.+ 100 habitat",
-	&"Habitation Beta": "n=Habitation Beta,c=7.+ 750 habitat,+ 4 pressure",
-	&"Habitation Gamma": "n=Habitation Gamma,c=7.+ 3000 habitat,++ 1 habitat,-- 2 biomass",
-	&"Population Alpha": "n=Population Alpha,c=6.++ 4 population",
-	&"Population Beta": "n=Population Beta,c=6.++ 30 population,- 4 oxygen",
-	&"Population Gamma": "n=Population Gamma,c=6.++ 120 population,+ 2000 revenue"
+##n signifies name. c siginfies category (These are aliases, you may use full name)
+static var facilities_tech : Dictionary[Category, Dictionary] = {
+	Category.TEMPERATURE: 
+	{
+		&"Cooler Alpha": "n=Cooler Alpha,c=0.-- 4 heat",
+		&"Cooler Beta": "n=Cooler Beta,c=0.-- 40 heat,++ 3000 revenue",
+		&"Cooler Gamma": "n=Cooler Gamma,c=0.-- 100 heat,-- 20 biomass,-- 5000 revenue",
+		&"Heating Alpha": "n=Heating Alpha,c=0.++ 4 heat",
+		&"Heating Beta": "n=Heating Beta,c=0.++ 60 heat,++ 10 pressure",
+		&"Heating Gamma": "n=Heating Gamma,c=0.++ 120 heat,-- 10 water,-- 20 biomass",
+	},
+	
+	Category.PRESSURE:
+	{
+		&"Depressurization Alpha": "n=Depressurization Alpha,c=1.-- 4 pressure",
+		&"Depressurization Beta": "n=Depressurization Beta,c=1.-- 40 pressure,++ 9 biomass",
+		&"Depressurization Gamma": "n=Depressurization Gamma,c=1.-- 100 pressure,++ 20 water,++ 10 heat",
+		&"Pressurization Alpha": "n=Pressurization Alpha,c=1.++ 4 pressure",
+		&"Pressurization Beta": "n=Pressurization Beta,c=1.++ 60 pressure,++ 10 oxygen",
+		&"Pressurization Gamma": "n=Pressurization Gamma,c=1.++ 100 pressure,++ 20 oxygen,++ 2000 revenue",
+	},
+	
+	Category.ATMOSPHERE: 
+	{
+		&"Oxygenation Alpha": "n=Oxygenation Alpha,c=2.-- 4 oxygen",
+		&"Oxygenation Beta": "n=Oxygenation Beta,c=2.-- 40 oxygen,++ 10 pressure",
+		&"Oxygenation Gamma": "n=Oxygenation Gamma,c=2.-- 80 oxygen,++ 20 water",
+		&"Deoxygenation Alpha": "n=Deoxygenation Alpha,c=2.++ 4 oxygen",
+		&"Deoxygenation Beta": "n=Deoxygenation Beta,c=2.++ 60 oxygen,-- 10 pressure",
+		&"Deoxygenation Gamma": "n=Deoxygenation Gamma,c=2.++ 120 oxygen,++ 17 biomass,-- 10 pressure",
+	},
+	
+	Category.WATER:
+	{
+		&"Water Depletion Alpha": "n=Water Depletion Alpha,c=3.-- 4 water",
+		&"Water Depletion Beta": "n=Water Depletion Beta,c=3.-- 40 water,++ 10 oxygen",
+		&"Water Depletion Gamma": "n=Water Depletion Gamma,c=3.-- 120 water,-- 10 pressure,++ 3000 revenue",
+		&"Flooding Alpha": "n=Flooding Alpha,c=3.++ 4 water",
+		&"Flooding Beta": "n=Flooding Beta,c=3.++ 40 water,++ 10 pressure",
+		&"Flooding Gamma": "n=Flooding Gamma,c=3.++ 120 water,-- 9 biomass,++ 8000 revenue",
+	},
+	
+	Category.BIOMASS:
+	{
+		&"Aquatic Alpha": "n=Aquatic Alpha,c=4.++ 8 biomass,-- 4 water",
+		&"Aquatic Beta": "n=Aquatic Beta,c=4.++ 30 biomass,++ 30 oxygen",
+		&"Aquatic Gamma": "n=Aquatic Gamma,c=4.++ 100 biomass,-- 10 water,++ 3000 revenue",
+		&"Forestation Alpha": "n=Forestation Alpha,c=4.++ 4 biomass",
+		&"Forestation Beta": "n=Forestation Beta,c=4.++ 20 biomass,++ 8 oxygen",
+		&"Forestation Gamma": "n=Forestation Gamma,c=4.++ 80 biomass,++ 16 oxygen",
+	},
+	
+	Category.POPULATION:
+	{
+		&"Population Alpha": "n=Population Alpha,c=6.++ 4 population",
+		&"Population Beta": "n=Population Beta,c=6.++ 30 population,- 4 oxygen",
+		&"Population Gamma": "n=Population Gamma,c=6.++ 120 population,+ 2000 revenue"
+	},
+	
+	Category.HABITATION:
+	{
+		&"Habitation Alpha": "n=Habitation Alpha,c=7.+ 100 habitat",
+		&"Habitation Beta": "n=Habitation Beta,c=7.+ 750 habitat,+ 4 pressure",
+		&"Habitation Gamma": "n=Habitation Gamma,c=7.+ 3000 habitat,++ 1 habitat,-- 2 biomass",
+		&"Vathmiaios Alpha": "n=Vathmiaios Alpha,c=7.++ 1 habitat",
+		&"Vathmiaios Beta": "n=Vathmiaios Beta,c=7.++ 2 habitat, -- 4 biomass",
+		&"Vathmiaios Gamma": "n=Vathmiaios Gamma,c=7.++ 8 habitat, -- 32 biomass, ++ 4 heat",
+	}
 }
+static var alias_category : Dictionary[String, int]
 var city: City
 var name: StringName = &"Unnamed"
 ##Upgrade, it's basically modifier multiplier (*1.5)
@@ -152,36 +173,38 @@ func delete() -> void:
 	free()
 
 enum FacilityPart {
-	METADATA,
-	MODIFIERS
+	METADATA, ##Extra information, like name and category
+	MODIFIERS, ##The actual effects
 }
 enum FacilityFormat {
 	OPERATION, #How is it operated (+ add, - subtract. ++ add per tick, -- subtract per tick)
 	VALUE, #Value to add/decreased
 	PROPERTY, #Property to edit (e.g. heat)
 } # example : "-- 1 heat ,+ 5 habitations"
-
 ## Construct property modifiers in a human readable format in string (I called it facform lol). Format is: "property operation value, property ..." (Operation: (+ add, - subtract. ++ add per tick, -- subtract per tick))
 ##
 ## It's constructed in 2 part. "metadata. modifiers" like for example "name=Cooler Alpha, category=TEMPERATURE.-- 4 heat, + 2 habitations"
-## For enum, you must input int and not string like PRESSURE (instead 1)
+## For enum, you may input int or string (Make sure no typo!)
 func construct_and_set(text: String) -> void:
 	const ALIAS : Dictionary[String, String] = { #A format may use alias and need to convert
 		"heat": "temperature",
 		"o2": "oxygen",
 		"habitat": "habitations",
 		"n": "name",
-		"c": "category"
+		"c": "category",
 	}
 	var parts := text.split(".", true)
-	
 	var meta_sections := parts[FacilityPart.METADATA].split(",")
 	for meta_section in meta_sections:
 		meta_section = meta_section.strip_edges()
 		var sub_meta_section := meta_section.split("=")
 		var name_mod := sub_meta_section[0] #0 will always be the name that be modified
+		var value_mod : Variant = sub_meta_section[1]
 		if ALIAS.has(name_mod): name_mod = ALIAS[name_mod]
-		var value_mod := sub_meta_section[1]
+		if name_mod == "category":
+			if typeof(value_mod) == TYPE_STRING:
+				value_mod = value_mod.to_upper().replace(" ", "_")
+		if alias_category.has(value_mod): value_mod = alias_category[value_mod]
 		if name_mod in self:
 			set(name_mod, value_mod)
 		else:
@@ -271,3 +294,9 @@ func get_facform(with_metadata: bool = false) -> String:
 	#result += ", ".join(modifiers)
 	#
 	#return result
+
+static func _static_init() -> void:
+	var i := 0
+	for key in Category.keys():
+		alias_category.set(key, i)
+		i += 1

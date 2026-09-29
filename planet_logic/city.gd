@@ -17,6 +17,6 @@ func run() -> void:
 func _init(planet_: Planet, create_habitat := true) -> void:
 	planet = planet_
 	if create_habitat:
-		var new_habitat := Facility.new(self, Facility.facilities_tech[&"Habitation Alpha"])
+		var new_habitat := Facility.new(self, load("uid://byxw6in07yv83").facform)
 		facilities.append(new_habitat)
 		properties.population += new_habitat.city_properties_modifier.habitations

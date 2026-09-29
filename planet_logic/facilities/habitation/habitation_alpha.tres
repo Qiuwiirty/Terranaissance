@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="FacilityData" format=3 uid="uid://byxw6in07yv83"]
+
+[ext_resource type="Script" uid="uid://bq0o0vlprjx6d" path="res://planet_logic/facility_data.gd" id="1_6l1bv"]
+
+[resource]
+script = ExtResource("1_6l1bv")
+facform = "n=Habitation Alpha,c=Habitation.+ 100 habitat"
+metadata/_custom_type_script = "uid://bq0o0vlprjx6d"

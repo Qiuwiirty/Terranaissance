@@ -30,6 +30,7 @@ offset_bottom = 21.035
 script = ExtResource("1_r4raw")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="ControlPanel" unique_id=2123587148]
+visible = false
 layout_mode = 2
 
 [node name="PlanetName" type="Label" parent="ControlPanel/VBoxContainer" unique_id=1164148888]
@@ -95,7 +96,7 @@ anchor_right = 0.8
 anchor_bottom = 0.8
 grow_horizontal = 2
 grow_vertical = 2
-current_tab = 0
+current_tab = 3
 tab_0/title = "Planet summary"
 tab_1/title = "Planet environment"
 tab_2/title = "Culture"
@@ -103,6 +104,7 @@ tab_3/title = "Technology"
 script = ExtResource("7_ppb6f")
 
 [node name="PlanetSummaryScroll" type="ScrollContainer" parent="ControlTab" unique_id=458296378]
+visible = false
 layout_mode = 2
 metadata/_tab_index = 0
 metadata/_tab_name = "Planet summary"
@@ -173,6 +175,12 @@ category = 3
 layout_mode = 2
 category = 4
 
+[node name="Label" type="RichTextLabel" parent="ControlTab/EnvironmentScroll/EnvironmentContainer" unique_id=1396510253]
+layout_mode = 2
+bbcode_enabled = true
+text = "[img=50]uid://gb458n7jp5bh[/img][font_size=20][b] Atmosphere Composition"
+fit_content = true
+
 [node name="HSeparator" type="HSeparator" parent="ControlTab/EnvironmentScroll/EnvironmentContainer" unique_id=1037349582]
 layout_mode = 2
 
@@ -218,7 +226,6 @@ layout_mode = 2
 layout_mode = 2
 
 [node name="TechnologyScroll" type="ScrollContainer" parent="ControlTab" unique_id=1558167638]
-visible = false
 layout_mode = 2
 metadata/_tab_index = 3
 metadata/_tab_name = "Technology"
@@ -264,7 +271,7 @@ layout_mode = 2
 layout_mode = 2
 size_flags_horizontal = 3
 bbcode_enabled = true
-text = "[img=50]uid://bi8pbh57x84pu[/img][b][font_size=25] Atmosphere"
+text = "[img=50]uid://gb458n7jp5bh[/img][b][font_size=25] Atmosphere"
 fit_content = true
 vertical_alignment = 1
 
