@@ -126,6 +126,9 @@ func mutiply_float(value: float) -> void:
 func add_new_gas(gas_data: GasData) -> void:
 	gases.set(gas_data.gas.name, gas_data)
 func get_symbols() -> Dictionary[StringName, String]:
+	var symbols : Dictionary[StringName, String]
+	for gas_data in gases.values():
+		symbols[gas_data.gas.name] = gas_data.symbol
 	return {
 		&"Oxygen": "O₂",
 		&"nitrogen": "N₂",
@@ -148,3 +151,9 @@ func get_custom_colors() -> Array[Color]:
 
 func get_habitability_ranges() -> Dictionary[TerraformProperties.TerraformClassification, Dictionary]:
 	return HABITABILITY_RANGES
+
+func add_or_insert(gas_data: GasData) -> void:
+	if gases.has(gas_data.gas.name):
+		gases[gas_data.gas.name].ppm += gas_data.ppm
+	else:
+		gases[gas_data.gas.name] = gas_data

@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="RawFacilityData" format=3 uid="uid://cobyyik6rp058"]
+
+[ext_resource type="Script" uid="uid://dw1qgmnck54ie" path="res://planet_logic/facility_data.gd" id="1_5hsi4"]
+[ext_resource type="Script" uid="uid://bu5bdw38wijvt" path="res://planet_logic/planet_conditions/terraform_properties.gd" id="2_phu44"]
+
+[sub_resource type="Resource" id="Resource_85ne0"]
+script = ExtResource("2_phu44")
+temperature = 10.0
+pressure = -100.0
+water = 20.0
+metadata/_custom_type_script = "uid://bu5bdw38wijvt"
+
+[resource]
+script = ExtResource("1_5hsi4")
+name = "Depressurization Gamma"
+category = 1
+terraform_modifier_per_tick = SubResource("Resource_85ne0")
+build_cost = 1000000
+build_time = 7200.0
+maintanence = 2000
+metadata/_custom_type_script = "uid://dw1qgmnck54ie"

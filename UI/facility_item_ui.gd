@@ -11,6 +11,7 @@ func _ready() -> void:
 func _update() -> void: 
 	icon.texture = Facility.CATEGORY_TO_TEXTURE[facility.category]
 	button.text = facility.name
-	description.text = facility.get_facform(false)
+	description.text = facility.description
+
 func _button_up() -> void:
 	Game.in_game_ui.city_ui.set_selected_facility(facility)

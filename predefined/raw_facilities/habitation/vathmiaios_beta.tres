@@ -1,0 +1,26 @@
+[gd_resource type="Resource" script_class="RawFacilityData" format=3 uid="uid://c4gj0gfadwhto"]
+
+[ext_resource type="Script" uid="uid://1flyyadga3lu" path="res://planet_logic/city_properties.gd" id="1_10vl8"]
+[ext_resource type="Script" uid="uid://dw1qgmnck54ie" path="res://planet_logic/facility_data.gd" id="2_yt8ld"]
+[ext_resource type="Script" uid="uid://bu5bdw38wijvt" path="res://planet_logic/planet_conditions/terraform_properties.gd" id="3_yt8ld"]
+
+[sub_resource type="Resource" id="Resource_sp8uj"]
+script = ExtResource("1_10vl8")
+habitations = 2
+metadata/_custom_type_script = "uid://1flyyadga3lu"
+
+[sub_resource type="Resource" id="Resource_10vl8"]
+script = ExtResource("3_yt8ld")
+biomass = -4.0
+metadata/_custom_type_script = "uid://bu5bdw38wijvt"
+
+[resource]
+script = ExtResource("2_yt8ld")
+name = "Vathmiaios Beta"
+category = 7
+terraform_modifier_per_tick = SubResource("Resource_10vl8")
+city_modifier_per_tick = SubResource("Resource_sp8uj")
+build_cost = 600000
+build_time = 5000.0
+maintanence = 1500
+metadata/_custom_type_script = "uid://dw1qgmnck54ie"

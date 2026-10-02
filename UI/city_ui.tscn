@@ -60,6 +60,19 @@ layout_mode = 2
 metadata/_tab_index = 0
 metadata/_tab_name = "Facilities"
 
+[node name="Control" type="Control" parent="VBoxContainer/HBoxContainer/TabContainer/FacilitiesContainer" unique_id=1563286525]
+layout_mode = 2
+
+[node name="AddNewFacility" type="Button" parent="VBoxContainer/HBoxContainer/TabContainer/FacilitiesContainer/Control" unique_id=1926069444]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 8.0
+grow_horizontal = 2
+text = "Add new facility"
+alignment = 0
+
 [node name="RightPanel" type="PanelContainer" parent="VBoxContainer/HBoxContainer" unique_id=294384246]
 unique_name_in_owner = true
 editor_description = "This must only have one child at a time, and show action panel or information depending on which stuff is clicked"

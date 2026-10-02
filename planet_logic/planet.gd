@@ -54,6 +54,7 @@ func _define_biomass_color() -> void:
 func start() -> void: ##Intended for starting a new world. Which expect everything to be empty so it will override some things (which can definetly reset the data so use carefully)
 	planet_state = PlanetState.new()
 	planet_state.terras = 10_000_000
+	terraform_properties.atmosphere_composition = SimpleAtmosphereComposition.new() if planet_state.terra_mode == PlanetState.TerraMode.SIMPLE else ComplexAtmosphereComposition.new()
 	terraform_properties.load_from_starting_terraform_properties(planet_properties.starting_terraform_properties)
 	init_planet_properties()
 func init_planet_properties() -> void:

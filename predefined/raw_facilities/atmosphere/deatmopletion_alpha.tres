@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="RawFacilityData" format=3 uid="uid://j5kkmkbpml44"]
+
+[ext_resource type="Script" uid="uid://dw1qgmnck54ie" path="res://planet_logic/facility_data.gd" id="1_kyon8"]
+
+[resource]
+script = ExtResource("1_kyon8")
+name = "Deatmopletion Alpha"
+category = 2
+any_gas_modifier_per_tick = -4.0
+build_cost = 300000
+build_time = 2200.0
+maintanence = 600
+metadata/_custom_type_script = "uid://dw1qgmnck54ie"

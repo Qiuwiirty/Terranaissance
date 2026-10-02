@@ -1,0 +1,75 @@
+[gd_scene format=3 uid="uid://dbm0ve2hoa1sw"]
+
+[ext_resource type="Script" uid="uid://brl7w83ts62ta" path="res://UI/technologiesUI.gd" id="1_lonfn"]
+
+[node name="Technologies" type="PanelContainer" unique_id=632957648]
+anchors_preset = -1
+anchor_left = 0.25
+anchor_top = 0.25
+anchor_right = 0.75
+anchor_bottom = 0.75
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_lonfn")
+head_info = "[b][font_size=20] RESEARCH[/font_size][/b]
+WWWAWWIE this is a bit empty )the dev forgot to set the head("
+
+[node name="ScrollContainer" type="ScrollContainer" parent="." unique_id=1005029506]
+layout_mode = 2
+
+[node name="TechContainers" type="VBoxContainer" parent="ScrollContainer" unique_id=1052927067]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Head" type="RichTextLabel" parent="ScrollContainer/TechContainers" unique_id=1054363191]
+layout_mode = 2
+size_flags_vertical = 3
+bbcode_enabled = true
+text = "[b][font_size=20] RESEARCH[/font_size][/b]
+WWWAWWIE this is a bit empty )the dev forgot to set the head("
+fit_content = true
+
+[node name="@RichTextLabel@58796" type="RichTextLabel" parent="ScrollContainer/TechContainers" unique_id=1627244640]
+layout_mode = 2
+fit_content = true
+
+[node name="@RichTextLabel@58799" type="RichTextLabel" parent="ScrollContainer/TechContainers" unique_id=66517789]
+layout_mode = 2
+fit_content = true
+
+[node name="@RichTextLabel@58802" type="RichTextLabel" parent="ScrollContainer/TechContainers" unique_id=1459972895]
+layout_mode = 2
+fit_content = true
+
+[node name="@RichTextLabel@58805" type="RichTextLabel" parent="ScrollContainer/TechContainers" unique_id=1300488879]
+layout_mode = 2
+fit_content = true
+
+[node name="@RichTextLabel@58808" type="RichTextLabel" parent="ScrollContainer/TechContainers" unique_id=881707317]
+layout_mode = 2
+fit_content = true
+
+[node name="@RichTextLabel@58811" type="RichTextLabel" parent="ScrollContainer/TechContainers" unique_id=1559989379]
+layout_mode = 2
+fit_content = true
+
+[node name="@RichTextLabel@58814" type="RichTextLabel" parent="ScrollContainer/TechContainers" unique_id=225148338]
+layout_mode = 2
+fit_content = true
+
+[node name="@RichTextLabel@58817" type="RichTextLabel" parent="ScrollContainer/TechContainers" unique_id=1133866871]
+layout_mode = 2
+fit_content = true
+
+[node name="@RichTextLabel@58820" type="RichTextLabel" parent="ScrollContainer/TechContainers" unique_id=595747165]
+layout_mode = 2
+fit_content = true
+
+[node name="@RichTextLabel@58823" type="RichTextLabel" parent="ScrollContainer/TechContainers" unique_id=485591248]
+layout_mode = 2
+fit_content = true

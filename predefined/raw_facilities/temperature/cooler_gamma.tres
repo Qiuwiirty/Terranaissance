@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="RawFacilityData" format=3 uid="uid://j11nq6ls3k7a"]
+
+[ext_resource type="Script" uid="uid://dw1qgmnck54ie" path="res://planet_logic/facility_data.gd" id="1_2kh2m"]
+[ext_resource type="Script" uid="uid://bu5bdw38wijvt" path="res://planet_logic/planet_conditions/terraform_properties.gd" id="2_ahsjc"]
+
+[sub_resource type="Resource" id="Resource_85ne0"]
+script = ExtResource("2_ahsjc")
+temperature = -100.0
+biomass = -20.0
+revenue = -5000.0
+metadata/_custom_type_script = "uid://bu5bdw38wijvt"
+
+[resource]
+script = ExtResource("1_2kh2m")
+name = "Cooler Gamma"
+category = 0
+terraform_modifier_per_tick = SubResource("Resource_85ne0")
+build_cost = 1000000
+build_time = 7200.0
+maintanence = 2000
+metadata/_custom_type_script = "uid://dw1qgmnck54ie"

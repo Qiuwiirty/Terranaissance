@@ -1,3 +1,4 @@
+@tool
 extends Resource
 class_name Facility
 ## (NOTICE: When freed or deleted, call delete() first!)
@@ -15,6 +16,7 @@ enum Category {
 	UNDEFINED, #9 This is different from MISC. 
 	#This only happened when the code havent explicitly change the category (which is kinda bad yknow)
 }
+static var alias_category : Dictionary[String, int]
 #The icon are mostly from noto font emoji
 const CATEGORY_TO_TEXTURE: Dictionary[Category, Texture2D] = {
 	Category.TEMPERATURE: preload("uid://ds3t4gw3sh4yw"),
@@ -25,81 +27,12 @@ const CATEGORY_TO_TEXTURE: Dictionary[Category, Texture2D] = {
 	Category.REVENUE: preload("uid://css0gk1xlxis0"),
 	Category.POPULATION: preload("uid://dak1q80vgqll8"),
 	Category.HABITATION: preload("uid://dak1q80vgqll8"), #use the same as population
-	Category.MISC: preload("uid://da5o8jj66i7p")
+	Category.MISC: preload("uid://da5o8jj66i7p"),
+	Category.UNDEFINED: preload("uid://b522w6sxphy5b")
 }
-#the name is still placeholder, maybe change it later?
-##n signifies name. c siginfies category (These are aliases, you may use full name)
-static var facilities_tech : Dictionary[Category, Dictionary] = {
-	Category.TEMPERATURE: 
-	{
-		&"Cooler Alpha": "n=Cooler Alpha,c=0.-- 4 heat",
-		&"Cooler Beta": "n=Cooler Beta,c=0.-- 40 heat,++ 3000 revenue",
-		&"Cooler Gamma": "n=Cooler Gamma,c=0.-- 100 heat,-- 20 biomass,-- 5000 revenue",
-		&"Heating Alpha": "n=Heating Alpha,c=0.++ 4 heat",
-		&"Heating Beta": "n=Heating Beta,c=0.++ 60 heat,++ 10 pressure",
-		&"Heating Gamma": "n=Heating Gamma,c=0.++ 120 heat,-- 10 water,-- 20 biomass",
-	},
-	
-	Category.PRESSURE:
-	{
-		&"Depressurization Alpha": "n=Depressurization Alpha,c=1.-- 4 pressure",
-		&"Depressurization Beta": "n=Depressurization Beta,c=1.-- 40 pressure,++ 9 biomass",
-		&"Depressurization Gamma": "n=Depressurization Gamma,c=1.-- 100 pressure,++ 20 water,++ 10 heat",
-		&"Pressurization Alpha": "n=Pressurization Alpha,c=1.++ 4 pressure",
-		&"Pressurization Beta": "n=Pressurization Beta,c=1.++ 60 pressure,++ 10 oxygen",
-		&"Pressurization Gamma": "n=Pressurization Gamma,c=1.++ 100 pressure,++ 20 oxygen,++ 2000 revenue",
-	},
-	
-	Category.ATMOSPHERE: 
-	{
-		&"Oxygenation Alpha": "n=Oxygenation Alpha,c=2.-- 4 oxygen",
-		&"Oxygenation Beta": "n=Oxygenation Beta,c=2.-- 40 oxygen,++ 10 pressure",
-		&"Oxygenation Gamma": "n=Oxygenation Gamma,c=2.-- 80 oxygen,++ 20 water",
-		&"Deoxygenation Alpha": "n=Deoxygenation Alpha,c=2.++ 4 oxygen",
-		&"Deoxygenation Beta": "n=Deoxygenation Beta,c=2.++ 60 oxygen,-- 10 pressure",
-		&"Deoxygenation Gamma": "n=Deoxygenation Gamma,c=2.++ 120 oxygen,++ 17 biomass,-- 10 pressure",
-	},
-	
-	Category.WATER:
-	{
-		&"Water Depletion Alpha": "n=Water Depletion Alpha,c=3.-- 4 water",
-		&"Water Depletion Beta": "n=Water Depletion Beta,c=3.-- 40 water,++ 10 oxygen",
-		&"Water Depletion Gamma": "n=Water Depletion Gamma,c=3.-- 120 water,-- 10 pressure,++ 3000 revenue",
-		&"Flooding Alpha": "n=Flooding Alpha,c=3.++ 4 water",
-		&"Flooding Beta": "n=Flooding Beta,c=3.++ 40 water,++ 10 pressure",
-		&"Flooding Gamma": "n=Flooding Gamma,c=3.++ 120 water,-- 9 biomass,++ 8000 revenue",
-	},
-	
-	Category.BIOMASS:
-	{
-		&"Aquatic Alpha": "n=Aquatic Alpha,c=4.++ 8 biomass,-- 4 water",
-		&"Aquatic Beta": "n=Aquatic Beta,c=4.++ 30 biomass,++ 30 oxygen",
-		&"Aquatic Gamma": "n=Aquatic Gamma,c=4.++ 100 biomass,-- 10 water,++ 3000 revenue",
-		&"Forestation Alpha": "n=Forestation Alpha,c=4.++ 4 biomass",
-		&"Forestation Beta": "n=Forestation Beta,c=4.++ 20 biomass,++ 8 oxygen",
-		&"Forestation Gamma": "n=Forestation Gamma,c=4.++ 80 biomass,++ 16 oxygen",
-	},
-	
-	Category.POPULATION:
-	{
-		&"Population Alpha": "n=Population Alpha,c=6.++ 4 population",
-		&"Population Beta": "n=Population Beta,c=6.++ 30 population,- 4 oxygen",
-		&"Population Gamma": "n=Population Gamma,c=6.++ 120 population,+ 2000 revenue"
-	},
-	
-	Category.HABITATION:
-	{
-		&"Habitation Alpha": "n=Habitation Alpha,c=7.+ 100 habitat",
-		&"Habitation Beta": "n=Habitation Beta,c=7.+ 750 habitat,+ 4 pressure",
-		&"Habitation Gamma": "n=Habitation Gamma,c=7.+ 3000 habitat,++ 1 habitat,-- 2 biomass",
-		&"Vathmiaios Alpha": "n=Vathmiaios Alpha,c=7.++ 1 habitat",
-		&"Vathmiaios Beta": "n=Vathmiaios Beta,c=7.++ 2 habitat, -- 4 biomass",
-		&"Vathmiaios Gamma": "n=Vathmiaios Gamma,c=7.++ 8 habitat, -- 32 biomass, ++ 4 heat",
-	}
-}
-static var alias_category : Dictionary[String, int]
 var city: City
 var name: StringName = &"Unnamed"
+var description: StringName
 ##Upgrade, it's basically modifier multiplier (*1.5)
 var level : int = 1
 ##This will impact the displayed icon in the UI too
@@ -107,40 +40,53 @@ var category := Category.UNDEFINED
 ##Important for the game to show what it does
 var cached_facform := ""
 
-var planet_terraform_modifier_per_tick: TerraformProperties = TerraformProperties.new()
-var planet_terraform_modifier: TerraformProperties = TerraformProperties.new() # Only modify when initialized, unlike per tick. Usually for habitations and permanent things
+var terraform_modifier_per_tick: TerraformProperties = TerraformProperties.new()
+var terraform_modifier: TerraformProperties = TerraformProperties.new() # Only modify when initialized, unlike per tick. Usually for habitations and permanent things
 
-var city_properties_modifier_per_tick: CityProperties = CityProperties.new()
-var city_properties_modifier: CityProperties = CityProperties.new()
+#An atmosphere modifier that only and explicitly set certain like oxygen located in terraform properties
+var city_modifier_per_tick: CityProperties = CityProperties.new()
+var city_modifier: CityProperties = CityProperties.new()
+
+var any_atmosphere_modifier: float = 0.0 #Modify any atmopshere modifier that have been selected
 ## Modifier definition is a human readable format in string for setting the property modifiers. Format is: "property operation value, property ..." (Operation: (+ add, - subtract. ++ add per tick, -- subtract per tick))
-func _init(city_: City, modifier_definition : String = "") -> void:
+func _init(city_: City, facility_transfer: FacilityTransfer) -> void:
+	name = facility_transfer.name
+	category = facility_transfer.category
+	
+	description = facility_transfer.description
+	terraform_modifier = facility_transfer.terraform_modifier
+	terraform_modifier_per_tick = facility_transfer.terraform_modifier_per_tick
+	
+	city_modifier = facility_transfer.city_modifier
+	city_modifier_per_tick = facility_transfer.city_modifier_per_tick
+	
+	any_atmosphere_modifier = facility_transfer.any_atmosphere_modifier
+	
 	city = city_
-	if modifier_definition != "":
-		construct_and_set(modifier_definition)
-	city.planet.terraform_modifier_per_tick.add(planet_terraform_modifier_per_tick)
-	city.planet.terraform_properties.add(planet_terraform_modifier)
-	city.properties_modifier_per_tick.add(city_properties_modifier_per_tick)
-	city.properties.add(city_properties_modifier)
+	city.planet.terraform_modifier_per_tick.add(terraform_modifier_per_tick)
+	city.planet.terraform_properties.add(terraform_modifier)
+	city.properties_modifier_per_tick.add(city_modifier_per_tick)
+	city.properties.add(city_modifier)
 
 func set_planet_modifier_per_tick(mod_per_tick: TerraformProperties) -> void:
-	city.planet.terraform_modifier_per_tick.subtract(planet_terraform_modifier_per_tick)
-	planet_terraform_modifier_per_tick = mod_per_tick
-	city.planet.terraform_modifier_per_tick.add(planet_terraform_modifier_per_tick)
+	city.planet.terraform_modifier_per_tick.subtract(terraform_modifier_per_tick)
+	terraform_modifier_per_tick = mod_per_tick
+	city.planet.terraform_modifier_per_tick.add(terraform_modifier_per_tick)
 
 func set_planet_modifier(mod: TerraformProperties) -> void:
-	city.planet.terraform_properties.subtract(planet_terraform_modifier)
-	planet_terraform_modifier = mod
-	city.planet.terraform_properties.add(planet_terraform_modifier)
+	city.planet.terraform_properties.subtract(terraform_modifier)
+	terraform_modifier = mod
+	city.planet.terraform_properties.add(terraform_modifier)
 
 func set_city_modifier_per_tick(mod_per_tick: CityProperties) -> void:
-	city.properties_modifier_per_tick.subtract(city_properties_modifier_per_tick)
-	city_properties_modifier_per_tick = mod_per_tick
-	city.properties_modifier_per_tick.add(city_properties_modifier_per_tick)
+	city.properties_modifier_per_tick.subtract(city_modifier_per_tick)
+	city_modifier_per_tick = mod_per_tick
+	city.properties_modifier_per_tick.add(city_modifier_per_tick)
 
 func set_city_modifier(mod: CityProperties) -> void:
-	city.properties.subtract(city_properties_modifier)
-	city_properties_modifier = mod
-	city.properties.add(city_properties_modifier)
+	city.properties.subtract(city_modifier)
+	city_modifier = mod
+	city.properties.add(city_modifier)
 
 func set_level(new_level: int) -> void:
 	_remove_modifiers_from_objects() #remove the modifier first because don't wanna add something again
@@ -148,155 +94,26 @@ func set_level(new_level: int) -> void:
 	var new_multiplier := 1.0 + (new_level - 1) * 0.5
 	var ratio := new_multiplier / old_multiplier
 	
-	planet_terraform_modifier.mutiply_float(ratio)
-	city_properties_modifier.mutiply_float(ratio)
-	planet_terraform_modifier_per_tick.mutiply_float(ratio)
-	city_properties_modifier_per_tick.mutiply_float(ratio)
+	terraform_modifier.mutiply_float(ratio)
+	city_modifier.mutiply_float(ratio)
+	terraform_modifier_per_tick.mutiply_float(ratio)
+	city_modifier_per_tick.mutiply_float(ratio)
 	
 	level = new_level
 	_apply_modifiers_to_objects() #update it
 ##If precedeed by _apply_modifiers_to_objects, then you essentially make it goes back (aka changes nothing). But this is useful when wanting to update (_remove, do some thing, then _apply
 func _remove_modifiers_from_objects() -> void:
-	city.planet.terraform_modifier_per_tick.subtract(planet_terraform_modifier_per_tick)
-	city.planet.terraform_properties.subtract(planet_terraform_modifier)
-	city.properties.subtract(city_properties_modifier)
-	city.properties_modifier_per_tick.subtract(city_properties_modifier_per_tick)
+	city.planet.terraform_modifier_per_tick.subtract(terraform_modifier_per_tick)
+	city.planet.terraform_properties.subtract(terraform_modifier)
+	city.properties.subtract(city_modifier)
+	city.properties_modifier_per_tick.subtract(city_modifier_per_tick)
 
 func _apply_modifiers_to_objects() -> void:
-	city.planet.terraform_modifier_per_tick.add(planet_terraform_modifier_per_tick)
-	city.planet.terraform_properties.add(planet_terraform_modifier)
-	city.properties.add(city_properties_modifier)
-	city.properties_modifier_per_tick.add(city_properties_modifier_per_tick)
+	city.planet.terraform_modifier_per_tick.add(terraform_modifier_per_tick)
+	city.planet.terraform_properties.add(terraform_modifier)
+	city.properties.add(city_modifier)
+	city.properties_modifier_per_tick.add(city_modifier_per_tick)
 
 func delete() -> void:
 	_remove_modifiers_from_objects()
 	free()
-
-enum FacilityPart {
-	METADATA, ##Extra information, like name and category
-	MODIFIERS, ##The actual effects
-}
-enum FacilityFormat {
-	OPERATION, #How is it operated (+ add, - subtract. ++ add per tick, -- subtract per tick)
-	VALUE, #Value to add/decreased
-	PROPERTY, #Property to edit (e.g. heat)
-} # example : "-- 1 heat ,+ 5 habitations"
-## Construct property modifiers in a human readable format in string (I called it facform lol). Format is: "property operation value, property ..." (Operation: (+ add, - subtract. ++ add per tick, -- subtract per tick))
-##
-## It's constructed in 2 part. "metadata. modifiers" like for example "name=Cooler Alpha, category=TEMPERATURE.-- 4 heat, + 2 habitations"
-## For enum, you may input int or string (Make sure no typo!)
-func construct_and_set(text: String) -> void:
-	const ALIAS : Dictionary[String, String] = { #A format may use alias and need to convert
-		"heat": "temperature",
-		"o2": "oxygen",
-		"habitat": "habitations",
-		"n": "name",
-		"c": "category",
-	}
-	var parts := text.split(".", true)
-	var meta_sections := parts[FacilityPart.METADATA].split(",")
-	for meta_section in meta_sections:
-		meta_section = meta_section.strip_edges()
-		var sub_meta_section := meta_section.split("=")
-		var name_mod := sub_meta_section[0] #0 will always be the name that be modified
-		var value_mod : Variant = sub_meta_section[1]
-		if ALIAS.has(name_mod): name_mod = ALIAS[name_mod]
-		if name_mod == "category":
-			if typeof(value_mod) == TYPE_STRING:
-				value_mod = value_mod.to_upper().replace(" ", "_")
-		if alias_category.has(value_mod): value_mod = alias_category[value_mod]
-		if name_mod in self:
-			set(name_mod, value_mod)
-		else:
-			push_error("Unrecgonized metadata name modifier!: ", name_mod)
-	var sections := parts[FacilityPart.MODIFIERS].split(",")
-	for section in sections:
-		section = section.strip_edges()
-		cached_facform = section
-		var sub_sections := section.split(" ")
-		var operation_str := sub_sections[FacilityFormat.OPERATION]
-		var value_str := sub_sections[FacilityFormat.VALUE]
-		var property_str := sub_sections[FacilityFormat.PROPERTY]
-		if ALIAS.has(property_str): property_str = ALIAS[property_str]
-		match operation_str:
-			"+", "-":
-				#it isn't matter as long the instance is Planet modifier (you can't check if var exist on class like "habitations" in PlanetProperties)
-				if property_str in planet_terraform_modifier:
-					if operation_str == "+":
-						planet_terraform_modifier.set(property_str, float(value_str))
-					else:
-						planet_terraform_modifier.set(property_str, -float(value_str))
-				elif property_str in city_properties_modifier:
-					if operation_str == "+":
-						city_properties_modifier.set(property_str, float(value_str))
-					else:
-						city_properties_modifier.set(property_str, -float(value_str))
-				else:
-					push_error("Unrecognized property that does not exist in both: ", property_str, " text: ", text)
-			"++", "--":
-				if property_str in planet_terraform_modifier_per_tick:
-					if operation_str == "++":
-						planet_terraform_modifier_per_tick.set(property_str, float(value_str))
-					else:
-						planet_terraform_modifier_per_tick.set(property_str, -float(value_str))
-				elif property_str in city_properties_modifier_per_tick:
-					if operation_str == "++":
-						city_properties_modifier_per_tick.set(property_str, float(value_str))
-					else:
-						city_properties_modifier_per_tick.set(property_str, -float(value_str))
-				else:
-					push_error("Unrecognized property that does not exist in both: ", property_str, " text: ", text)
-			_:
-				push_error("Unrecognized operation that does not exist: ", property_str, " text: ", text)
-func get_facform(with_metadata: bool = false) -> String:
-	if with_metadata:
-		return "name=%s, category=%s.%s" % [name, category, cached_facform]
-	return cached_facform
-#this isn't necessary because.. just cache the modifiers. It does come in handy when don't use that construct and set 
-#func _deconstruct_modifier(modifier: Object, add_operation: String, sub_operation: String) -> Array[String]:
-	#var result: Array[String] = []
-	#
-	#for property in modifier.get_property_list():
-		#var property_name: String = property.name
-		##ignore godot builtin objects thing
-		#if property_name.begins_with("_"):
-			#continue
-			#
-		#var value : Variant = modifier.get(property_name)
-		#
-		#if typeof(value) != TYPE_FLOAT and typeof(value) != TYPE_INT:
-			#continue
-			#
-		#if is_zero_approx(float(value)):
-			#continue
-			#
-		#var operation := add_operation if value > 0 else sub_operation
-		#var absolute_value := absf(float(value))
-		#
-		#result.append("%s %s %s" % [operation, absolute_value, property_name ])
-		#
-	#return result
-	#
-#func get_facform(with_metadata: bool = false) -> String:
-	#var modifiers: Array[String] = []
-	#modifiers.append_array(_deconstruct_modifier(planet_terraform_modifier, "+", "-"))
-	#modifiers.append_array(_deconstruct_modifier(city_properties_modifier, "+", "-"))
-	#
-	##per tick use double (to indicate that happened every tick obviously)
-	#modifiers.append_array(_deconstruct_modifier(planet_terraform_modifier_per_tick, "++", "--"))
-	#modifiers.append_array(_deconstruct_modifier(city_properties_modifier_per_tick, "++", "--"))
-	#
-	#var result := ""
-	#
-	#if with_metadata:
-		#result += "name=%s, category=%s." % [name, category]
-		#
-	#result += ", ".join(modifiers)
-	#
-	#return result
-
-static func _static_init() -> void:
-	var i := 0
-	for key in Category.keys():
-		alias_category.set(key, i)
-		i += 1

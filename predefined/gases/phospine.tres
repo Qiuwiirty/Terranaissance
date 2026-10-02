@@ -8,5 +8,6 @@ name = "Phospine"
 symbol = "PH₃"
 greenhouse = 10.0
 color = Color(0.82448334, 0.1783197, 0.34238893, 1)
+toxicity_per_ppm = 20000.0
 unique_property = 1
 metadata/_custom_type_script = "uid://qswxg1eb4r31"

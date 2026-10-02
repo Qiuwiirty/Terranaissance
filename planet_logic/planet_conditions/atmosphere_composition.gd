@@ -3,6 +3,7 @@ extends Resource
 
 @abstract func get_habitability() -> TerraformProperties.TerraformClassification
 @abstract func get_atmosphere_color() -> Color
+@abstract func add_or_insert(gas_data: GasData) -> void
 
 #These are not statically typed, so the inherited class can use another type freely
 @abstract func add(other) -> void

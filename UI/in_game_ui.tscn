@@ -18,7 +18,6 @@
 script = ExtResource("1_jpmjn")
 
 [node name="CityUI" parent="." unique_id=571675716 instance=ExtResource("2_b4smu")]
-visible = false
 pivot_offset_ratio = Vector2(1, 0)
 
 [node name="CreateNewCity" parent="." unique_id=224112140 instance=ExtResource("2_d0vji")]
@@ -88,6 +87,7 @@ unique_name_in_owner = true
 layout_mode = 2
 
 [node name="ControlTab" type="TabContainer" parent="." unique_id=825178516]
+visible = false
 custom_maximum_size = Vector2(800, 400)
 anchors_preset = -1
 anchor_left = 0.2

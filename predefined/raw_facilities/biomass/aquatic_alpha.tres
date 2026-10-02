@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="RawFacilityData" format=3 uid="uid://c7d1und8qaeqx"]
+
+[ext_resource type="Script" uid="uid://dw1qgmnck54ie" path="res://planet_logic/facility_data.gd" id="1_wjk4a"]
+[ext_resource type="Script" uid="uid://bu5bdw38wijvt" path="res://planet_logic/planet_conditions/terraform_properties.gd" id="2_8xsyg"]
+
+[sub_resource type="Resource" id="Resource_tg250"]
+script = ExtResource("2_8xsyg")
+water = 2.0
+biomass = 8.0
+metadata/_custom_type_script = "uid://bu5bdw38wijvt"
+
+[resource]
+script = ExtResource("1_wjk4a")
+name = "Aquatic Alpha"
+category = 4
+terraform_modifier_per_tick = SubResource("Resource_tg250")
+build_cost = 250000
+build_time = 1800.0
+maintanence = 500
+metadata/_custom_type_script = "uid://dw1qgmnck54ie"

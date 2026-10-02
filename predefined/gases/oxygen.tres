@@ -7,5 +7,5 @@ script = ExtResource("1_8wkpp")
 name = "Oxygen"
 symbol = "O₂"
 color = Color(0, 0.65882355, 1, 1)
-unique_property = 1
+unique_property = 2
 metadata/_custom_type_script = "uid://qswxg1eb4r31"

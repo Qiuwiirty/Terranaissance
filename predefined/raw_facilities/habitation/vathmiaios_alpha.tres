@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="RawFacilityData" format=3 uid="uid://irl3tnkf52pd"]
+
+[ext_resource type="Script" uid="uid://1flyyadga3lu" path="res://planet_logic/city_properties.gd" id="1_ka5cn"]
+[ext_resource type="Script" uid="uid://dw1qgmnck54ie" path="res://planet_logic/facility_data.gd" id="2_hlavr"]
+
+[sub_resource type="Resource" id="Resource_sp8uj"]
+script = ExtResource("1_ka5cn")
+habitations = 1
+metadata/_custom_type_script = "uid://1flyyadga3lu"
+
+[resource]
+script = ExtResource("2_hlavr")
+name = "Vathmiaios Alpha"
+category = 7
+city_modifier_per_tick = SubResource("Resource_sp8uj")
+build_cost = 300000
+build_time = 2500.0
+maintanence = 750
+metadata/_custom_type_script = "uid://dw1qgmnck54ie"

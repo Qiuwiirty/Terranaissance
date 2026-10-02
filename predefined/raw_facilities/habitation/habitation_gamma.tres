@@ -1,0 +1,32 @@
+[gd_resource type="Resource" script_class="RawFacilityData" format=3 uid="uid://c8lmhe2bxkv4v"]
+
+[ext_resource type="Script" uid="uid://1flyyadga3lu" path="res://planet_logic/city_properties.gd" id="1_vw8cr"]
+[ext_resource type="Script" uid="uid://dw1qgmnck54ie" path="res://planet_logic/facility_data.gd" id="2_mv0od"]
+[ext_resource type="Script" uid="uid://b1j2kp6acq3ap" path="res://planet_logic/planet_conditions/gas_data.gd" id="3_1bxdg"]
+[ext_resource type="Script" uid="uid://bu5bdw38wijvt" path="res://planet_logic/planet_conditions/terraform_properties.gd" id="3_a6wcc"]
+[ext_resource type="Script" uid="uid://bypc2346sw27p" path="res://planet_logic/planet_conditions/complex_atmosphere_composition.gd" id="4_lm05w"]
+
+[sub_resource type="Resource" id="Resource_25ems"]
+script = ExtResource("1_vw8cr")
+habitations = 5000
+metadata/_custom_type_script = "uid://1flyyadga3lu"
+
+[sub_resource type="Resource" id="Resource_1bxdg"]
+script = ExtResource("4_lm05w")
+metadata/_custom_type_script = "uid://bypc2346sw27p"
+
+[sub_resource type="Resource" id="Resource_v7aji"]
+script = ExtResource("3_a6wcc")
+atmosphere_composition = SubResource("Resource_1bxdg")
+metadata/_custom_type_script = "uid://bu5bdw38wijvt"
+
+[resource]
+script = ExtResource("2_mv0od")
+name = "Habitation Gamma"
+category = 7
+terraform_modifier_per_tick = SubResource("Resource_v7aji")
+city_modifier = SubResource("Resource_25ems")
+build_cost = 1000000
+build_time = 7200.0
+maintanence = 3000
+metadata/_custom_type_script = "uid://dw1qgmnck54ie"

@@ -1,0 +1,26 @@
+[gd_resource type="Resource" script_class="RawFacilityData" format=3 uid="uid://cn5yxnw8r7piv"]
+
+[ext_resource type="Script" uid="uid://1flyyadga3lu" path="res://planet_logic/city_properties.gd" id="1_yx8g0"]
+[ext_resource type="Script" uid="uid://dw1qgmnck54ie" path="res://planet_logic/facility_data.gd" id="2_6cnm2"]
+[ext_resource type="Script" uid="uid://bu5bdw38wijvt" path="res://planet_logic/planet_conditions/terraform_properties.gd" id="3_6cnm2"]
+
+[sub_resource type="Resource" id="Resource_tqajr"]
+script = ExtResource("1_yx8g0")
+population = 30.0
+metadata/_custom_type_script = "uid://1flyyadga3lu"
+
+[sub_resource type="Resource" id="Resource_kax05"]
+script = ExtResource("3_6cnm2")
+biomass = -4.0
+metadata/_custom_type_script = "uid://bu5bdw38wijvt"
+
+[resource]
+script = ExtResource("2_6cnm2")
+name = "Population Beta"
+category = 6
+terraform_modifier_per_tick = SubResource("Resource_kax05")
+city_modifier_per_tick = SubResource("Resource_tqajr")
+build_cost = 500000
+build_time = 3600.0
+maintanence = 1000
+metadata/_custom_type_script = "uid://dw1qgmnck54ie"

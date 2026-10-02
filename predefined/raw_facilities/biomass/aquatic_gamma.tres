@@ -1,0 +1,27 @@
+[gd_resource type="Resource" script_class="RawFacilityData" format=3 uid="uid://im85i712vfrg"]
+
+[ext_resource type="Script" uid="uid://dw1qgmnck54ie" path="res://planet_logic/facility_data.gd" id="1_edebw"]
+[ext_resource type="Script" uid="uid://1flyyadga3lu" path="res://planet_logic/city_properties.gd" id="1_wewe0"]
+[ext_resource type="Script" uid="uid://bu5bdw38wijvt" path="res://planet_logic/planet_conditions/terraform_properties.gd" id="4_3s4ca"]
+
+[sub_resource type="Resource" id="Resource_5fco2"]
+script = ExtResource("1_wewe0")
+population = 10.0
+metadata/_custom_type_script = "uid://1flyyadga3lu"
+
+[sub_resource type="Resource" id="Resource_tg250"]
+script = ExtResource("4_3s4ca")
+biomass = 122.0
+revenue = 3000.0
+metadata/_custom_type_script = "uid://bu5bdw38wijvt"
+
+[resource]
+script = ExtResource("1_edebw")
+name = "Aquatic Gamma"
+category = 4
+terraform_modifier_per_tick = SubResource("Resource_tg250")
+city_modifier_per_tick = SubResource("Resource_5fco2")
+build_cost = 1000000
+build_time = 7200.0
+maintanence = 2000
+metadata/_custom_type_script = "uid://dw1qgmnck54ie"

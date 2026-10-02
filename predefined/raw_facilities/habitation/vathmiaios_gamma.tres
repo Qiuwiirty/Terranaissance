@@ -1,0 +1,26 @@
+[gd_resource type="Resource" script_class="RawFacilityData" format=3 uid="uid://cnwmlvm32yucj"]
+
+[ext_resource type="Script" uid="uid://1flyyadga3lu" path="res://planet_logic/city_properties.gd" id="1_ppi0w"]
+[ext_resource type="Script" uid="uid://dw1qgmnck54ie" path="res://planet_logic/facility_data.gd" id="2_73ohm"]
+[ext_resource type="Script" uid="uid://bu5bdw38wijvt" path="res://planet_logic/planet_conditions/terraform_properties.gd" id="3_xfd15"]
+
+[sub_resource type="Resource" id="Resource_sp8uj"]
+script = ExtResource("1_ppi0w")
+habitations = 4
+metadata/_custom_type_script = "uid://1flyyadga3lu"
+
+[sub_resource type="Resource" id="Resource_10vl8"]
+script = ExtResource("3_xfd15")
+biomass = 32.0
+metadata/_custom_type_script = "uid://bu5bdw38wijvt"
+
+[resource]
+script = ExtResource("2_73ohm")
+name = "Vathmiaios Gamma"
+category = 7
+terraform_modifier_per_tick = SubResource("Resource_10vl8")
+city_modifier_per_tick = SubResource("Resource_sp8uj")
+build_cost = 1200000
+build_time = 10000.0
+maintanence = 3000
+metadata/_custom_type_script = "uid://dw1qgmnck54ie"

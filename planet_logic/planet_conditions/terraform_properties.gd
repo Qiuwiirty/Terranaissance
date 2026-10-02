@@ -19,34 +19,38 @@ var greenhouse_effect := 0.0 #Inferred from atmosphere composition
 	set(value):
 		_temperature = value
 @export var pressure : float = 0 ##In pa
-@export var atmosphere_composition: AtmosphereComposition = SimpleAtmosphereComposition.new()
+@export var atmosphere_composition: AtmosphereComposition
 @export var water := 0.0 ##In cm. If used as a starting condition, this will not correspond directly to the actual sea elevation as it will be converted to ice/vapor
 @export var biomass := 0.0 ##In mt (megatonnes)
 @export var revenue := 0.0 ##In terras money
 func add(other: TerraformProperties) -> void:
 	temperature += other.temperature
-	atmosphere_composition.add(other.atmosphere_composition)
+	if atmosphere_composition:
+		atmosphere_composition.add(other.atmosphere_composition)
 	water += other.water
 	biomass += other.biomass
 	revenue += other.revenue
 
 func subtract(other: TerraformProperties) -> void:
 	temperature -= other.temperature
-	atmosphere_composition.subtract(other.atmosphere_composition)
+	if atmosphere_composition:
+		atmosphere_composition.subtract(other.atmosphere_composition)
 	water -= other.water
 	biomass -= other.biomass
 	revenue -= other.revenue
 
 func mutiply(other: TerraformProperties) -> void:
 	temperature *= other.temperature
-	atmosphere_composition.mutiply(other.atmosphere_composition)
+	if atmosphere_composition:
+		atmosphere_composition.mutiply(other.atmosphere_composition)
 	water *= other.water
 	biomass *= other.biomass
 	revenue *= other.revenue
 	
 func mutiply_float(value: float) -> void:
 	temperature *= value
-	atmosphere_composition.mutiply_float(value)
+	if atmosphere_composition:
+		atmosphere_composition.mutiply_float(value)
 	water *= value
 	biomass *= value
 	revenue *= value
@@ -112,3 +116,9 @@ func load_from_starting_terraform_properties(other_terraform_properties: Terrafo
 		if other_elements.has(&"Oxygen"): 
 			new_complex_terraform_properties.gases[&"Oxygen"] = other_elements[&"Oxygen"]
 		atmosphere_composition = new_complex_terraform_properties
+
+func _set(property: StringName, value: Variant) -> bool:
+	if property in atmosphere_composition:
+		atmosphere_composition[property] = value
+		return true
+	return false

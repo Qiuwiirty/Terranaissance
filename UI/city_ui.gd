@@ -11,6 +11,7 @@ const FACILITY_ITEM_UI := preload("uid://3kya33kagpc7")
 @onready var facility_information: RichTextLabel = %FacInformation
 @onready var facility_upgrade: Button = %FacUpgrade
 @onready var facility_demolish: Button = %FacDemolish
+@onready var add_new_facility: Button = %AddNewFacility
 @onready var right_panel: PanelContainer = %RightPanel
 var city: City
 var select_mode: SelectMode = SelectMode.NONE
@@ -19,6 +20,7 @@ func _ready() -> void:
 	Game.planet.tick_timer.timeout.connect(_update_heading)
 	facility_upgrade.button_up.connect(_facility_upgrade)
 	facility_demolish.button_up.connect(_facility_demolish)
+	add_new_facility.button_up.connect(_open_add_new_facility)
 func open_city(city_: City) -> void:
 	city = city_
 	open()
@@ -55,3 +57,5 @@ func _facility_upgrade() -> void:
 	_selected_facility.set_level(_selected_facility.level + 1)
 func _facility_demolish() -> void:
 	_selected_facility.delete()
+func _open_add_new_facility() -> void:
+	pass

@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="RawFacilityData" format=3 uid="uid://bjjy1l63fifbn"]
+
+[ext_resource type="Script" uid="uid://dw1qgmnck54ie" path="res://planet_logic/facility_data.gd" id="1_w0xx4"]
+[ext_resource type="Script" uid="uid://bu5bdw38wijvt" path="res://planet_logic/planet_conditions/terraform_properties.gd" id="2_3jujp"]
+
+[sub_resource type="Resource" id="Resource_85ne0"]
+script = ExtResource("2_3jujp")
+water = 4.0
+metadata/_custom_type_script = "uid://bu5bdw38wijvt"
+
+[resource]
+script = ExtResource("1_w0xx4")
+name = "Flooding Alpha"
+category = 3
+terraform_modifier_per_tick = SubResource("Resource_85ne0")
+build_cost = 250000
+build_time = 1800.0
+maintanence = 500
+metadata/_custom_type_script = "uid://dw1qgmnck54ie"

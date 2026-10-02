@@ -1,0 +1,36 @@
+[gd_resource type="Resource" script_class="RawFacilityData" format=3 uid="uid://b1h8vbofsu2v"]
+
+[ext_resource type="Script" uid="uid://dw1qgmnck54ie" path="res://planet_logic/facility_data.gd" id="1_6ecax"]
+[ext_resource type="Script" uid="uid://bu5bdw38wijvt" path="res://planet_logic/planet_conditions/terraform_properties.gd" id="2_4jqkh"]
+[ext_resource type="Script" uid="uid://b1j2kp6acq3ap" path="res://planet_logic/planet_conditions/gas_data.gd" id="2_5fa32"]
+[ext_resource type="Resource" uid="uid://dpncodof1o6e8" path="res://predefined/gases/oxygen.tres" id="3_q3iq2"]
+[ext_resource type="Script" uid="uid://bypc2346sw27p" path="res://planet_logic/planet_conditions/complex_atmosphere_composition.gd" id="3_sk30d"]
+
+[sub_resource type="Resource" id="Resource_ngmrt"]
+script = ExtResource("2_5fa32")
+gas = ExtResource("3_q3iq2")
+ppm = 30.0
+metadata/_custom_type_script = "uid://b1j2kp6acq3ap"
+
+[sub_resource type="Resource" id="Resource_5fa32"]
+script = ExtResource("3_sk30d")
+gases = Dictionary[StringName, ExtResource("2_5fa32")]({
+&"Oxygen": SubResource("Resource_ngmrt")
+})
+metadata/_custom_type_script = "uid://bypc2346sw27p"
+
+[sub_resource type="Resource" id="Resource_tg250"]
+script = ExtResource("2_4jqkh")
+atmosphere_composition = SubResource("Resource_5fa32")
+biomass = 45.0
+metadata/_custom_type_script = "uid://bu5bdw38wijvt"
+
+[resource]
+script = ExtResource("1_6ecax")
+name = "Aquatic Beta"
+category = 4
+terraform_modifier_per_tick = SubResource("Resource_tg250")
+build_cost = 500000
+build_time = 3600.0
+maintanence = 1000
+metadata/_custom_type_script = "uid://dw1qgmnck54ie"

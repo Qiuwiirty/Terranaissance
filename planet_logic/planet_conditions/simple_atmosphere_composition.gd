@@ -18,17 +18,19 @@ func get_habitability() -> TerraformProperties.TerraformClassification:
 			return classification
 	return TerraformProperties.TerraformClassification.BARREN
 func add(other: SimpleAtmosphereComposition) -> void:
-	oxygen_gas_data.ppm += other.oxygen_gas_data.ppm
+	if other:
+		oxygen_gas_data.ppm += other.oxygen_gas_data.ppm
 	
 func subtract(other: SimpleAtmosphereComposition) -> void:
-	oxygen_gas_data.ppm -= other.oxygen_gas_data.ppm
+	if other:
+		oxygen_gas_data.ppm -= other.oxygen_gas_data.ppm
 	
 func mutiply(other: AtmosphereComposition) -> void:
-	oxygen_gas_data.ppm *= other.oxygen_gas_data.ppm
+	if other:
+		oxygen_gas_data.ppm *= other.oxygen_gas_data.ppm
 	
 func mutiply_float(value: float) -> void:
 	oxygen_gas_data.ppm *= value
-
 func get_symbols() -> Dictionary[StringName, String]:
 	return {&"Oxygen": "O₂"}
 	
@@ -40,4 +42,9 @@ func get_custom_colors() -> Array[Color]:
 	
 func get_habitability_ranges() -> Dictionary[TerraformProperties.TerraformClassification, Dictionary]:
 	return HABITABILITY_RANGES
-	
+
+func add_or_insert(gas_data: GasData) -> void:
+	if gas_data.gas.name == &"Oxygen":
+		oxygen_gas_data.gas.ppm += gas_data.gas.ppm
+	else:
+		oxygen_gas_data.gas.ppm -= gas_data.gas.ppm
