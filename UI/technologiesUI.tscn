@@ -18,7 +18,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_lonfn")
 head_info = "[b][font_size=20] RESEARCH[/font_size][/b]
-WWWAWWIE this is a bit empty )the dev forgot to set the head("
+The dev forgot to put something in me"
 price_mode = 1
 available_facility_data = Array[ExtResource("2_ain4c")]([ExtResource("3_ain4c")])
 
@@ -35,95 +35,95 @@ layout_mode = 2
 size_flags_vertical = 3
 bbcode_enabled = true
 text = "[b][font_size=20] RESEARCH[/font_size][/b]
-WWWAWWIE this is a bit empty )the dev forgot to set the head("
+The dev forgot to put something in me"
 fit_content = true
 
-[node name="Temperature" type="RichTextLabel" parent="ScrollContainer/TechContainers" unique_id=520220289]
+[node name="Temperature" type="RichTextLabel" parent="ScrollContainer/TechContainers" unique_id=1203608802]
 layout_mode = 2
 bbcode_enabled = true
-text = "[img=40]res://textures/icons/fire.svg[/img][b][font_size=20] Temperature"
+text = "[img=40.0]res://textures/icons/fire.svg[/img][b][font_size=20.0] Temperature"
 fit_content = true
 
-[node name="TemperatureContainer" type="VBoxContainer" parent="ScrollContainer/TechContainers" unique_id=622564137]
+[node name="TemperatureContainer" type="VBoxContainer" parent="ScrollContainer/TechContainers" unique_id=406292512]
 layout_mode = 2
 
-[node name="Pressure" type="RichTextLabel" parent="ScrollContainer/TechContainers" unique_id=783650816]
+[node name="Pressure" type="RichTextLabel" parent="ScrollContainer/TechContainers" unique_id=669654136]
 layout_mode = 2
 bbcode_enabled = true
-text = "[img=40]res://textures/icons/pressure.svg[/img][b][font_size=20] Pressure"
+text = "[img=40.0]res://textures/icons/pressure.svg[/img][b][font_size=20.0] Pressure"
 fit_content = true
 
-[node name="PressureContainer" type="VBoxContainer" parent="ScrollContainer/TechContainers" unique_id=1846696968]
+[node name="PressureContainer" type="VBoxContainer" parent="ScrollContainer/TechContainers" unique_id=1549596820]
 layout_mode = 2
 
-[node name="Atmosphere" type="RichTextLabel" parent="ScrollContainer/TechContainers" unique_id=581928463]
+[node name="Atmosphere" type="RichTextLabel" parent="ScrollContainer/TechContainers" unique_id=773241535]
 layout_mode = 2
 bbcode_enabled = true
-text = "[img=40]res://textures/icons/atmosphere_composition.svg[/img][b][font_size=20] Atmosphere"
+text = "[img=40.0]res://textures/icons/atmosphere_composition.svg[/img][b][font_size=20.0] Atmosphere"
 fit_content = true
 
-[node name="AtmosphereContainer" type="VBoxContainer" parent="ScrollContainer/TechContainers" unique_id=589141441]
+[node name="AtmosphereContainer" type="VBoxContainer" parent="ScrollContainer/TechContainers" unique_id=1518313275]
 layout_mode = 2
 
-[node name="Water" type="RichTextLabel" parent="ScrollContainer/TechContainers" unique_id=18343703]
+[node name="Water" type="RichTextLabel" parent="ScrollContainer/TechContainers" unique_id=404868507]
 layout_mode = 2
 bbcode_enabled = true
-text = "[img=40]res://textures/icons/water.svg[/img][b][font_size=20] Water"
+text = "[img=40.0]res://textures/icons/water.svg[/img][b][font_size=20.0] Water"
 fit_content = true
 
-[node name="WaterContainer" type="VBoxContainer" parent="ScrollContainer/TechContainers" unique_id=1334861012]
+[node name="WaterContainer" type="VBoxContainer" parent="ScrollContainer/TechContainers" unique_id=271259996]
 layout_mode = 2
 
-[node name="Biomass" type="RichTextLabel" parent="ScrollContainer/TechContainers" unique_id=1170455204]
+[node name="Biomass" type="RichTextLabel" parent="ScrollContainer/TechContainers" unique_id=1785101352]
 layout_mode = 2
 bbcode_enabled = true
-text = "[img=40]res://textures/icons/biomass.svg[/img][b][font_size=20] Biomass"
+text = "[img=40.0]res://textures/icons/biomass.svg[/img][b][font_size=20.0] Biomass"
 fit_content = true
 
-[node name="BiomassContainer" type="VBoxContainer" parent="ScrollContainer/TechContainers" unique_id=199977143]
+[node name="BiomassContainer" type="VBoxContainer" parent="ScrollContainer/TechContainers" unique_id=1209560108]
 layout_mode = 2
 
-[node name="Revenue" type="RichTextLabel" parent="ScrollContainer/TechContainers" unique_id=245809199]
+[node name="Revenue" type="RichTextLabel" parent="ScrollContainer/TechContainers" unique_id=538479826]
 layout_mode = 2
 bbcode_enabled = true
-text = "[img=40]res://textures/icons/revenue.svg[/img][b][font_size=20] Revenue"
+text = "[img=40.0]res://textures/icons/revenue.svg[/img][b][font_size=20.0] Revenue"
 fit_content = true
 
-[node name="RevenueContainer" type="VBoxContainer" parent="ScrollContainer/TechContainers" unique_id=88023026]
+[node name="RevenueContainer" type="VBoxContainer" parent="ScrollContainer/TechContainers" unique_id=1470843415]
 layout_mode = 2
 
-[node name="Population" type="RichTextLabel" parent="ScrollContainer/TechContainers" unique_id=2121374752]
+[node name="Population" type="RichTextLabel" parent="ScrollContainer/TechContainers" unique_id=271978616]
 layout_mode = 2
 bbcode_enabled = true
-text = "[img=40]res://textures/icons/population.svg[/img][b][font_size=20] Population"
+text = "[img=40.0]res://textures/icons/population.svg[/img][b][font_size=20.0] Population"
 fit_content = true
 
-[node name="PopulationContainer" type="VBoxContainer" parent="ScrollContainer/TechContainers" unique_id=1993513552]
+[node name="PopulationContainer" type="VBoxContainer" parent="ScrollContainer/TechContainers" unique_id=746974351]
 layout_mode = 2
 
-[node name="Habitation" type="RichTextLabel" parent="ScrollContainer/TechContainers" unique_id=1924270841]
+[node name="Habitation" type="RichTextLabel" parent="ScrollContainer/TechContainers" unique_id=1724764704]
 layout_mode = 2
 bbcode_enabled = true
-text = "[img=40]res://textures/icons/population.svg[/img][b][font_size=20] Habitation"
+text = "[img=40.0]res://textures/icons/population.svg[/img][b][font_size=20.0] Habitation"
 fit_content = true
 
-[node name="HabitationContainer" type="VBoxContainer" parent="ScrollContainer/TechContainers" unique_id=883151504]
+[node name="HabitationContainer" type="VBoxContainer" parent="ScrollContainer/TechContainers" unique_id=712265052]
 layout_mode = 2
 
-[node name="Misc" type="RichTextLabel" parent="ScrollContainer/TechContainers" unique_id=1035249078]
+[node name="Misc" type="RichTextLabel" parent="ScrollContainer/TechContainers" unique_id=1640263977]
 layout_mode = 2
 bbcode_enabled = true
-text = "[img=40]res://textures/icons/misc.svg[/img][b][font_size=20] Misc"
+text = "[img=40.0]res://textures/icons/misc.svg[/img][b][font_size=20.0] Misc"
 fit_content = true
 
-[node name="MiscContainer" type="VBoxContainer" parent="ScrollContainer/TechContainers" unique_id=872527549]
+[node name="MiscContainer" type="VBoxContainer" parent="ScrollContainer/TechContainers" unique_id=1506757052]
 layout_mode = 2
 
-[node name="Undefined" type="RichTextLabel" parent="ScrollContainer/TechContainers" unique_id=276683819]
+[node name="Undefined" type="RichTextLabel" parent="ScrollContainer/TechContainers" unique_id=1183751456]
 layout_mode = 2
 bbcode_enabled = true
-text = "[img=40]res://textures/icons/question_mark.svg[/img][b][font_size=20] Undefined"
+text = "[img=40.0]res://textures/icons/question_mark.svg[/img][b][font_size=20.0] Undefined"
 fit_content = true
 
-[node name="UndefinedContainer" type="VBoxContainer" parent="ScrollContainer/TechContainers" unique_id=171537904]
+[node name="UndefinedContainer" type="VBoxContainer" parent="ScrollContainer/TechContainers" unique_id=1428446760]
 layout_mode = 2

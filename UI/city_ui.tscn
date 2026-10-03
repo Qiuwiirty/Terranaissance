@@ -2,6 +2,8 @@
 
 [ext_resource type="Script" uid="uid://cy7lnseavg3hb" path="res://UI/city_ui.gd" id="1_fsu2r"]
 [ext_resource type="Texture2D" uid="uid://tt10vx6tyh3k" path="res://textures/icons/city.svg" id="1_ufpq0"]
+[ext_resource type="PackedScene" uid="uid://dbm0ve2hoa1sw" path="res://UI/technologiesUI.tscn" id="3_qri7x"]
+[ext_resource type="PackedScene" uid="uid://dmrh5bp0ltmxe" path="res://UI/are_you_sure.tscn" id="4_2gycd"]
 
 [node name="CityUI" type="Panel" unique_id=1053576626]
 anchors_preset = -1
@@ -60,16 +62,9 @@ layout_mode = 2
 metadata/_tab_index = 0
 metadata/_tab_name = "Facilities"
 
-[node name="Control" type="Control" parent="VBoxContainer/HBoxContainer/TabContainer/FacilitiesContainer" unique_id=1563286525]
-layout_mode = 2
-
-[node name="AddNewFacility" type="Button" parent="VBoxContainer/HBoxContainer/TabContainer/FacilitiesContainer/Control" unique_id=1926069444]
+[node name="AddNewFacility" type="Button" parent="VBoxContainer/HBoxContainer/TabContainer/FacilitiesContainer" unique_id=1926069444]
 unique_name_in_owner = true
-layout_mode = 1
-anchors_preset = 10
-anchor_right = 1.0
-offset_bottom = 8.0
-grow_horizontal = 2
+layout_mode = 2
 text = "Add new facility"
 alignment = 0
 
@@ -110,6 +105,11 @@ layout_mode = 2
 size_flags_horizontal = 3
 text = "Demolish"
 
+[node name="CreateNewFacility" parent="VBoxContainer/HBoxContainer/RightPanel" unique_id=632957648 instance=ExtResource("3_qri7x")]
+unique_name_in_owner = true
+layout_mode = 2
+ui_scale = 0.75
+
 [node name="Close" type="Button" parent="." unique_id=569224568]
 layout_mode = 1
 anchors_preset = 1
@@ -120,5 +120,11 @@ offset_bottom = 8.0
 grow_horizontal = 0
 text = "X"
 flat = true
+
+[node name="AreYouSure" parent="." unique_id=224112140 instance=ExtResource("4_2gycd")]
+visible = false
+layout_mode = 1
+grow_horizontal = 1
+grow_vertical = 1
 
 [connection signal="button_up" from="Close" to="." method="close"]

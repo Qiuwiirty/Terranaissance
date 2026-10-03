@@ -45,7 +45,8 @@ var terraform_modifier: TerraformProperties = TerraformProperties.new() # Only m
 var city_modifier_per_tick: CityProperties = CityProperties.new()
 var city_modifier: CityProperties = CityProperties.new()
 
-var any_atmosphere_modifier: float = 0.0 #Modify any atmopshere modifier that have been selected
+var any_gas: Gas #The selected gas
+var any_gas_modifier: float = 0.0 #Modify any atmopshere modifier (PER TICK)that have been selected
 ## Modifier definition is a human readable format in string for setting the property modifiers. Format is: "property operation value, property ..." (Operation: (+ add, - subtract. ++ add per tick, -- subtract per tick))
 func _init(city_: City, facility_transfer: FacilityTransfer) -> void:
 	name = facility_transfer.name
@@ -58,7 +59,7 @@ func _init(city_: City, facility_transfer: FacilityTransfer) -> void:
 	city_modifier = facility_transfer.city_modifier
 	city_modifier_per_tick = facility_transfer.city_modifier_per_tick
 	
-	any_atmosphere_modifier = facility_transfer.any_atmosphere_modifier
+	any_gas_modifier = facility_transfer.any_gas_modifier
 	
 	city = city_
 	city.planet.terraform_modifier_per_tick.add(terraform_modifier_per_tick)
@@ -115,3 +116,17 @@ func _apply_modifiers_to_objects() -> void:
 func delete() -> void:
 	_remove_modifiers_from_objects()
 	free()
+
+func get_modifiers() -> FacilityTransfer:
+	var new_facility_transfer := FacilityTransfer.new()
+	new_facility_transfer.name = name
+	new_facility_transfer.category = category
+	
+	new_facility_transfer.terraform_modifier = terraform_modifier
+	new_facility_transfer.terraform_modifier_per_tick = terraform_modifier_per_tick
+	
+	new_facility_transfer.city_modifier = city_modifier
+	new_facility_transfer.city_modifier_per_tick = city_modifier_per_tick
+	
+	new_facility_transfer.any_gas_modifier = any_gas_modifier
+	return new_facility_transfer

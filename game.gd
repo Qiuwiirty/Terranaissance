@@ -59,6 +59,49 @@ static func get_dict_sentence_case(dict: Dictionary) -> Dictionary[String, Varia
 	for key: String in dict.keys():
 		new_dict[key.replace("_", " ").capitalize()] = dict[key]
 	return new_dict
+static func get_modifier_descriptions(fac_transfer: FacilityTransfer, any_gas_name: String) -> String:
+	var descriptions: Array[String] = []
+	#helper lambda
+	var format_stat = func(value: float, stat_name: String, is_per_tick: bool):
+		if is_equal_approx(value, 0.0):
+			return
+		
+		var prefix: String = ""
+		if value > 0:
+			prefix = "++ " if is_per_tick else "+ "
+		else:
+			prefix = "-- " if is_per_tick else "- "
+			
+		#Use abs() because nobody obviously gonna want "-- -4 temperature"
+		descriptions.append(prefix + str(abs(value)) + " " + stat_name)
+		
+	if fac_transfer.terraform_modifier:
+		format_stat.call(fac_transfer.terraform_modifier.temperature, "temperature", false)
+		format_stat.call(fac_transfer.terraform_modifier.pressure, "pressure", false)
+		format_stat.call(fac_transfer.terraform_modifier.water, "water", false)
+		format_stat.call(fac_transfer.terraform_modifier.biomass, "biomass", false)
+		format_stat.call(fac_transfer.terraform_modifier.revenue, "revenue", false)
+		
+	if fac_transfer.terraform_modifier_per_tick:
+		format_stat.call(fac_transfer.terraform_modifier_per_tick.temperature, "temperature", true)
+		format_stat.call(fac_transfer.terraform_modifier_per_tick.pressure, "pressure", true)
+		format_stat.call(fac_transfer.terraform_modifier_per_tick.water, "water", true)
+		format_stat.call(fac_transfer.terraform_modifier_per_tick.biomass, "biomass", true)
+		format_stat.call(fac_transfer.terraform_modifier_per_tick.revenue, "revenue", true)
+		
+	if fac_transfer.city_modifier:
+		format_stat.call(fac_transfer.city_modifier.population, "population", false)
+		format_stat.call(fac_transfer.city_modifier.habitations, "habitations", false)
+		
+	if fac_transfer.city_modifier_per_tick:
+		format_stat.call(fac_transfer.city_modifier_per_tick.population, "population", true)
+		format_stat.call(fac_transfer.city_modifier_per_tick.habitations, "habitations", true)
+		
+	if not is_equal_approx(fac_transfer.any_gas_modifier, 0.0):
+		format_stat.call(fac_transfer.any_gas_modifier, any_gas_name, true)
+		
+	return "\n".join(descriptions)
+
 ##Sometimes planet not available when on main menu or such, so you gotta use this
 func get_planet() -> Planet:
 	if !planet:

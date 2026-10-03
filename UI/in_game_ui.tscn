@@ -18,6 +18,7 @@
 script = ExtResource("1_jpmjn")
 
 [node name="CityUI" parent="." unique_id=571675716 instance=ExtResource("2_b4smu")]
+visible = false
 pivot_offset_ratio = Vector2(1, 0)
 
 [node name="CreateNewCity" parent="." unique_id=224112140 instance=ExtResource("2_d0vji")]

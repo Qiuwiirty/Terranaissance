@@ -49,5 +49,5 @@ func get_modifiers() -> FacilityTransfer:
 	new_facility_transfer.city_modifier = city_modifier
 	new_facility_transfer.city_modifier_per_tick = city_modifier_per_tick
 	
-	new_facility_transfer.any_atmosphere_modifier = any_gas_modifier_per_tick
+	new_facility_transfer.any_gas_modifier = any_gas_modifier_per_tick
 	return new_facility_transfer
