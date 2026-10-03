@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="RawFacilityData" format=3 uid="uid://bdm67lkb0uuwh"]
+[gd_resource type="Resource" script_class="FacilityData" format=3 uid="uid://bdm67lkb0uuwh"]
 
 [ext_resource type="Script" uid="uid://dw1qgmnck54ie" path="res://planet_logic/facility_data.gd" id="1_stcv8"]
 [ext_resource type="Script" uid="uid://bu5bdw38wijvt" path="res://planet_logic/planet_conditions/terraform_properties.gd" id="2_yihyp"]
@@ -10,7 +10,6 @@ metadata/_custom_type_script = "uid://bu5bdw38wijvt"
 
 [resource]
 script = ExtResource("1_stcv8")
-name = "Atmorichment Beta"
 category = 2
 terraform_modifier_per_tick = SubResource("Resource_yihyp")
 any_gas_modifier_per_tick = 65.0

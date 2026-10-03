@@ -21,10 +21,23 @@ class_name FacilityData
 var build_time: float = 0.0
 @export_range(0, 100_000, 1, "or_greater", "suffix:Tr") var maintanence := 0 #in terras
 @export_category("Optional (Can be inferred if left -1)")
-@export var research_cost: int = -1
+@export var _research_cost := -1
+var research_cost: int:
+	get:
+		if _research_cost == -1:
+			return build_cost * 4
+		return _research_cost
+	set(v):
+		_research_cost = v
 @export_range(-1, 36_000, 0.1, "or_greater", "suffix:s")
-var research_time: float = -1
-
+var _research_time: float = -1
+var research_time: float:
+	get:
+		if _research_time == -1:
+			return build_time * 2
+		return _research_time
+	set(v):
+		_research_time = v
 func get_modifiers() -> FacilityTransfer:
 	var new_facility_transfer := FacilityTransfer.new()
 	new_facility_transfer.name = name

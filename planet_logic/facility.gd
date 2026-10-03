@@ -21,7 +21,7 @@ static var alias_category : Dictionary[String, int]
 const CATEGORY_TO_TEXTURE: Dictionary[Category, Texture2D] = {
 	Category.TEMPERATURE: preload("uid://ds3t4gw3sh4yw"),
 	Category.PRESSURE: preload("uid://b2kpn1wp7ohdm"),
-	Category.ATMOSPHERE: preload("uid://bi8pbh57x84pu"),
+	Category.ATMOSPHERE: preload("uid://gb458n7jp5bh"),
 	Category.WATER: preload("uid://bbeisdub76ybi"),
 	Category.BIOMASS: preload("uid://drlvtre1ictnp"),
 	Category.REVENUE: preload("uid://css0gk1xlxis0"),
@@ -37,8 +37,6 @@ var description: StringName
 var level : int = 1
 ##This will impact the displayed icon in the UI too
 var category := Category.UNDEFINED
-##Important for the game to show what it does
-var cached_facform := ""
 
 var terraform_modifier_per_tick: TerraformProperties = TerraformProperties.new()
 var terraform_modifier: TerraformProperties = TerraformProperties.new() # Only modify when initialized, unlike per tick. Usually for habitations and permanent things

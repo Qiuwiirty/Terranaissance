@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="RawFacilityData" format=3 uid="uid://xonlm1gsyv6m"]
+[gd_resource type="Resource" script_class="FacilityData" format=3 uid="uid://xonlm1gsyv6m"]
 
 [ext_resource type="Script" uid="uid://dw1qgmnck54ie" path="res://planet_logic/facility_data.gd" id="1_0ab8n"]
 [ext_resource type="Script" uid="uid://bu5bdw38wijvt" path="res://planet_logic/planet_conditions/terraform_properties.gd" id="2_qfo57"]
@@ -10,7 +10,6 @@ metadata/_custom_type_script = "uid://bu5bdw38wijvt"
 
 [resource]
 script = ExtResource("1_0ab8n")
-name = "Deatmopletion Beta"
 category = 2
 terraform_modifier_per_tick = SubResource("Resource_qfo57")
 any_gas_modifier_per_tick = -60.0

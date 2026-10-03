@@ -1,0 +1,43 @@
+[gd_scene format=3 uid="uid://2oamdxx0a6o4"]
+
+[ext_resource type="Script" uid="uid://cwpm1uunixyt3" path="res://UI/facility_data_item_ui.gd" id="1_50lo2"]
+[ext_resource type="Texture2D" uid="uid://ds3t4gw3sh4yw" path="res://textures/icons/fire.svg" id="2_o43kh"]
+
+[node name="FacilityDataItemUI" type="VBoxContainer" unique_id=1543942782]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_50lo2")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=999967074]
+layout_mode = 2
+
+[node name="Icon" type="TextureRect" parent="HBoxContainer" unique_id=2022939294]
+unique_name_in_owner = true
+layout_mode = 2
+texture = ExtResource("2_o43kh")
+expand_mode = 2
+
+[node name="ButtonName" type="Button" parent="HBoxContainer" unique_id=460839211]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Cooler Alpha"
+
+[node name="Information" type="HBoxContainer" parent="." unique_id=995199497]
+layout_mode = 2
+
+[node name="Description" type="Label" parent="Information" unique_id=719148842]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = "-- 4 heat"
+
+[node name="Price" type="Label" parent="Information" unique_id=7333626]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = "100,000 Tr"
+horizontal_alignment = 2

@@ -41,6 +41,8 @@ func set_selected_facility(facility: Facility) -> void:
 			{"fac_name": facility.name,
 			"level": facility.level})
 func _update_heading() -> void:
+	if !city:
+		hide()
 	if is_visible_in_tree():
 		custom_minimum_size = heading.get_minimum_size() #update so panel don't look weird and adjusted to its children size
 		description.text = str("[font_size=20][b]", city.name, " [/b][/font_size]",
@@ -53,6 +55,7 @@ func _update_facilities() -> void:
 		var new_facility_item_ui: FacilityItemUI = FACILITY_ITEM_UI.instantiate()
 		new_facility_item_ui.facility = facility
 		facilities_container.add_child(new_facility_item_ui)
+		new_facility_item_ui.button.button_up.connect(set_selected_facility.bind(facility))
 func _facility_upgrade() -> void:
 	_selected_facility.set_level(_selected_facility.level + 1)
 func _facility_demolish() -> void:
