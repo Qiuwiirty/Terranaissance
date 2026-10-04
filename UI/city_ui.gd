@@ -42,7 +42,7 @@ func _set_select_mode(mode: SelectMode) -> void:
 		SelectMode.FACILITY:
 			%Facility.show()
 		SelectMode.CREATE_NEW_FACILITY:
-			%CreateNewFacilityContainer.show()
+			%CreateNewFacilityScroll.show()
 			create_new_facility.available_facility_data = city.planet.planet_state.researched_technologies
 			create_new_facility.update_available_facilities()
 			

@@ -105,20 +105,23 @@ layout_mode = 2
 size_flags_horizontal = 3
 text = "Demolish"
 
-[node name="CreateNewFacilityContainer" type="VBoxContainer" parent="VBoxContainer/HBoxContainer/RightPanel" unique_id=1959974726]
+[node name="CreateNewFacilityScroll" type="ScrollContainer" parent="VBoxContainer/HBoxContainer/RightPanel" unique_id=2079569083]
 unique_name_in_owner = true
 layout_mode = 2
 
-[node name="Label" type="RichTextLabel" parent="VBoxContainer/HBoxContainer/RightPanel/CreateNewFacilityContainer" unique_id=1954326873]
+[node name="CreateNewFacilityContainer" type="VBoxContainer" parent="VBoxContainer/HBoxContainer/RightPanel/CreateNewFacilityScroll" unique_id=1959974726]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="RichTextLabel" parent="VBoxContainer/HBoxContainer/RightPanel/CreateNewFacilityScroll/CreateNewFacilityContainer" unique_id=1954326873]
 layout_mode = 2
 bbcode_enabled = true
 text = "[b]Build facility"
 fit_content = true
 
-[node name="CreateNewFacility" parent="VBoxContainer/HBoxContainer/RightPanel/CreateNewFacilityContainer" unique_id=632957648 instance=ExtResource("3_qri7x")]
+[node name="CreateNewFacility" parent="VBoxContainer/HBoxContainer/RightPanel/CreateNewFacilityScroll/CreateNewFacilityContainer" unique_id=632957648 instance=ExtResource("3_qri7x")]
 unique_name_in_owner = true
 layout_mode = 2
-size_flags_vertical = 3
 ui_scale = 0.75
 
 [node name="Close" type="Button" parent="." unique_id=569224568]

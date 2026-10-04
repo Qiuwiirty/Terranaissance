@@ -1,5 +1,5 @@
 @tool
-extends PanelContainer
+extends VBoxContainer
 class_name TechnologiesUI
 enum PriceShow {
 	NONE,
@@ -8,7 +8,6 @@ enum PriceShow {
 }
 signal facility_data_selected(facility_data: FacilityData)
 const FACILITY_DATA_ITEM_UI := preload("uid://2oamdxx0a6o4")
-@onready var tech_containers : VBoxContainer = $ScrollContainer/TechContainers
 @export var price_mode := PriceShow.BUILD
 @export var available_facility_data: Array[FacilityData]
 @export var ui_scale : float = 1.0
@@ -21,7 +20,7 @@ func _ready() -> void:
 	update_available_facilities()
 func create_categories() -> void:
 	if Engine.is_editor_hint():
-		for child in tech_containers.get_children():
+		for child in get_children():
 			if child.name != "Head":
 				child.queue_free()
 		await get_tree().process_frame
@@ -38,16 +37,16 @@ func create_categories() -> void:
 			new_rich_text_label.bbcode_enabled = true
 			new_rich_text_label.fit_content = true
 			new_rich_text_label.name = category_name.replace(" ", "") #just remove space
-			tech_containers.add_child(new_rich_text_label, true)
+			add_child(new_rich_text_label, true)
 			new_rich_text_label.owner = get_tree().edited_scene_root
 			
 			var new_container := VBoxContainer.new()
 			new_container.name = category_name.replace(" ", "") + "Container"
-			tech_containers.add_child(new_container)
+			add_child(new_container)
 			new_container.owner = get_tree().edited_scene_root
 			
 			var new_hseparator := HSeparator.new()
-			tech_containers.add_child(new_hseparator)
+			add_child(new_hseparator)
 			new_hseparator.owner = get_tree().edited_scene_root
 ## If all, then it will create every facilities in res://predefined/raw_facilities/ . Else, use available_facility_data
 func update_available_facilities(all := false) -> void:
@@ -63,7 +62,7 @@ func update_available_facilities(all := false) -> void:
 		category_to_facility_data[facility_data.category].append(facility_data)
 	for category in Facility.Category.values():
 		var category_container_name : String = Facility.Category.keys()[category].capitalize().replace(" ", "") + "Container"
-		var category_container : VBoxContainer = tech_containers.get_node_or_null(category_container_name)
+		var category_container : VBoxContainer = get_node_or_null(category_container_name)
 		if category_container and category_to_facility_data.has(category):
 			for child in category_container.get_children(): 
 				child.queue_free()

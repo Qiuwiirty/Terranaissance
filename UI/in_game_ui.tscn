@@ -13,6 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://lrksp85bj7q5" path="res://UI/control_tab_related/culture_axis_control.tscn" id="10_5gjrs"]
 [ext_resource type="Script" uid="uid://dp4k88e7s3j4a" path="res://UI/control_tab_related/culture_container.gd" id="11_imcl3"]
 [ext_resource type="Script" uid="uid://g58yoauwe1yh" path="res://UI/control_tab_related/summary_container.gd" id="13_jkxhx"]
+[ext_resource type="PackedScene" uid="uid://dbm0ve2hoa1sw" path="res://UI/technologiesUI.tscn" id="14_xna2x"]
 
 [node name="InGameUI" type="CanvasLayer" unique_id=1347753977]
 script = ExtResource("1_jpmjn")
@@ -88,7 +89,6 @@ unique_name_in_owner = true
 layout_mode = 2
 
 [node name="ControlTab" type="TabContainer" parent="." unique_id=825178516]
-visible = false
 custom_maximum_size = Vector2(800, 400)
 anchors_preset = -1
 anchor_left = 0.2
@@ -311,6 +311,11 @@ vertical_alignment = 1
 
 [node name="Population" type="VBoxContainer" parent="ControlTab/TechnologyScroll/TechContainer" unique_id=780302492]
 layout_mode = 2
+
+[node name="TechnologiesUI" parent="ControlTab" unique_id=632957648 instance=ExtResource("14_xna2x")]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 4
 
 [connection signal="item_selected" from="ControlPanel/VBoxContainer/HBoxContainer/OptionButton" to="ControlPanel" method="_on_view_mode_selected"]
 [connection signal="toggled" from="ControlPanel/VBoxContainer/EnableSunLight" to="ControlPanel" method="_on_enable_sun_light_toggled"]

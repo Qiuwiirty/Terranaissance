@@ -2,146 +2,132 @@
 
 [ext_resource type="Script" uid="uid://brl7w83ts62ta" path="res://UI/technologiesUI.gd" id="1_lonfn"]
 
-[node name="TechnologiesUI" type="PanelContainer" unique_id=632957648]
-anchors_preset = -1
-anchor_left = 0.25
-anchor_top = 0.25
-anchor_right = 0.75
-anchor_bottom = 0.75
-offset_left = -20.0
-offset_top = -20.0
-offset_right = 20.0
-offset_bottom = 20.0
+[node name="TechnologiesUI" type="VBoxContainer" unique_id=1815861739]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_lonfn")
-price_mode = 1
-
-[node name="ScrollContainer" type="ScrollContainer" parent="." unique_id=1005029506]
-layout_mode = 2
-horizontal_scroll_mode = 0
-
-[node name="TechContainers" type="VBoxContainer" parent="ScrollContainer" unique_id=1052927067]
-layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+script = ExtResource("1_lonfn")
 
-[node name="Temperature" type="RichTextLabel" parent="ScrollContainer/TechContainers" unique_id=1899570134]
+[node name="Temperature" type="RichTextLabel" parent="." unique_id=1620674787]
 layout_mode = 2
 bbcode_enabled = true
 text = "[img=40.0]res://textures/icons/fire.svg[/img][b][font_size=20.0] Temperature"
 fit_content = true
 
-[node name="TemperatureContainer" type="VBoxContainer" parent="ScrollContainer/TechContainers" unique_id=663384951]
+[node name="TemperatureContainer" type="VBoxContainer" parent="." unique_id=372739594]
 layout_mode = 2
 
-[node name="@HSeparator@136048" type="HSeparator" parent="ScrollContainer/TechContainers" unique_id=1433205873]
+[node name="_HSeparator_136048" type="HSeparator" parent="." unique_id=441246575]
 layout_mode = 2
 
-[node name="Pressure" type="RichTextLabel" parent="ScrollContainer/TechContainers" unique_id=1618657974]
+[node name="Pressure" type="RichTextLabel" parent="." unique_id=1457584733]
 layout_mode = 2
 bbcode_enabled = true
 text = "[img=40.0]res://textures/icons/pressure.svg[/img][b][font_size=20.0] Pressure"
 fit_content = true
 
-[node name="PressureContainer" type="VBoxContainer" parent="ScrollContainer/TechContainers" unique_id=1235247259]
+[node name="PressureContainer" type="VBoxContainer" parent="." unique_id=1889588745]
 layout_mode = 2
 
-[node name="@HSeparator@136051" type="HSeparator" parent="ScrollContainer/TechContainers" unique_id=1307196243]
+[node name="_HSeparator_136051" type="HSeparator" parent="." unique_id=1421667580]
 layout_mode = 2
 
-[node name="Atmosphere" type="RichTextLabel" parent="ScrollContainer/TechContainers" unique_id=1800360137]
+[node name="Atmosphere" type="RichTextLabel" parent="." unique_id=1584553133]
 layout_mode = 2
 bbcode_enabled = true
 text = "[img=40.0]res://textures/icons/atmosphere_composition.svg[/img][b][font_size=20.0] Atmosphere"
 fit_content = true
 
-[node name="AtmosphereContainer" type="VBoxContainer" parent="ScrollContainer/TechContainers" unique_id=796524574]
+[node name="AtmosphereContainer" type="VBoxContainer" parent="." unique_id=1794127007]
 layout_mode = 2
 
-[node name="@HSeparator@136054" type="HSeparator" parent="ScrollContainer/TechContainers" unique_id=190344542]
+[node name="_HSeparator_136054" type="HSeparator" parent="." unique_id=1654419419]
 layout_mode = 2
 
-[node name="Water" type="RichTextLabel" parent="ScrollContainer/TechContainers" unique_id=1376869519]
+[node name="Water" type="RichTextLabel" parent="." unique_id=503343668]
 layout_mode = 2
 bbcode_enabled = true
 text = "[img=40.0]res://textures/icons/water.svg[/img][b][font_size=20.0] Water"
 fit_content = true
 
-[node name="WaterContainer" type="VBoxContainer" parent="ScrollContainer/TechContainers" unique_id=936106330]
+[node name="WaterContainer" type="VBoxContainer" parent="." unique_id=1808424932]
 layout_mode = 2
 
-[node name="@HSeparator@136057" type="HSeparator" parent="ScrollContainer/TechContainers" unique_id=2029835653]
+[node name="_HSeparator_136057" type="HSeparator" parent="." unique_id=2146472636]
 layout_mode = 2
 
-[node name="Biomass" type="RichTextLabel" parent="ScrollContainer/TechContainers" unique_id=238766880]
+[node name="Biomass" type="RichTextLabel" parent="." unique_id=1198051391]
 layout_mode = 2
 bbcode_enabled = true
 text = "[img=40.0]res://textures/icons/biomass.svg[/img][b][font_size=20.0] Biomass"
 fit_content = true
 
-[node name="BiomassContainer" type="VBoxContainer" parent="ScrollContainer/TechContainers" unique_id=1495239681]
+[node name="BiomassContainer" type="VBoxContainer" parent="." unique_id=446835332]
 layout_mode = 2
 
-[node name="@HSeparator@136060" type="HSeparator" parent="ScrollContainer/TechContainers" unique_id=1563740527]
+[node name="_HSeparator_136060" type="HSeparator" parent="." unique_id=1722604466]
 layout_mode = 2
 
-[node name="Revenue" type="RichTextLabel" parent="ScrollContainer/TechContainers" unique_id=25204094]
+[node name="Revenue" type="RichTextLabel" parent="." unique_id=278263753]
 layout_mode = 2
 bbcode_enabled = true
 text = "[img=40.0]res://textures/icons/revenue.svg[/img][b][font_size=20.0] Revenue"
 fit_content = true
 
-[node name="RevenueContainer" type="VBoxContainer" parent="ScrollContainer/TechContainers" unique_id=1061732610]
+[node name="RevenueContainer" type="VBoxContainer" parent="." unique_id=397759112]
 layout_mode = 2
 
-[node name="@HSeparator@136063" type="HSeparator" parent="ScrollContainer/TechContainers" unique_id=1597455740]
+[node name="_HSeparator_136063" type="HSeparator" parent="." unique_id=1176169966]
 layout_mode = 2
 
-[node name="Population" type="RichTextLabel" parent="ScrollContainer/TechContainers" unique_id=1477380154]
+[node name="Population" type="RichTextLabel" parent="." unique_id=1195565986]
 layout_mode = 2
 bbcode_enabled = true
 text = "[img=40.0]res://textures/icons/population.svg[/img][b][font_size=20.0] Population"
 fit_content = true
 
-[node name="PopulationContainer" type="VBoxContainer" parent="ScrollContainer/TechContainers" unique_id=928557298]
+[node name="PopulationContainer" type="VBoxContainer" parent="." unique_id=2107966537]
 layout_mode = 2
 
-[node name="@HSeparator@136066" type="HSeparator" parent="ScrollContainer/TechContainers" unique_id=1150145190]
+[node name="_HSeparator_136066" type="HSeparator" parent="." unique_id=1964360832]
 layout_mode = 2
 
-[node name="Habitation" type="RichTextLabel" parent="ScrollContainer/TechContainers" unique_id=210697733]
+[node name="Habitation" type="RichTextLabel" parent="." unique_id=693781809]
 layout_mode = 2
 bbcode_enabled = true
 text = "[img=40.0]res://textures/icons/population.svg[/img][b][font_size=20.0] Habitation"
 fit_content = true
 
-[node name="HabitationContainer" type="VBoxContainer" parent="ScrollContainer/TechContainers" unique_id=925494251]
+[node name="HabitationContainer" type="VBoxContainer" parent="." unique_id=682540535]
 layout_mode = 2
 
-[node name="@HSeparator@136069" type="HSeparator" parent="ScrollContainer/TechContainers" unique_id=698896504]
+[node name="_HSeparator_136069" type="HSeparator" parent="." unique_id=1952900834]
 layout_mode = 2
 
-[node name="Misc" type="RichTextLabel" parent="ScrollContainer/TechContainers" unique_id=283942683]
+[node name="Misc" type="RichTextLabel" parent="." unique_id=252994602]
 layout_mode = 2
 bbcode_enabled = true
 text = "[img=40.0]res://textures/icons/misc.svg[/img][b][font_size=20.0] Misc"
 fit_content = true
 
-[node name="MiscContainer" type="VBoxContainer" parent="ScrollContainer/TechContainers" unique_id=137243941]
+[node name="MiscContainer" type="VBoxContainer" parent="." unique_id=296417868]
 layout_mode = 2
 
-[node name="@HSeparator@136072" type="HSeparator" parent="ScrollContainer/TechContainers" unique_id=1043018100]
+[node name="_HSeparator_136072" type="HSeparator" parent="." unique_id=1091138262]
 layout_mode = 2
 
-[node name="Undefined" type="RichTextLabel" parent="ScrollContainer/TechContainers" unique_id=1503516474]
+[node name="Undefined" type="RichTextLabel" parent="." unique_id=391140267]
 layout_mode = 2
 bbcode_enabled = true
 text = "[img=40.0]res://textures/icons/question_mark.svg[/img][b][font_size=20.0] Undefined"
 fit_content = true
 
-[node name="UndefinedContainer" type="VBoxContainer" parent="ScrollContainer/TechContainers" unique_id=1877386450]
+[node name="UndefinedContainer" type="VBoxContainer" parent="." unique_id=1462964962]
 layout_mode = 2
 
-[node name="@HSeparator@136075" type="HSeparator" parent="ScrollContainer/TechContainers" unique_id=534688135]
+[node name="_HSeparator_136075" type="HSeparator" parent="." unique_id=1787328959]
 layout_mode = 2
