@@ -105,10 +105,20 @@ layout_mode = 2
 size_flags_horizontal = 3
 text = "Demolish"
 
-[node name="CreateNewFacility" parent="VBoxContainer/HBoxContainer/RightPanel" unique_id=632957648 instance=ExtResource("3_qri7x")]
+[node name="CreateNewFacilityContainer" type="VBoxContainer" parent="VBoxContainer/HBoxContainer/RightPanel" unique_id=1959974726]
 unique_name_in_owner = true
 layout_mode = 2
-head_info = "[b][font_size=20] Build facility[/font_size][/b]"
+
+[node name="Label" type="RichTextLabel" parent="VBoxContainer/HBoxContainer/RightPanel/CreateNewFacilityContainer" unique_id=1954326873]
+layout_mode = 2
+bbcode_enabled = true
+text = "[b]Build facility"
+fit_content = true
+
+[node name="CreateNewFacility" parent="VBoxContainer/HBoxContainer/RightPanel/CreateNewFacilityContainer" unique_id=632957648 instance=ExtResource("3_qri7x")]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
 ui_scale = 0.75
 
 [node name="Close" type="Button" parent="." unique_id=569224568]

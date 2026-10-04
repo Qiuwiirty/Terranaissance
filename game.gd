@@ -101,7 +101,23 @@ static func get_modifier_descriptions(fac_transfer: FacilityTransfer, any_gas_na
 		format_stat.call(fac_transfer.any_gas_modifier, any_gas_name, true)
 		
 	return "\n".join(descriptions)
-
+	
+static func get_all_tres_files(path: String) -> Array[String]:
+	var tres_files: Array[String] = []
+	var dir = DirAccess.open(path)
+	
+	if dir:
+		for file in dir.get_files():
+			if file.ends_with(".tres") or file.ends_with(".tres.remap"):
+				var full_path = path.path_join(file).trim_suffix(".remap")
+				tres_files.append(full_path)
+		for sub_dir in dir.get_directories():
+			var sub_path = path.path_join(sub_dir)
+			tres_files.append_array(get_all_tres_files(sub_path))
+	else:
+		push_error("Uh, this path doesnt exist: ", path)
+		
+	return tres_files
 ##Sometimes planet not available when on main menu or such, so you gotta use this
 func get_planet() -> Planet:
 	if !planet:

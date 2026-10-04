@@ -9,15 +9,6 @@ enum PriceShow {
 signal facility_data_selected(facility_data: FacilityData)
 const FACILITY_DATA_ITEM_UI := preload("uid://2oamdxx0a6o4")
 @onready var tech_containers : VBoxContainer = $ScrollContainer/TechContainers
-@onready var head : RichTextLabel = $ScrollContainer/TechContainers/Head
-@export_multiline var head_info : String:
-	set(str):
-		if is_node_ready():
-			head.text = str
-	get:
-		if is_node_ready():
-			return head.text
-		return "ERROR: NODE NOT READY.."
 @export var price_mode := PriceShow.BUILD
 @export var available_facility_data: Array[FacilityData]
 @export var ui_scale : float = 1.0
@@ -55,11 +46,15 @@ func create_categories() -> void:
 			new_container.name = category_name.replace(" ", "") + "Container"
 			new_container.owner = get_tree().edited_scene_root
 			
-func update_available_facilities() -> void:
-	####TODO: USE FACILITY ITEM UI, ADD OPTIONAL PRICE
+## If all, then it will create every facilities in res://predefined/raw_facilities/ . Else, use available_facility_data
+func update_available_facilities(all := false) -> void:
 	#prepare first..
 	var category_to_facility_data : Dictionary[Facility.Category, Array]
-	for facility_data in available_facility_data:
+	var proc_facility_data : Array[FacilityData] = available_facility_data #The processed or used facility data
+	if all:
+		for facility_path in Game.get_all_tres_files("res://predefined/raw_facilities/"):
+			proc_facility_data.append(load(facility_path))
+	for facility_data in proc_facility_data:
 		if not category_to_facility_data.has(facility_data.category):
 			category_to_facility_data[facility_data.category] = []
 		category_to_facility_data[facility_data.category].append(facility_data)
