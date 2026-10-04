@@ -72,8 +72,10 @@ static func get_modifier_descriptions(fac_transfer: FacilityTransfer, any_gas_na
 		else:
 			prefix = "-- " if is_per_tick else "- "
 			
+		var value_abs = absf(value)
+		var value_str = str(int(value_abs)) if value_abs == int(value_abs) else str(value_abs)
 		#Use abs() because nobody obviously gonna want "-- -4 temperature"
-		descriptions.append(prefix + str(abs(value)) + " " + stat_name)
+		descriptions.append(prefix + value_str + " " + stat_name)
 		
 	if fac_transfer.terraform_modifier:
 		format_stat.call(fac_transfer.terraform_modifier.temperature, "temperature", false)

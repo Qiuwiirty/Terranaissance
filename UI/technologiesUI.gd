@@ -40,12 +40,15 @@ func create_categories() -> void:
 			new_rich_text_label.name = category_name.replace(" ", "") #just remove space
 			tech_containers.add_child(new_rich_text_label, true)
 			new_rich_text_label.owner = get_tree().edited_scene_root
-			var new_container := VBoxContainer.new()
 			
-			tech_containers.add_child(new_container)
+			var new_container := VBoxContainer.new()
 			new_container.name = category_name.replace(" ", "") + "Container"
+			tech_containers.add_child(new_container)
 			new_container.owner = get_tree().edited_scene_root
 			
+			var new_hseparator := HSeparator.new()
+			tech_containers.add_child(new_hseparator)
+			new_hseparator.owner = get_tree().edited_scene_root
 ## If all, then it will create every facilities in res://predefined/raw_facilities/ . Else, use available_facility_data
 func update_available_facilities(all := false) -> void:
 	#prepare first..
