@@ -24,6 +24,7 @@ available_facility_data = Array[ExtResource("2_ain4c")]([ExtResource("3_ain4c")]
 
 [node name="ScrollContainer" type="ScrollContainer" parent="." unique_id=1005029506]
 layout_mode = 2
+horizontal_scroll_mode = 0
 
 [node name="TechContainers" type="VBoxContainer" parent="ScrollContainer" unique_id=1052927067]
 layout_mode = 2

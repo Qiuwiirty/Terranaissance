@@ -13,9 +13,10 @@ var governor : Variant
 var properties : CityProperties = CityProperties.new()
 var properties_modifier_per_tick : CityProperties = CityProperties.new()
 func run() -> void:
-	properties.population *= 1.008
+	properties.population *= 1.00021 + randf_range(-0.00021, 0.00021)
 func _init(planet_: Planet, create_habitat := true) -> void:
 	planet = planet_
+	planet.tick_timer.timeout.connect(run)
 	if create_habitat:
 		var new_habitat := Facility.new(self, load("uid://crnxp3lx3nmvl").get_modifiers())
 		facilities.append(new_habitat)

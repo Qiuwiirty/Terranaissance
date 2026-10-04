@@ -108,6 +108,7 @@ text = "Demolish"
 [node name="CreateNewFacility" parent="VBoxContainer/HBoxContainer/RightPanel" unique_id=632957648 instance=ExtResource("3_qri7x")]
 unique_name_in_owner = true
 layout_mode = 2
+head_info = "[b][font_size=20] Build facility[/font_size][/b]"
 ui_scale = 0.75
 
 [node name="Close" type="Button" parent="." unique_id=569224568]

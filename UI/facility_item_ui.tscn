@@ -25,9 +25,12 @@ unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Cooler Alpha"
+autowrap_mode = 1
 
 [node name="Info" type="Label" parent="." unique_id=719148842]
 unique_name_in_owner = true
+custom_minimum_size = Vector2(10, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 text = "-- 4 heat"
+autowrap_mode = 1
