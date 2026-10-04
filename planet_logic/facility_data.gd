@@ -17,8 +17,8 @@ class_name FacilityData
 #Things that are also important (for research specifically)
 @export_multiline var description: String = "" ##The description that will showed up
 @export var build_cost: int = 0 ##In terras
-@export_range(0.0, 18_000, 0.1, "or_greater", "suffix:s")
-var build_time: float = 0.0
+@export_range(0.0, 18_000, 1.0, "or_greater", "suffix:s")
+var build_time: int = 0
 @export_range(0, 100_000, 1, "or_greater", "suffix:Tr") var maintanence := 0 #in terras
 @export_category("Optional (Can be inferred if left -1)")
 @export var _research_cost := -1
@@ -29,9 +29,9 @@ var research_cost: int:
 		return _research_cost
 	set(v):
 		_research_cost = v
-@export_range(-1, 36_000, 0.1, "or_greater", "suffix:s")
-var _research_time: float = -1
-var research_time: float:
+@export_range(-1, 36_000, 1.0, "or_greater", "suffix:s")
+var _research_time: int = -1
+var research_time: int:
 	get:
 		if _research_time == -1:
 			return build_time * 2

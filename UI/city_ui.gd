@@ -76,6 +76,7 @@ func _facility_upgrade() -> void:
 	_selected_facility.set_level(_selected_facility.level + 1)
 func _facility_demolish() -> void:
 	_selected_facility.delete()
+	city.facilities.erase(_selected_facility)
 func _add_new_facility(facility_data: FacilityData) -> void:
 	var is_confirmed := await are_you_sure.request_confirmation("Build?", "Are you want to build? This will cost {price} Tr!".format({"price": facility_data.build_cost}))
 	if is_confirmed:

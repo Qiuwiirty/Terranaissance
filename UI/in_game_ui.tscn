@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://dir0viqet3san" path="res://UI/control_panel.gd" id="1_r4raw"]
 [ext_resource type="PackedScene" uid="uid://brjyplip73xlc" path="res://UI/city_ui.tscn" id="2_b4smu"]
 [ext_resource type="PackedScene" uid="uid://dqq3t8i3dufpc" path="res://UI/create_new_city.tscn" id="2_d0vji"]
+[ext_resource type="PackedScene" uid="uid://dmrh5bp0ltmxe" path="res://UI/are_you_sure.tscn" id="2_yo3uo"]
 [ext_resource type="PackedScene" uid="uid://bn4kr6ugpqna3" path="res://UI/not_enough_money.tscn" id="4_d0vji"]
 [ext_resource type="Script" uid="uid://pm1isfkioakk" path="res://UI/buildings.gd" id="6_ix84t"]
 [ext_resource type="Script" uid="uid://dufy65xipdi34" path="res://UI/control_tab_related/control_tab.gd" id="7_ppb6f"]
@@ -14,15 +15,20 @@
 [ext_resource type="Script" uid="uid://dp4k88e7s3j4a" path="res://UI/control_tab_related/culture_container.gd" id="11_imcl3"]
 [ext_resource type="Script" uid="uid://g58yoauwe1yh" path="res://UI/control_tab_related/summary_container.gd" id="13_jkxhx"]
 [ext_resource type="PackedScene" uid="uid://dbm0ve2hoa1sw" path="res://UI/technologiesUI.tscn" id="14_xna2x"]
+[ext_resource type="Script" uid="uid://c0f5kharmusw4" path="res://UI/researchUI.gd" id="16_ppkve"]
 
 [node name="InGameUI" type="CanvasLayer" unique_id=1347753977]
 script = ExtResource("1_jpmjn")
+
+[node name="AreYouSureResearch" parent="." unique_id=224112140 instance=ExtResource("2_yo3uo")]
+unique_name_in_owner = true
+visible = false
 
 [node name="CityUI" parent="." unique_id=571675716 instance=ExtResource("2_b4smu")]
 visible = false
 pivot_offset_ratio = Vector2(1, 0)
 
-[node name="CreateNewCity" parent="." unique_id=224112140 instance=ExtResource("2_d0vji")]
+[node name="CreateNewCity" parent="." unique_id=274178226 instance=ExtResource("2_d0vji")]
 pivot_offset_ratio = Vector2(0, 0)
 
 [node name="ControlPanel" type="PanelContainer" parent="." unique_id=2080219811]
@@ -231,91 +237,9 @@ layout_mode = 2
 metadata/_tab_index = 3
 metadata/_tab_name = "Technology"
 
-[node name="TechContainer" type="VBoxContainer" parent="ControlTab/TechnologyScroll" unique_id=407397768]
+[node name="TechnologiesUI" parent="ControlTab/TechnologyScroll" unique_id=632957648 instance=ExtResource("14_xna2x")]
 layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-
-[node name="Label" type="RichTextLabel" parent="ControlTab/TechnologyScroll/TechContainer" unique_id=1506485879]
-layout_mode = 2
-bbcode_enabled = true
-text = "[b][font_size=20] RESEARCH[/font_size][/b]
-Other technologies may also be found on satellites"
-fit_content = true
-
-[node name="HSeparator" type="HSeparator" parent="ControlTab/TechnologyScroll/TechContainer" unique_id=1968590986]
-layout_mode = 2
-
-[node name="TemperatureText" type="RichTextLabel" parent="ControlTab/TechnologyScroll/TechContainer" unique_id=1793454064]
-layout_mode = 2
-size_flags_horizontal = 3
-bbcode_enabled = true
-text = "[img=50]uid://ds3t4gw3sh4yw[/img][b][font_size=25] Temperature"
-fit_content = true
-vertical_alignment = 1
-
-[node name="Temperature" type="VBoxContainer" parent="ControlTab/TechnologyScroll/TechContainer" unique_id=657457976]
-layout_mode = 2
-
-[node name="PressureText" type="RichTextLabel" parent="ControlTab/TechnologyScroll/TechContainer" unique_id=1165998710]
-layout_mode = 2
-size_flags_horizontal = 3
-bbcode_enabled = true
-text = "[img=50]uid://b2kpn1wp7ohdm[/img][b][font_size=25] Pressure"
-fit_content = true
-vertical_alignment = 1
-
-[node name="Pressure" type="VBoxContainer" parent="ControlTab/TechnologyScroll/TechContainer" unique_id=1848555058]
-layout_mode = 2
-
-[node name="AtmosphereText" type="RichTextLabel" parent="ControlTab/TechnologyScroll/TechContainer" unique_id=1777940460]
-layout_mode = 2
-size_flags_horizontal = 3
-bbcode_enabled = true
-text = "[img=50]uid://gb458n7jp5bh[/img][b][font_size=25] Atmosphere"
-fit_content = true
-vertical_alignment = 1
-
-[node name="Atmosphere" type="VBoxContainer" parent="ControlTab/TechnologyScroll/TechContainer" unique_id=972457226]
-layout_mode = 2
-
-[node name="WaterText" type="RichTextLabel" parent="ControlTab/TechnologyScroll/TechContainer" unique_id=1982815298]
-layout_mode = 2
-size_flags_horizontal = 3
-bbcode_enabled = true
-text = "[img=50]uid://bbeisdub76ybi[/img][b][font_size=25] Water"
-fit_content = true
-vertical_alignment = 1
-
-[node name="Water" type="VBoxContainer" parent="ControlTab/TechnologyScroll/TechContainer" unique_id=1373374793]
-layout_mode = 2
-
-[node name="BiomassText" type="RichTextLabel" parent="ControlTab/TechnologyScroll/TechContainer" unique_id=377006355]
-layout_mode = 2
-size_flags_horizontal = 3
-bbcode_enabled = true
-text = "[img=50]uid://drlvtre1ictnp[img][b][font_size=25] Biomass"
-fit_content = true
-vertical_alignment = 1
-
-[node name="Biomass" type="VBoxContainer" parent="ControlTab/TechnologyScroll/TechContainer" unique_id=1973292354]
-layout_mode = 2
-
-[node name="PopulationText" type="RichTextLabel" parent="ControlTab/TechnologyScroll/TechContainer" unique_id=1327639741]
-layout_mode = 2
-size_flags_horizontal = 3
-bbcode_enabled = true
-text = "[img=50]uid://dak1q80vgqll8[img][b][font_size=25] Population"
-fit_content = true
-vertical_alignment = 1
-
-[node name="Population" type="VBoxContainer" parent="ControlTab/TechnologyScroll/TechContainer" unique_id=780302492]
-layout_mode = 2
-
-[node name="TechnologiesUI" parent="ControlTab" unique_id=632957648 instance=ExtResource("14_xna2x")]
-visible = false
-layout_mode = 2
-metadata/_tab_index = 4
+script = ExtResource("16_ppkve")
 
 [connection signal="item_selected" from="ControlPanel/VBoxContainer/HBoxContainer/OptionButton" to="ControlPanel" method="_on_view_mode_selected"]
 [connection signal="toggled" from="ControlPanel/VBoxContainer/EnableSunLight" to="ControlPanel" method="_on_enable_sun_light_toggled"]

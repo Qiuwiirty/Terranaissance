@@ -116,7 +116,6 @@ func _apply_modifiers_to_objects() -> void:
 func delete() -> void:
 	_remove_modifiers_from_objects()
 
-
 func get_modifiers() -> FacilityTransfer:
 	var new_facility_transfer := FacilityTransfer.new()
 	new_facility_transfer.name = name

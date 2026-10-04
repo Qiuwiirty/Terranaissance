@@ -5,10 +5,19 @@ static var planet: Planet
 static var current_planet_save: PlanetSave
 static var sun: Sun
 static var in_game_ui: InGameUI
+static var wait_tasks: Array[WaitTask]
 ##set the main planet
 func set_planet(new_planet: Planet) -> void:
 	planet = new_planet
 	planet_available.emit()
+func _process(_delta: float) -> void:
+	for wait_task in wait_tasks:
+		wait_task.checkup()
+func append_wait_task(wait_task: WaitTask) -> void:
+	wait_tasks.append(wait_task)
+	wait_task.completed.connect(erase_wait_task.bind(wait_task))
+func erase_wait_task(wait_task: WaitTask) -> void:
+	wait_tasks.erase(wait_task)
 static func get_latitude_longitude(pos: Vector3) -> Vector2:
 	var dir: Vector3 = pos.normalized()
 	var lat_rad: float = asin(dir.y)
@@ -120,6 +129,43 @@ static func get_all_tres_files(path: String) -> Array[String]:
 		push_error("Uh, this path doesnt exist: ", path)
 		
 	return tres_files
+static func format_time_duration(seconds: int) -> String:
+	var days := seconds / 86400
+	seconds %= 86400
+	
+	var hours := seconds / 3600
+	seconds %= 3600
+	
+	var minutes := seconds / 60
+	seconds %= 60
+	
+	var parts: Array[String] = []
+	
+	if days > 0:
+		parts.append(str(days) + "d")
+	if hours > 0:
+		parts.append(str(hours) + "h")
+	if minutes > 0:
+		parts.append(str(minutes) + "m")
+	if seconds > 0 or parts.is_empty():
+		parts.append(str(seconds) + "s")
+	
+	return " ".join(parts)
+
+static func format_time_timer(seconds: int) -> String:
+	var days := seconds / 86400
+	seconds %= 86400
+	
+	var hours := seconds / 3600
+	seconds %= 3600
+	
+	var minutes := seconds / 60
+	seconds %= 60
+	
+	if days > 0:
+		return "%dd %02d:%02d:%02d" % [days, hours, minutes, seconds]
+		
+	return "%02d:%02d:%02d" % [hours, minutes, seconds]
 ##Sometimes planet not available when on main menu or such, so you gotta use this
 func get_planet() -> Planet:
 	if !planet:
