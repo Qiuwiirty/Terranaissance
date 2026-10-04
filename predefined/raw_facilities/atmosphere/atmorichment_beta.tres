@@ -10,6 +10,7 @@ metadata/_custom_type_script = "uid://bu5bdw38wijvt"
 
 [resource]
 script = ExtResource("1_stcv8")
+name = &"Atmorichment Beta"
 category = 2
 terraform_modifier_per_tick = SubResource("Resource_yihyp")
 any_gas_modifier_per_tick = 65.0

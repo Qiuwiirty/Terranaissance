@@ -100,7 +100,7 @@ static func get_modifier_descriptions(fac_transfer: FacilityTransfer, any_gas_na
 	if not is_equal_approx(fac_transfer.any_gas_modifier, 0.0):
 		format_stat.call(fac_transfer.any_gas_modifier, any_gas_name, true)
 		
-	return "\n".join(descriptions)
+	return ", ".join(descriptions)
 	
 static func get_all_tres_files(path: String) -> Array[String]:
 	var tres_files: Array[String] = []

@@ -1,8 +1,6 @@
 [gd_scene format=3 uid="uid://dbm0ve2hoa1sw"]
 
 [ext_resource type="Script" uid="uid://brl7w83ts62ta" path="res://UI/technologiesUI.gd" id="1_lonfn"]
-[ext_resource type="Script" uid="uid://dw1qgmnck54ie" path="res://planet_logic/facility_data.gd" id="2_ain4c"]
-[ext_resource type="Resource" uid="uid://crnxp3lx3nmvl" path="res://predefined/raw_facilities/habitation/habitation_alpha.tres" id="3_ain4c"]
 
 [node name="TechnologiesUI" type="PanelContainer" unique_id=632957648]
 anchors_preset = -1
@@ -17,10 +15,7 @@ offset_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_lonfn")
-head_info = "[b][font_size=20] RESEARCH[/font_size][/b]
-The dev forgot to put something in me"
 price_mode = 1
-available_facility_data = Array[ExtResource("2_ain4c")]([ExtResource("3_ain4c")])
 
 [node name="ScrollContainer" type="ScrollContainer" parent="." unique_id=1005029506]
 layout_mode = 2

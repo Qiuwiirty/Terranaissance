@@ -116,9 +116,3 @@ func load_from_starting_terraform_properties(other_terraform_properties: Terrafo
 		if other_elements.has(&"Oxygen"): 
 			new_complex_terraform_properties.gases[&"Oxygen"] = other_elements[&"Oxygen"]
 		atmosphere_composition = new_complex_terraform_properties
-
-func _set(property: StringName, value: Variant) -> bool:
-	if property in atmosphere_composition:
-		atmosphere_composition[property] = value
-		return true
-	return false

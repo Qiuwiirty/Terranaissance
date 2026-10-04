@@ -10,6 +10,7 @@ metadata/_custom_type_script = "uid://bu5bdw38wijvt"
 
 [resource]
 script = ExtResource("1_0ab8n")
+name = &"Deatmopletion Beta"
 category = 2
 terraform_modifier_per_tick = SubResource("Resource_qfo57")
 any_gas_modifier_per_tick = -60.0

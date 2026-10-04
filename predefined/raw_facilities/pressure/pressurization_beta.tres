@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="RawFacilityData" format=3 uid="uid://b20a3c565iji5"]
+[gd_resource type="Resource" script_class="FacilityData" format=3 uid="uid://b20a3c565iji5"]
 
 [ext_resource type="Script" uid="uid://dw1qgmnck54ie" path="res://planet_logic/facility_data.gd" id="1_vixk8"]
 [ext_resource type="Script" uid="uid://b1j2kp6acq3ap" path="res://planet_logic/planet_conditions/gas_data.gd" id="2_c126m"]
@@ -21,6 +21,7 @@ metadata/_custom_type_script = "uid://bypc2346sw27p"
 
 [sub_resource type="Resource" id="Resource_85ne0"]
 script = ExtResource("2_kd5cb")
+temperature = 10.0
 pressure = 60.0
 atmosphere_composition = SubResource("Resource_c126m")
 metadata/_custom_type_script = "uid://bu5bdw38wijvt"

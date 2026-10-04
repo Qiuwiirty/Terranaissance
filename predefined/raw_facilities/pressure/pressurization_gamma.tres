@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="RawFacilityData" format=3 uid="uid://pbvbj1wuys1r"]
+[gd_resource type="Resource" script_class="FacilityData" format=3 uid="uid://pbvbj1wuys1r"]
 
 [ext_resource type="Script" uid="uid://dw1qgmnck54ie" path="res://planet_logic/facility_data.gd" id="1_sqvst"]
 [ext_resource type="Script" uid="uid://b1j2kp6acq3ap" path="res://planet_logic/planet_conditions/gas_data.gd" id="2_is8ux"]
@@ -23,12 +23,13 @@ metadata/_custom_type_script = "uid://bypc2346sw27p"
 script = ExtResource("4_hhvro")
 pressure = 100.0
 atmosphere_composition = SubResource("Resource_c126m")
+water = 20.0
 revenue = 2000.0
 metadata/_custom_type_script = "uid://bu5bdw38wijvt"
 
 [resource]
 script = ExtResource("1_sqvst")
-name = "Pressurization Beta"
+name = &"Pressurization Gamma"
 category = 1
 terraform_modifier_per_tick = SubResource("Resource_85ne0")
 build_cost = 1000000

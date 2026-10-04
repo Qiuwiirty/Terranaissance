@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="RawFacilityData" format=3 uid="uid://bb185ry4oewrg"]
+[gd_resource type="Resource" script_class="FacilityData" format=3 uid="uid://bb185ry4oewrg"]
 
 [ext_resource type="Script" uid="uid://dw1qgmnck54ie" path="res://planet_logic/facility_data.gd" id="1_7vfby"]
 [ext_resource type="Script" uid="uid://bu5bdw38wijvt" path="res://planet_logic/planet_conditions/terraform_properties.gd" id="5_cjl23"]
@@ -12,7 +12,7 @@ metadata/_custom_type_script = "uid://bu5bdw38wijvt"
 
 [resource]
 script = ExtResource("1_7vfby")
-name = "Drought Beta"
+name = &"Drought Gamma"
 category = 3
 terraform_modifier_per_tick = SubResource("Resource_85ne0")
 build_cost = 1000000
