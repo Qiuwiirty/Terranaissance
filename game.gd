@@ -5,19 +5,10 @@ static var planet: Planet
 static var current_planet_save: PlanetSave
 static var sun: Sun
 static var in_game_ui: InGameUI
-static var wait_tasks: Array[WaitTask]
 ##set the main planet
 func set_planet(new_planet: Planet) -> void:
 	planet = new_planet
 	planet_available.emit()
-func _process(_delta: float) -> void:
-	for wait_task in wait_tasks:
-		wait_task.checkup()
-func append_wait_task(wait_task: WaitTask) -> void:
-	wait_tasks.append(wait_task)
-	wait_task.completed.connect(erase_wait_task.bind(wait_task))
-func erase_wait_task(wait_task: WaitTask) -> void:
-	wait_tasks.erase(wait_task)
 static func get_latitude_longitude(pos: Vector3) -> Vector2:
 	var dir: Vector3 = pos.normalized()
 	var lat_rad: float = asin(dir.y)

@@ -14,7 +14,7 @@ func _facility_research_selected(facility_data: FacilityData) -> void:
 	if is_confirmed:
 		var new_wait_task := WaitTask.new(facility_data.research_time)
 		new_wait_task.completed.connect(_research_completed.bind(facility_data))
-		Game.append_wait_task(new_wait_task)
+		Game.planet.append_wait_task(new_wait_task)
 		
 func _research_completed(facility_data: FacilityData) -> void:
 	Game.planet.planet_state.researched_technologies.append(facility_data)

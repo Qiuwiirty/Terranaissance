@@ -24,6 +24,12 @@ var total_habitation : int:
 		for city: City in cities:
 			total += city.properties.habitations
 		return total
+var wait_tasks: Array[WaitTask]
+func append_wait_task(wait_task: WaitTask) -> void:
+	wait_tasks.append(wait_task)
+	wait_task.completed.connect(erase_wait_task.bind(wait_task))
+func erase_wait_task(wait_task: WaitTask) -> void:
+	wait_tasks.erase(wait_task)
 func _enter_tree() -> void:
 	Game.planet = self
 func _ready() -> void:
@@ -41,6 +47,8 @@ func _on_update_tick() -> void:
 	var pop: float = 0.0
 	for city in cities:
 		pop += city.properties.population
+	for wait_task in wait_tasks:
+		wait_task.checkup()
 	total_population = floori(pop)
 	var greenhouse_data := _get_greenhouse_and_ppm_sum()
 	terraform_properties.greenhouse_effect = greenhouse_data[0] * log(1+greenhouse_data[1]) * (terraform_properties.pressure / 100) #simplified from greenhouse_data[0] * log(1+greenhouse_data[1]) * (terraform_properties.pressure / 100_000) * 1000

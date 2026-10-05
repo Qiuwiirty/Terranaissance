@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="RawFacilityData" format=3 uid="uid://bym3ukuct3owa"]
+[gd_resource type="Resource" script_class="FacilityData" format=3 uid="uid://bym3ukuct3owa"]
 
 [ext_resource type="Script" uid="uid://dw1qgmnck54ie" path="res://planet_logic/facility_data.gd" id="1_qp5bs"]
 [ext_resource type="Script" uid="uid://bu5bdw38wijvt" path="res://planet_logic/planet_conditions/terraform_properties.gd" id="2_qu757"]

@@ -11,18 +11,17 @@ const FACILITY_DATA_ITEM_UI := preload("uid://2oamdxx0a6o4")
 @export var price_mode := PriceShow.BUILD
 @export var available_facility_data: Array[FacilityData]
 @export var ui_scale : float = 1.0
-@export var run: bool:
-	set(v):
-		if Engine.is_editor_hint():
-			create_categories()
+@export_tool_button("Create Categories")
+var create_categories_button := create_categories
+@export_tool_button("Clean Categories")
+var clean_categories_button := clean_categories
 #This prepare the categories text and container
 func _ready() -> void:
 	update_available_facilities()
 func create_categories() -> void:
 	if Engine.is_editor_hint():
 		for child in get_children():
-			if child.name != "Head":
-				child.queue_free()
+			child.queue_free()
 		await get_tree().process_frame
 		for category in Facility.Category.values():
 			var category_name : String = Facility.Category.keys()[category].capitalize()
@@ -48,14 +47,20 @@ func create_categories() -> void:
 			var new_hseparator := HSeparator.new()
 			add_child(new_hseparator)
 			new_hseparator.owner = get_tree().edited_scene_root
+func clean_categories() -> void:
+	if Engine.is_editor_hint():
+		for child in get_children():
+			child.queue_free()
 ## If all, then it will create every facilities in res://predefined/raw_facilities/ . Else, use available_facility_data
 func update_available_facilities(all := false) -> void:
 	#prepare first..
 	var category_to_facility_data : Dictionary[Facility.Category, Array]
-	var proc_facility_data : Array[FacilityData] = available_facility_data #The processed or used facility data
+	var proc_facility_data : Array[FacilityData] #The processed or used facility data
 	if all:
 		for facility_path in Game.get_all_tres_files("res://predefined/raw_facilities/"):
 			proc_facility_data.append(load(facility_path))
+	else:
+		proc_facility_data = available_facility_data
 	for facility_data in proc_facility_data:
 		if not category_to_facility_data.has(facility_data.category):
 			category_to_facility_data[facility_data.category] = []

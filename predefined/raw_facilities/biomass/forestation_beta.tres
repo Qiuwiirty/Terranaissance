@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="RawFacilityData" format=3 uid="uid://ow4gtifcmwj8"]
+[gd_resource type="Resource" script_class="FacilityData" format=3 uid="uid://ow4gtifcmwj8"]
 
 [ext_resource type="Script" uid="uid://dw1qgmnck54ie" path="res://planet_logic/facility_data.gd" id="1_4hrsm"]
 [ext_resource type="Script" uid="uid://b1j2kp6acq3ap" path="res://planet_logic/planet_conditions/gas_data.gd" id="2_1mgjw"]

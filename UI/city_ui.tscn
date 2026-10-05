@@ -124,6 +124,126 @@ unique_name_in_owner = true
 layout_mode = 2
 ui_scale = 0.75
 
+[node name="Temperature" type="RichTextLabel" parent="VBoxContainer/HBoxContainer/RightPanel/CreateNewFacilityScroll/CreateNewFacilityContainer/CreateNewFacility" unique_id=136755954]
+layout_mode = 2
+bbcode_enabled = true
+text = "[img=30.0]res://textures/icons/fire.svg[/img][b][font_size=15.0] Temperature"
+fit_content = true
+
+[node name="TemperatureContainer" type="VBoxContainer" parent="VBoxContainer/HBoxContainer/RightPanel/CreateNewFacilityScroll/CreateNewFacilityContainer/CreateNewFacility" unique_id=748892429]
+layout_mode = 2
+
+[node name="@HSeparator@33077" type="HSeparator" parent="VBoxContainer/HBoxContainer/RightPanel/CreateNewFacilityScroll/CreateNewFacilityContainer/CreateNewFacility" unique_id=17688820]
+layout_mode = 2
+
+[node name="Pressure" type="RichTextLabel" parent="VBoxContainer/HBoxContainer/RightPanel/CreateNewFacilityScroll/CreateNewFacilityContainer/CreateNewFacility" unique_id=1420379464]
+layout_mode = 2
+bbcode_enabled = true
+text = "[img=30.0]res://textures/icons/pressure.svg[/img][b][font_size=15.0] Pressure"
+fit_content = true
+
+[node name="PressureContainer" type="VBoxContainer" parent="VBoxContainer/HBoxContainer/RightPanel/CreateNewFacilityScroll/CreateNewFacilityContainer/CreateNewFacility" unique_id=397186459]
+layout_mode = 2
+
+[node name="@HSeparator@33080" type="HSeparator" parent="VBoxContainer/HBoxContainer/RightPanel/CreateNewFacilityScroll/CreateNewFacilityContainer/CreateNewFacility" unique_id=937355327]
+layout_mode = 2
+
+[node name="Atmosphere" type="RichTextLabel" parent="VBoxContainer/HBoxContainer/RightPanel/CreateNewFacilityScroll/CreateNewFacilityContainer/CreateNewFacility" unique_id=979092510]
+layout_mode = 2
+bbcode_enabled = true
+text = "[img=30.0]res://textures/icons/atmosphere_composition.svg[/img][b][font_size=15.0] Atmosphere"
+fit_content = true
+
+[node name="AtmosphereContainer" type="VBoxContainer" parent="VBoxContainer/HBoxContainer/RightPanel/CreateNewFacilityScroll/CreateNewFacilityContainer/CreateNewFacility" unique_id=770534554]
+layout_mode = 2
+
+[node name="@HSeparator@33083" type="HSeparator" parent="VBoxContainer/HBoxContainer/RightPanel/CreateNewFacilityScroll/CreateNewFacilityContainer/CreateNewFacility" unique_id=38071658]
+layout_mode = 2
+
+[node name="Water" type="RichTextLabel" parent="VBoxContainer/HBoxContainer/RightPanel/CreateNewFacilityScroll/CreateNewFacilityContainer/CreateNewFacility" unique_id=1060017426]
+layout_mode = 2
+bbcode_enabled = true
+text = "[img=30.0]res://textures/icons/water.svg[/img][b][font_size=15.0] Water"
+fit_content = true
+
+[node name="WaterContainer" type="VBoxContainer" parent="VBoxContainer/HBoxContainer/RightPanel/CreateNewFacilityScroll/CreateNewFacilityContainer/CreateNewFacility" unique_id=1548885047]
+layout_mode = 2
+
+[node name="@HSeparator@33086" type="HSeparator" parent="VBoxContainer/HBoxContainer/RightPanel/CreateNewFacilityScroll/CreateNewFacilityContainer/CreateNewFacility" unique_id=1489485995]
+layout_mode = 2
+
+[node name="Biomass" type="RichTextLabel" parent="VBoxContainer/HBoxContainer/RightPanel/CreateNewFacilityScroll/CreateNewFacilityContainer/CreateNewFacility" unique_id=1381535425]
+layout_mode = 2
+bbcode_enabled = true
+text = "[img=30.0]res://textures/icons/biomass.svg[/img][b][font_size=15.0] Biomass"
+fit_content = true
+
+[node name="BiomassContainer" type="VBoxContainer" parent="VBoxContainer/HBoxContainer/RightPanel/CreateNewFacilityScroll/CreateNewFacilityContainer/CreateNewFacility" unique_id=1390224278]
+layout_mode = 2
+
+[node name="@HSeparator@33089" type="HSeparator" parent="VBoxContainer/HBoxContainer/RightPanel/CreateNewFacilityScroll/CreateNewFacilityContainer/CreateNewFacility" unique_id=628632601]
+layout_mode = 2
+
+[node name="Revenue" type="RichTextLabel" parent="VBoxContainer/HBoxContainer/RightPanel/CreateNewFacilityScroll/CreateNewFacilityContainer/CreateNewFacility" unique_id=563301071]
+layout_mode = 2
+bbcode_enabled = true
+text = "[img=30.0]res://textures/icons/revenue.svg[/img][b][font_size=15.0] Revenue"
+fit_content = true
+
+[node name="RevenueContainer" type="VBoxContainer" parent="VBoxContainer/HBoxContainer/RightPanel/CreateNewFacilityScroll/CreateNewFacilityContainer/CreateNewFacility" unique_id=967103710]
+layout_mode = 2
+
+[node name="@HSeparator@33092" type="HSeparator" parent="VBoxContainer/HBoxContainer/RightPanel/CreateNewFacilityScroll/CreateNewFacilityContainer/CreateNewFacility" unique_id=67300233]
+layout_mode = 2
+
+[node name="Population" type="RichTextLabel" parent="VBoxContainer/HBoxContainer/RightPanel/CreateNewFacilityScroll/CreateNewFacilityContainer/CreateNewFacility" unique_id=1618574529]
+layout_mode = 2
+bbcode_enabled = true
+text = "[img=30.0]res://textures/icons/population.svg[/img][b][font_size=15.0] Population"
+fit_content = true
+
+[node name="PopulationContainer" type="VBoxContainer" parent="VBoxContainer/HBoxContainer/RightPanel/CreateNewFacilityScroll/CreateNewFacilityContainer/CreateNewFacility" unique_id=1278997023]
+layout_mode = 2
+
+[node name="@HSeparator@33095" type="HSeparator" parent="VBoxContainer/HBoxContainer/RightPanel/CreateNewFacilityScroll/CreateNewFacilityContainer/CreateNewFacility" unique_id=246426353]
+layout_mode = 2
+
+[node name="Habitation" type="RichTextLabel" parent="VBoxContainer/HBoxContainer/RightPanel/CreateNewFacilityScroll/CreateNewFacilityContainer/CreateNewFacility" unique_id=1661534488]
+layout_mode = 2
+bbcode_enabled = true
+text = "[img=30.0]res://textures/icons/population.svg[/img][b][font_size=15.0] Habitation"
+fit_content = true
+
+[node name="HabitationContainer" type="VBoxContainer" parent="VBoxContainer/HBoxContainer/RightPanel/CreateNewFacilityScroll/CreateNewFacilityContainer/CreateNewFacility" unique_id=975532669]
+layout_mode = 2
+
+[node name="@HSeparator@33098" type="HSeparator" parent="VBoxContainer/HBoxContainer/RightPanel/CreateNewFacilityScroll/CreateNewFacilityContainer/CreateNewFacility" unique_id=1683271963]
+layout_mode = 2
+
+[node name="Misc" type="RichTextLabel" parent="VBoxContainer/HBoxContainer/RightPanel/CreateNewFacilityScroll/CreateNewFacilityContainer/CreateNewFacility" unique_id=626715236]
+layout_mode = 2
+bbcode_enabled = true
+text = "[img=30.0]res://textures/icons/misc.svg[/img][b][font_size=15.0] Misc"
+fit_content = true
+
+[node name="MiscContainer" type="VBoxContainer" parent="VBoxContainer/HBoxContainer/RightPanel/CreateNewFacilityScroll/CreateNewFacilityContainer/CreateNewFacility" unique_id=815794266]
+layout_mode = 2
+
+[node name="@HSeparator@33101" type="HSeparator" parent="VBoxContainer/HBoxContainer/RightPanel/CreateNewFacilityScroll/CreateNewFacilityContainer/CreateNewFacility" unique_id=384664987]
+layout_mode = 2
+
+[node name="Undefined" type="RichTextLabel" parent="VBoxContainer/HBoxContainer/RightPanel/CreateNewFacilityScroll/CreateNewFacilityContainer/CreateNewFacility" unique_id=1220628437]
+layout_mode = 2
+bbcode_enabled = true
+text = "[img=30.0]res://textures/icons/question_mark.svg[/img][b][font_size=15.0] Undefined"
+fit_content = true
+
+[node name="UndefinedContainer" type="VBoxContainer" parent="VBoxContainer/HBoxContainer/RightPanel/CreateNewFacilityScroll/CreateNewFacilityContainer/CreateNewFacility" unique_id=65139189]
+layout_mode = 2
+
+[node name="@HSeparator@33104" type="HSeparator" parent="VBoxContainer/HBoxContainer/RightPanel/CreateNewFacilityScroll/CreateNewFacilityContainer/CreateNewFacility" unique_id=702619525]
+layout_mode = 2
+
 [node name="Close" type="Button" parent="." unique_id=569224568]
 layout_mode = 1
 anchors_preset = 1

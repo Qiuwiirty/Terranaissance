@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="RawFacilityData" format=3 uid="uid://irl3tnkf52pd"]
+[gd_resource type="Resource" script_class="FacilityData" format=3 uid="uid://irl3tnkf52pd"]
 
 [ext_resource type="Script" uid="uid://1flyyadga3lu" path="res://planet_logic/city_properties.gd" id="1_ka5cn"]
 [ext_resource type="Script" uid="uid://dw1qgmnck54ie" path="res://planet_logic/facility_data.gd" id="2_hlavr"]
