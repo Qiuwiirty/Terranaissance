@@ -30,6 +30,17 @@ const CATEGORY_TO_TEXTURE: Dictionary[Category, Texture2D] = {
 	Category.MISC: preload("uid://da5o8jj66i7p"),
 	Category.UNDEFINED: preload("uid://b522w6sxphy5b")
 }
+const CATEGORY_TO_SUFFIX: Dictionary[Category, String] = {
+	Category.TEMPERATURE: "mK",
+	Category.PRESSURE: "Pa",
+	Category.WATER: "cm",
+	Category.REVENUE: "Tr",
+	Category.BIOMASS: "Mt",
+	Category.POPULATION: "people",
+	Category.HABITATION: "unit",
+	Category.MISC: "",
+	Category.UNDEFINED: "Unindentified suffix"
+}
 var city: City
 var name: StringName = &"Unnamed"
 var description: StringName
