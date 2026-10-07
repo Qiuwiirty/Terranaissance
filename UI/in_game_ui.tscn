@@ -103,7 +103,7 @@ anchor_right = 0.8
 anchor_bottom = 0.8
 grow_horizontal = 2
 grow_vertical = 2
-current_tab = 3
+current_tab = 1
 tab_0/title = "Planet summary"
 tab_1/title = "Planet environment"
 tab_2/title = "Culture"
@@ -130,7 +130,6 @@ Cities: Meowmeowmoewmeooo
 More advanced statistics comming soon"
 
 [node name="EnvironmentScroll" type="ScrollContainer" parent="ControlTab" unique_id=2087545349]
-visible = false
 layout_mode = 2
 metadata/_tab_index = 1
 metadata/_tab_name = "Planet environment"
@@ -233,6 +232,7 @@ layout_mode = 2
 layout_mode = 2
 
 [node name="ResearchScroll" type="ScrollContainer" parent="ControlTab" unique_id=1558167638]
+visible = false
 layout_mode = 2
 metadata/_tab_index = 3
 metadata/_tab_name = "Research"
@@ -240,6 +240,11 @@ metadata/_tab_name = "Research"
 [node name="TechnologiesUI" parent="ControlTab/ResearchScroll" unique_id=632957648 instance=ExtResource("14_xna2x")]
 layout_mode = 2
 script = ExtResource("16_ppkve")
+exception_nodes = Array[String](["ResearchWaitTaskContainer"])
+disabled_facilities = Array[String]([])
+
+[node name="ResearchWaitTaskContainer" type="VBoxContainer" parent="ControlTab/ResearchScroll/TechnologiesUI" unique_id=233144922]
+layout_mode = 2
 
 [node name="Temperature" type="RichTextLabel" parent="ControlTab/ResearchScroll/TechnologiesUI" unique_id=1571932879]
 layout_mode = 2

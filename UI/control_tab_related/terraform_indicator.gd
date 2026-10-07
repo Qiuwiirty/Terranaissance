@@ -26,6 +26,7 @@ func _ready() -> void:
 func _update() -> void:
 	#i write this code sleepily, apologise for the weird-ity
 	var var_name : String = Facility.Category.keys()[category].to_lower()
+	tooltip_text = str(roundi(terraform_properties.get(var_name)))
 	if !TerraformProperties.HABITABILITY_RANGES[target_life_classification].has(var_name):
 		hide()
 		return

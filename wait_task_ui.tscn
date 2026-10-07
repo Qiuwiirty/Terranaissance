@@ -1,0 +1,30 @@
+[gd_scene format=3 uid="uid://cdcdv03hk3xut"]
+
+[ext_resource type="Script" uid="uid://dsqub2yh85hvi" path="res://UI/wait_task_ui.gd" id="1_r76fx"]
+
+[node name="WaitTaskUI" type="VBoxContainer" unique_id=95836230]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_r76fx")
+
+[node name="Head" type="RichTextLabel" parent="." unique_id=826494465]
+layout_mode = 2
+bbcode_enabled = true
+text = "[b][insert what to wait (e.g. Researching on cooler alpha)"
+fit_content = true
+
+[node name="TimeLeft" type="Label" parent="." unique_id=1229507910]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Time left: 00:00:000"
+
+[node name="Progress" type="ColorRect" parent="." unique_id=106779488]
+custom_minimum_size = Vector2(0, 10)
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.1
+offset_transform_enabled = true
+offset_transform_pivot_ratio = Vector2(0, 0.5)

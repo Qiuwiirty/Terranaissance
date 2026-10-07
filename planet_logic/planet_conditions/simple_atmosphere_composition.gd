@@ -2,6 +2,8 @@ extends AtmosphereComposition
 class_name SimpleAtmosphereComposition
 const OXYGEN_GRADIENT : Gradient = preload("uid://w3mrnkqo8pl2")
 @export var oxygen_gas_data : GasData = GasData.new(load("uid://dpncodof1o6e8"), 0.0)
+var other_gases_data := GasData.new(load("uid://c0h7m376er5do"), 0.0) 
+#It use the 'Other gases', which is non-toxic and provide little greenhouse effect
 #Initially, might wanna added co2, inert gas and toxic gas. Then realizing it's becoming too complex (which is kinda counterintuitive)
 const HABITABILITY_RANGES : Dictionary[TerraformProperties.TerraformClassification, Dictionary] = {
 	TerraformProperties.TerraformClassification.PERFECT: {&"Oxygen": Vector2(190_000, 220_000)},
@@ -31,11 +33,13 @@ func mutiply(other: AtmosphereComposition) -> void:
 	
 func mutiply_float(value: float) -> void:
 	oxygen_gas_data.ppm *= value
-func get_symbols() -> Dictionary[StringName, String]:
-	return {&"Oxygen": "O₂"}
 	
 func get_elements() -> Dictionary[StringName, GasData]:
-	return {&"Oxygen": oxygen_gas_data}
+	other_gases_data.ppm = 1_000_000 - oxygen_gas_data.ppm
+	return {
+		&"Oxygen": oxygen_gas_data,
+		&"Other gases": other_gases_data,
+	}
 	
 func get_custom_colors() -> Array[Color]:
 	return [Color.AQUAMARINE, Color.DIM_GRAY]

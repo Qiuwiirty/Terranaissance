@@ -125,20 +125,6 @@ func mutiply_float(value: float) -> void:
 	
 func add_new_gas(gas_data: GasData) -> void:
 	gases.set(gas_data.gas.name, gas_data)
-func get_symbols() -> Dictionary[StringName, String]:
-	var symbols : Dictionary[StringName, String]
-	for gas_data in gases.values():
-		symbols[gas_data.gas.name] = gas_data.symbol
-	return {
-		&"Oxygen": "O₂",
-		&"nitrogen": "N₂",
-		&"carbon_dioxide": "CO₂",
-		&"sulfur_dioxide": "SO₂",
-		&"methane": "CH₄",
-		&"argon": "Ar",
-		&"hydrogen": "H₂",
-		&"helium": "He",
-	}
 	
 func get_elements() -> Dictionary[StringName, GasData]:
 	return gases

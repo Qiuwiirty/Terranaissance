@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Gas" format=3 uid="uid://c0h7m376er5do"]
+
+[ext_resource type="Script" uid="uid://qswxg1eb4r31" path="res://planet_logic/planet_conditions/gas.gd" id="1_gcefc"]
+
+[resource]
+script = ExtResource("1_gcefc")
+name = "Other gases"
+symbol = "Oth"
+greenhouse = 1.0
+color = Color(0.1728327, 0.17283267, 0.17283267, 1)
+metadata/_custom_type_script = "uid://qswxg1eb4r31"

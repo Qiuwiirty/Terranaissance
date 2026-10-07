@@ -31,7 +31,7 @@ func _update() -> void:
 				piechart.queue_redraw()
 				donut_redraw = true
 			return
-		elif elements.values().any(func(value): return is_zero_approx(value)):
+		elif elements.values().any(func(value): return is_zero_approx(value.ppm)):
 			if !donut_redraw:
 				piechart.set_new_data({"None": 1_000_000.})
 				piechart.doughnut_shape = true
@@ -42,7 +42,7 @@ func _update() -> void:
 		donut_redraw = false
 		piechart.doughnut_shape = false
 		piechart.set_new_data(
-				Game.get_dict_sentence_case(Game.planet.terraform_properties.atmosphere_composition.get_elements())
+				AtmosphereComposition.dict_gas_data_into_ppm(Game.planet.terraform_properties.atmosphere_composition.get_elements())
 			)
 		piechart.custom_scale = Game.planet.terraform_properties.atmosphere_composition.get_custom_colors()
 func _update_terraform_indicator_target_life(target: TerraformProperties.TerraformClassification) -> void:

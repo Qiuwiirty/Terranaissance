@@ -13,7 +13,12 @@ extends Resource
 #@abstract func divide() -> void
 
 #region Statistic purposes
-@abstract func get_symbols() -> Dictionary[StringName, String]
 @abstract func get_custom_colors() -> Array[Color] #Used for statistics so no need to be dictionary
 @abstract func get_elements() -> Dictionary[StringName, GasData]
 @abstract func get_habitability_ranges() -> Dictionary[TerraformProperties.TerraformClassification, Dictionary]
+
+static func dict_gas_data_into_ppm(dict: Dictionary[StringName, GasData]) -> Dictionary[StringName, float]:
+	var name_to_ppm : Dictionary[StringName, float]
+	for key in dict:
+		name_to_ppm[key] = dict[key].ppm
+	return name_to_ppm

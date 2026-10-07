@@ -24,7 +24,7 @@ var greenhouse_effect := 0.0 #Inferred from atmosphere composition
 @export var biomass := 0.0 ##In mt (megatonnes)
 @export var revenue := 0.0 ##In terras money
 func add(other: TerraformProperties) -> void:
-	temperature += other.temperature
+	_temperature += other._temperature
 	if atmosphere_composition:
 		atmosphere_composition.add(other.atmosphere_composition)
 	water += other.water
@@ -32,7 +32,7 @@ func add(other: TerraformProperties) -> void:
 	revenue += other.revenue
 
 func subtract(other: TerraformProperties) -> void:
-	temperature -= other.temperature
+	_temperature -= other.temperature
 	if atmosphere_composition:
 		atmosphere_composition.subtract(other.atmosphere_composition)
 	water -= other.water
@@ -40,7 +40,7 @@ func subtract(other: TerraformProperties) -> void:
 	revenue -= other.revenue
 
 func mutiply(other: TerraformProperties) -> void:
-	temperature *= other.temperature
+	_temperature *= other.temperature
 	if atmosphere_composition:
 		atmosphere_composition.mutiply(other.atmosphere_composition)
 	water *= other.water
@@ -48,7 +48,7 @@ func mutiply(other: TerraformProperties) -> void:
 	revenue *= other.revenue
 	
 func mutiply_float(value: float) -> void:
-	temperature *= value
+	_temperature *= value
 	if atmosphere_composition:
 		atmosphere_composition.mutiply_float(value)
 	water *= value
@@ -98,9 +98,12 @@ func get_habitability() -> TerraformClassification:
 			
 	return TerraformClassification.BARREN
 
-#TODO: FIX THIS:::!!!
 ##If used upon simple atmosphere composition, the values would be automatically inferred from complex
 func load_from_starting_terraform_properties(other_terraform_properties: TerraformProperties) -> void:
+	pressure = other_terraform_properties.pressure
+	temperature = other_terraform_properties.temperature
+	water = other_terraform_properties.water
+	biomass = other_terraform_properties.biomass
 	var other_starting_atmosphere : AtmosphereComposition = other_terraform_properties.atmosphere_composition
 	if other_starting_atmosphere.get_script() == atmosphere_composition.get_script():
 		atmosphere_composition = other_starting_atmosphere

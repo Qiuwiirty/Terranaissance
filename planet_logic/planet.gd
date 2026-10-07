@@ -51,9 +51,15 @@ func _on_update_tick() -> void:
 		wait_task.checkup()
 	total_population = floori(pop)
 	var greenhouse_data := _get_greenhouse_and_ppm_sum()
+	
 	terraform_properties.greenhouse_effect = greenhouse_data[0] * log(1+greenhouse_data[1]) * (terraform_properties.pressure / 100) #simplified from greenhouse_data[0] * log(1+greenhouse_data[1]) * (terraform_properties.pressure / 100_000) * 1000
 func _get_greenhouse_and_ppm_sum() -> Array[float]:
-	return [10., 10.]
+	var sum_greenhouse := 0.0
+	var sum_ppm := 0.0
+	for gas_data: GasData in terraform_properties.atmosphere_composition.get_elements().values():
+		sum_greenhouse += gas_data.gas.greenhouse
+		sum_ppm += gas_data.ppm
+	return [sum_greenhouse, sum_ppm]
 func _define_biomass_color() -> void:
 	var rng := RandomNumberGenerator.new()
 	rng.seed = planet_properties.name.hash()
@@ -62,6 +68,7 @@ func _define_biomass_color() -> void:
 func start() -> void: ##Intended for starting a new world. Which expect everything to be empty so it will override some things (which can definetly reset the data so use carefully)
 	planet_state = PlanetState.new()
 	planet_state.terras = 10_000_000
+	##FIX THIS:: vvv 
 	terraform_properties.atmosphere_composition = SimpleAtmosphereComposition.new() if planet_state.terra_mode == PlanetState.TerraMode.SIMPLE else ComplexAtmosphereComposition.new()
 	terraform_properties.load_from_starting_terraform_properties(planet_properties.starting_terraform_properties)
 	init_planet_properties()

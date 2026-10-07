@@ -157,6 +157,7 @@ static func format_time_timer(seconds: int) -> String:
 		return "%dd %02d:%02d:%02d" % [days, hours, minutes, seconds]
 		
 	return "%02d:%02d:%02d" % [hours, minutes, seconds]
+	
 ##Sometimes planet not available when on main menu or such, so you gotta use this
 func get_planet() -> Planet:
 	if !planet:

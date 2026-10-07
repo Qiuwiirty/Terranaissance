@@ -17,3 +17,6 @@ func _update() -> void:
 	info.text = Game.get_modifier_descriptions(facility_data.get_modifiers(), "Any gas" if !any_gas else any_gas.name)
 	if price_mode != TechnologiesUI.PriceShow.NONE:
 		price_label.text = str(facility_data.research_cost if price_mode == TechnologiesUI.PriceShow.RESEARCH else facility_data.build_cost) + " Tr"
+
+func disable() -> void:
+	button.disabled = true

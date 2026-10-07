@@ -15,3 +15,7 @@ func checkup() -> void:
 		completed.emit()
 func get_elapsed() -> int:
 	return int(Time.get_unix_time_from_system()) - started_at
+func get_progress() -> float:
+	return float(get_elapsed()) / duration
+func get_time_left() -> int:
+	return duration - get_elapsed()

@@ -11,6 +11,8 @@ const FACILITY_DATA_ITEM_UI := preload("uid://2oamdxx0a6o4")
 @export var price_mode := PriceShow.BUILD
 @export var available_facility_data: Array[FacilityData]
 @export var ui_scale : float = 1.0
+@export var exception_nodes: Array[String]
+@export var disabled_facilities: Array[String]
 @export_tool_button("Create Categories")
 var create_categories_button := create_categories
 @export_tool_button("Clean Categories")
@@ -20,8 +22,7 @@ func _ready() -> void:
 	update_available_facilities()
 func create_categories() -> void:
 	if Engine.is_editor_hint():
-		for child in get_children():
-			child.queue_free()
+		clean_categories()
 		await get_tree().process_frame
 		for category in Facility.Category.values():
 			var category_name : String = Facility.Category.keys()[category].capitalize()
@@ -50,7 +51,8 @@ func create_categories() -> void:
 func clean_categories() -> void:
 	if Engine.is_editor_hint():
 		for child in get_children():
-			child.queue_free()
+			if !(child.name in exception_nodes):
+				child.queue_free()
 ## If all, then it will create every facilities in res://predefined/raw_facilities/ . Else, use available_facility_data
 func update_available_facilities(all := false) -> void:
 	#prepare first..
@@ -79,3 +81,13 @@ func update_available_facilities(all := false) -> void:
 				new_facility_data_item_ui.button.button_up.connect(_facility_data_selected.bind(facility_data))
 func _facility_data_selected(facility_data: FacilityData) -> void:
 	facility_data_selected.emit(facility_data)
+##The facilities and containers must exist first so it can be used to disable
+func disable_facility_data() -> void:
+	for category in Facility.Category.values():
+		var category_container_name : String = Facility.Category.keys()[category].capitalize().replace(" ", "") + "Container"
+		var category_container : VBoxContainer = get_node_or_null(category_container_name)
+		if category_container:
+			for node_name: String in disabled_facilities:
+				for facility_ui: FacilityDataItemUI in category_container.get_children():
+					if facility_ui.facility_data.name in disabled_facilities:
+						facility_ui.disable()
