@@ -69,7 +69,7 @@ const HABITABILITY_RANGES : Dictionary[TerraformClassification, Dictionary] = {
 	},
 	TerraformClassification.PLANT_LIFE: {
 		"temperature": Vector2(210_000.0, 350_000.0),
-		"pressure": Vector2(40_000.0, 1_000_000.0),
+		"pressure": Vector2(40_000.0, 200_000.0),
 		"water": 0.40,
 	},
 	TerraformClassification.MICROBE_LIFE: {

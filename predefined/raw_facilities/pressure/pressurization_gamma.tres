@@ -33,6 +33,6 @@ name = &"Pressurization Gamma"
 category = 1
 terraform_modifier_per_tick = SubResource("Resource_85ne0")
 build_cost = 1000000
-build_time = 7200.0
+build_time = 7200
 maintanence = 2000
 metadata/_custom_type_script = "uid://dw1qgmnck54ie"
