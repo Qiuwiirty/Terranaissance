@@ -1,3 +1,4 @@
+@icon("uid://ct1igbjlm685b")
 extends Resource
 class_name Event
 ## It's like a log (not wood log)

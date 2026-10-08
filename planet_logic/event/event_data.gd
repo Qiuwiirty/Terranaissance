@@ -1,3 +1,4 @@
+@icon("uid://biuolv77yjw7r")
 extends Resource
 class_name EventData
 @export var event : Event

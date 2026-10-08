@@ -1,0 +1,23 @@
+[gd_resource type="Resource" script_class="EventData" format=3 uid="uid://qpuqq2vlimhp"]
+
+[ext_resource type="Script" uid="uid://dl1fq3j4ym0lh" path="res://planet_logic/event/event_data.gd" id="1_heqsm"]
+[ext_resource type="Script" uid="uid://b5a1uxp4bomgn" path="res://planet_logic/event/impactful_event.gd" id="1_r6h4c"]
+[ext_resource type="Script" uid="uid://bu5bdw38wijvt" path="res://planet_logic/planet_conditions/terraform_properties.gd" id="2_iqh14"]
+
+[sub_resource type="Resource" id="Resource_vh11j"]
+script = ExtResource("2_iqh14")
+temperature = 4.0
+metadata/_custom_type_script = "uid://bu5bdw38wijvt"
+
+[sub_resource type="Resource" id="Resource_pqcq1"]
+script = ExtResource("1_r6h4c")
+terraform_modifier_per_tick = SubResource("Resource_vh11j")
+title = "Geothermal warming"
+description = "Out of nowhere, a geothermal have been found on {planet}! It been increasing your planet temperature by 4mk per tick. So uh, idk"
+metadata/_custom_type_script = "uid://b5a1uxp4bomgn"
+
+[resource]
+script = ExtResource("1_heqsm")
+event = SubResource("Resource_pqcq1")
+probability_in_days = 10.0
+metadata/_custom_type_script = "uid://dl1fq3j4ym0lh"

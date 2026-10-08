@@ -14,7 +14,7 @@ script = ExtResource("2_ypdjp")
 
 [node name="Title" parent="VBoxContainer/HBoxContainer" parent_id_path=PackedInt32Array(1161947297) index="0" unique_id=1532387795]
 unique_name_in_owner = true
-text = "NO title"
+text = "NO titleq"
 
 [node name="Description" type="RichTextLabel" parent="VBoxContainer" parent_id_path=PackedInt32Array(695569886) index="2" unique_id=790824975]
 unique_name_in_owner = true

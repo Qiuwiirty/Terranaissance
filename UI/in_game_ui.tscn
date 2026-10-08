@@ -241,7 +241,6 @@ metadata/_tab_name = "Research"
 layout_mode = 2
 script = ExtResource("16_ppkve")
 exception_nodes = Array[String](["ResearchWaitTaskContainer"])
-disabled_facilities = Array[String]([])
 
 [node name="ResearchWaitTaskContainer" type="VBoxContainer" parent="ControlTab/ResearchScroll/TechnologiesUI" unique_id=233144922]
 layout_mode = 2

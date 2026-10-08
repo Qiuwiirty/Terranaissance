@@ -3,9 +3,7 @@ class_name EventPopup
 @onready var title_label : Label = %Title
 @onready var description_label : RichTextLabel = %Description
 @onready var buttons_container: HBoxContainer = %Buttons
-func _ready() -> void:
-	var new_event := Event.new()
-	open_popup_event(new_event)
+## Second argument is optional and will default to normal OK button, unless specify to add other options
 func open_popup_event(event: Event, event_buttons: Array[EventPopupButton] = [EventPopupButton.new("OK")]) -> void:
 	title_label.text = event.title
 	description_label.text = event.description
