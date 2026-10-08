@@ -1,0 +1,29 @@
+[gd_scene format=3 uid="uid://crofnifuy04p3"]
+
+[ext_resource type="PackedScene" uid="uid://cbb4111q3cksw" path="res://UI/simple_popup.tscn" id="1_l5xeq"]
+[ext_resource type="Script" uid="uid://cjf1y2ayrwynv" path="res://UI/event_related/event_popup.gd" id="2_ypdjp"]
+
+[node name="EventPopup" unique_id=224112140 instance=ExtResource("1_l5xeq")]
+visible = true
+anchors_preset = -1
+anchor_left = 0.3
+anchor_top = 0.4
+anchor_right = 0.7
+anchor_bottom = 0.7
+script = ExtResource("2_ypdjp")
+
+[node name="Title" parent="VBoxContainer/HBoxContainer" parent_id_path=PackedInt32Array(1161947297) index="0" unique_id=1532387795]
+unique_name_in_owner = true
+text = "NO title"
+
+[node name="Description" type="RichTextLabel" parent="VBoxContainer" parent_id_path=PackedInt32Array(695569886) index="2" unique_id=790824975]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+bbcode_enabled = true
+text = "Aiyo"
+fit_content = true
+
+[node name="Buttons" type="HBoxContainer" parent="VBoxContainer" parent_id_path=PackedInt32Array(695569886) index="3" unique_id=88527220]
+unique_name_in_owner = true
+layout_mode = 2
