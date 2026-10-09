@@ -2,7 +2,6 @@ extends Resource
 class_name CityProperties
 @export var population : float = 0. #Why not in int? So population can be increased by mutiplication which eventually accumulate. also it will be rounded when showed
 @export var habitations : int = 0
-
 func add(other: CityProperties) -> void:
 	population += other.population
 	habitations += other.habitations

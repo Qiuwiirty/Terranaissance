@@ -1,4 +1,4 @@
-@icon("uid://biuolv77yjw7r")
+@icon("uid://can0ss7kqw816")
 extends DirectionalLight3D
 class_name Sun
 enum StarType {

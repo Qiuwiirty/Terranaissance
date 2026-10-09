@@ -19,5 +19,6 @@ metadata/_custom_type_script = "uid://b5a1uxp4bomgn"
 [resource]
 script = ExtResource("1_heqsm")
 event = SubResource("Resource_pqcq1")
-probability_in_days = 10.0
+average_interval_days = 10.0
+is_global = true
 metadata/_custom_type_script = "uid://dl1fq3j4ym0lh"

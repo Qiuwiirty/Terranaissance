@@ -12,6 +12,8 @@ var governor : Variant
 
 var properties : CityProperties = CityProperties.new()
 var properties_modifier_per_tick : CityProperties = CityProperties.new()
+
+var events_log: Array[Event]
 func run() -> void:
 	properties.population *= 1.00021 + randf_range(-0.00021, 0.00021)
 	properties.population = minf(properties.population, properties.habitations)

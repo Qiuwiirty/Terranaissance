@@ -8,6 +8,6 @@ name = "Atmorichment Alpha"
 category = 2
 any_gas_modifier_per_tick = 4.0
 build_cost = 300000
-build_time = 2200.0
+build_time = 2200
 maintanence = 600
 metadata/_custom_type_script = "uid://dw1qgmnck54ie"

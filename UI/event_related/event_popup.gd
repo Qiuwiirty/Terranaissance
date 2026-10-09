@@ -5,6 +5,9 @@ class_name EventPopup
 @onready var buttons_container: HBoxContainer = %Buttons
 ## Second argument is optional and will default to normal OK button, unless specify to add other options
 func open_popup_event(event: Event, event_buttons: Array[EventPopupButton] = [EventPopupButton.new("OK")]) -> void:
+	for child in buttons_container.get_children(): 
+		child.queue_free()
+	open()
 	title_label.text = event.title
 	description_label.text = event.description
 	for event_button: EventPopupButton in event_buttons:
@@ -13,5 +16,5 @@ func open_popup_event(event: Event, event_buttons: Array[EventPopupButton] = [Ev
 		new_button.button_up.connect(close)
 		if event_button.button_up_callable:
 			new_button.button_up.connect(event_button.button_up_callable)
-		new_button.size_flags_horizontal = Control.SIZE_FILL
+		new_button.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 		buttons_container.add_child(new_button)

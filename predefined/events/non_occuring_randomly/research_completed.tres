@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="EventData" format=3 uid="uid://bcwbsibu456js"]
+
+[ext_resource type="Script" uid="uid://bgi5dale8qjvq" path="res://planet_logic/event/event.gd" id="1_0aoe1"]
+[ext_resource type="Script" uid="uid://dl1fq3j4ym0lh" path="res://planet_logic/event/event_data.gd" id="1_03t1v"]
+
+[sub_resource type="Resource" id="Resource_0aoe1"]
+script = ExtResource("1_0aoe1")
+title = "Research completed"
+description = "{research} have been completed!"
+metadata/_custom_type_script = "uid://bgi5dale8qjvq"
+
+[resource]
+script = ExtResource("1_03t1v")
+event = SubResource("Resource_0aoe1")
+metadata/_custom_type_script = "uid://dl1fq3j4ym0lh"

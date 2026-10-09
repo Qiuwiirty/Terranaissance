@@ -2,6 +2,7 @@
 extends TechnologiesUI
 class_name ResearchUI
 const WAIT_TASK_UI := preload("uid://cdcdv03hk3xut")
+var research_completed_event : EventData = load("uid://bcwbsibu456js")
 @onready var confirm_research : AreYouSure = %AreYouSureResearch
 @onready var research_wait_task_container: VBoxContainer = $ResearchWaitTaskContainer
 func _ready() -> void:
@@ -23,6 +24,9 @@ func _facility_research_selected(facility_data: FacilityData) -> void:
 		new_wait_task_ui.wait_task = new_wait_task
 		new_wait_task_ui.head_text = "Researching " + facility_data.name
 		new_wait_task.completed.connect(new_wait_task_ui.queue_free)
+		var new_research_completed_event : Event = research_completed_event.event
+		new_research_completed_event.description = new_research_completed_event.description.format({"research": facility_data.name})
+		new_wait_task.completed.connect(Game.in_game_ui.event_popup.open_popup_event.bind(new_research_completed_event))
 		research_wait_task_container.add_child(new_wait_task_ui)
 func _research_completed(facility_data: FacilityData) -> void:
 	Game.planet.planet_state.researched_technologies.append(facility_data)

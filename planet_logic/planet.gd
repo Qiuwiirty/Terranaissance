@@ -4,7 +4,7 @@ signal city_created(city: City)
 signal city_destroyed(city: City)
 const OXYGEN_GRADIENT: Gradient = preload("uid://w3mrnkqo8pl2")
 @onready var tick_timer : Timer = $TickTimer
-
+var all_event_data: Array[EventData]
 var planet_state: PlanetState
 var planet_properties : PlanetProperties
 var terraform_properties : TerraformProperties = TerraformProperties.new()
@@ -25,6 +25,7 @@ var total_habitation : int:
 			total += city.properties.habitations
 		return total
 var wait_tasks: Array[WaitTask]
+var events_log: Array[Event] #This does NOT include cities log. Only that are truly global
 func append_wait_task(wait_task: WaitTask) -> void:
 	wait_tasks.append(wait_task)
 	wait_task.completed.connect(erase_wait_task.bind(wait_task))
@@ -53,6 +54,7 @@ func _on_update_tick() -> void:
 	var greenhouse_data := _get_greenhouse_and_ppm_sum()
 	
 	terraform_properties.greenhouse_effect = greenhouse_data[0] * log(1+greenhouse_data[1]) * (terraform_properties.pressure / 100) #simplified from greenhouse_data[0] * log(1+greenhouse_data[1]) * (terraform_properties.pressure / 100_000) * 1000
+	random_events()
 func _get_greenhouse_and_ppm_sum() -> Array[float]:
 	var sum_greenhouse := 0.0
 	var sum_ppm := 0.0
@@ -72,6 +74,10 @@ func start() -> void: ##Intended for starting a new world. Which expect everythi
 	terraform_properties.atmosphere_composition = SimpleAtmosphereComposition.new() if planet_state.terra_mode == PlanetState.TerraMode.SIMPLE else ComplexAtmosphereComposition.new()
 	terraform_properties.load_from_starting_terraform_properties(planet_properties.starting_terraform_properties)
 	init_planet_properties()
+	for tres_file: String in Game.get_all_tres_files("res://predefined/events/"):
+		var new_event_data : EventData = load(tres_file)
+		if !is_zero_approx(new_event_data.average_interval_days):
+			all_event_data.append(new_event_data)
 func init_planet_properties() -> void:
 	_define_biomass_color()
 	rotation_degrees.z = planet_properties.axial_tilt
@@ -122,7 +128,7 @@ func prepare_gas_giant_appearance() -> void: #Not actually turning into gas gian
 	mat.set_shader_parameter("full_cloud_noise_map", new_noise_tex)
 	mat.set_shader_parameter("color_band1", planet_properties.representative_color)
 	mat.set_shader_parameter("color_band2", planet_properties.representative_color * 0.7)
-
+	
 
 func _on_planet_input_event(_camera: Node, event: InputEvent, event_position: Vector3, _normal: Vector3, _shape_idx: int) -> void:
 	if not in_creating_city and event is InputEventMouseButton and event.is_pressed() and event.button_index == MOUSE_BUTTON_LEFT:
@@ -142,5 +148,36 @@ func _on_planet_input_event(_camera: Node, event: InputEvent, event_position: Ve
 		update_cities_light()
 		city_created.emit(new_city)
 
+func random_events(delta_time := 1.0) -> void:
+	for event_data: EventData in all_event_data:
+		if is_zero_approx(event_data.average_interval_days):
+			continue
+		
+		var probability := 1.0 - exp(-delta_time / event_data.average_interval_days)
+		if randf() >= probability:
+			continue
+			
+		var city: City = null
+		if !event_data.is_global:
+			if cities.is_empty():
+				continue
+			city = cities.pick_random()
+			
+		var adj_event_data := event_data.event.duplicate(true)
+		var format_args := {
+			"planet": planet_properties.name
+		}
+		if city != null:
+			format_args["city"] = city.name
+			
+		adj_event_data.title = event_data.event.title.format(format_args)
+		adj_event_data.description = event_data.event.description.format(format_args)
+		
+		Game.in_game_ui.event_popup.open_popup_event(adj_event_data)
+		
+		if city != null:
+			city.events_log.append(adj_event_data)
+		else:
+			events_log.append(adj_event_data)
 func fire() -> void:
 	pass
