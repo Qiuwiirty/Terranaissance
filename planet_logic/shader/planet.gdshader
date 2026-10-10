@@ -5,7 +5,8 @@ uniform sampler2D cloud_map;
 uniform sampler2D full_cloud_noise_map;
 uniform sampler2D city_light_map: filter_nearest;
 uniform float normalized_sea_level: hint_range(0.0, 1.0); //this is relative 0.0-1.0, calculate the relative of sea level with max sea level
-uniform float normalized_temperature; //0.0 is the ideal temperature
+uniform float normalized_temperature; //0.0 is the ideal temperature, 1.0 is hot, -1.0 is cold (STARTING TEMPERATURE IS 287,000)
+uniform float ice_coverage; //Cannot used with normalized temperature because this start point as 300,000 (Also, normalizes 0.0-1.0)
 uniform float cloud_alpha;
 uniform float band_count = 5.;
 uniform vec3 color_band1: source_color = vec3(.75);
@@ -61,8 +62,11 @@ void fragment() {
 		vec3 sea = vec3(0.0, 0.0, 1.0);
 		vec4 cloud = get_cloud(UV);
 		vec3 land_sea = mix(land, sea, float(underwater));
-		vec3 land_sea_cloud = mix(land_sea, cloud.rgb, cloud.a * cloud_alpha);
-		ALBEDO = land_sea_cloud;
+		vec3 land_sea_cloud = mix(land_sea, cloud.rgb, cloud.a * cloud_alpha); //ERROR
+		float base_threshold = mix(0.9, 0.3, latitude);
+		float climate_threshold = base_threshold - (elevation * 0.3);
+		float ice = step(climate_threshold, ice_coverage);
+		ALBEDO = mix(land_sea_cloud, vec3(1.0) - (0.1 * vec3(elevation)), ice);
 		
 		vec3 sun_dir_view = (VIEW_MATRIX * vec4(sun_direction, 0.0)).xyz;
 		float sunlight = dot(NORMAL, normalize(sun_dir_view));
@@ -96,5 +100,4 @@ void fragment() {
 	{
 		ALBEDO = gas_giant(UV);
 	}
-	
 }

@@ -94,6 +94,7 @@ func update_appearance() -> void:
 	mat.set_shader_parameter("biomass_coverage", terraform_properties.biomass / planet_properties.max_biomass)
 	mat.set_shader_parameter("normalized_temperature", (terraform_properties.temperature - planet_properties.TEMPERATURE_REQUIREMENT) / 5000.)
 	mat.set_shader_parameter("cloud_alpha", terraform_properties.pressure / 100000)
+	mat.set_shader_parameter("ice_coverage", terraform_properties.ice / planet_properties.max_elevation)
 	if terraform_properties.pressure > 0 and terraform_properties.pressure < 500000:
 		atmosphere.show()
 		atmosphere.mesh.material.set_shader_parameter("atmosphere_strength", terraform_properties.pressure / 100000)
