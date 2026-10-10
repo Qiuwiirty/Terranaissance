@@ -12,5 +12,5 @@ metadata/_custom_type_script = "uid://bgi5dale8qjvq"
 [resource]
 script = ExtResource("2_eo5t1")
 event = SubResource("Resource_nj4uh")
-average_interval_days = 1.0
+average_interval_days = 10.0
 metadata/_custom_type_script = "uid://dl1fq3j4ym0lh"

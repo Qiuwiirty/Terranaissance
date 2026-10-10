@@ -16,28 +16,34 @@ class_name FacilityData
 #endregion
 #Things that are also important (for research specifically)
 @export_multiline var description: String = "" ##The description that will showed up
-@export var build_cost: int = 0 ##In terras
+@export var build_cost: int = 0: ##In terras
+	get:
+		if Game.cheat:
+			return 1
+		return build_cost
 @export_range(0.0, 18_000, 1.0, "or_greater", "suffix:s")
-var build_time: int = 0
+var build_time: int = 0:
+	get:
+		if Game.cheat:
+			return 1
+		return build_time
 @export_range(0, 100_000, 1, "or_greater", "suffix:Tr") var maintanence := 0 #in terras
 @export_category("Optional (Can be inferred if left -1)")
-@export var _research_cost := -1
-var research_cost: int:
+var research_cost: int: #just found out that I dont need another variable because it wont be recursive :D
 	get:
-		if _research_cost == -1:
+		if Game.cheat:
+			return 1
+		if research_cost == -1:
 			return build_cost * 4
-		return _research_cost
-	set(v):
-		_research_cost = v
+		return research_cost
 @export_range(-1, 36_000, 1.0, "or_greater", "suffix:s")
-var _research_time: int = -1
-var research_time: int:
+var research_time: int = -1:
 	get:
-		if _research_time == -1:
+		if Game.cheat:
+			return 1
+		if research_time == -1:
 			return build_time * 2
-		return _research_time
-	set(v):
-		_research_time = v
+		return research_time
 func get_modifiers() -> FacilityTransfer:
 	var new_facility_transfer := FacilityTransfer.new()
 	new_facility_transfer.name = name

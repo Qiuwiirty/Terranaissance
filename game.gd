@@ -1,5 +1,6 @@
 extends Node
 signal planet_available
+static var cheat := OS.is_debug_build()
 static var planet: Planet
 static var current_planet_save: PlanetSave
 static var sun: Sun

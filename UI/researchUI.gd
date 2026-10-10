@@ -23,7 +23,6 @@ func _facility_research_selected(facility_data: FacilityData) -> void:
 		var new_wait_task_ui: WaitTaskUI = WAIT_TASK_UI.instantiate()
 		new_wait_task_ui.wait_task = new_wait_task
 		new_wait_task_ui.head_text = "Researching " + facility_data.name
-		new_wait_task.completed.connect(new_wait_task_ui.queue_free)
 		var new_research_completed_event : Event = research_completed_event.event
 		new_research_completed_event.description = new_research_completed_event.description.format({"research": facility_data.name})
 		new_wait_task.completed.connect(Game.in_game_ui.event_popup.open_popup_event.bind(new_research_completed_event))

@@ -5,6 +5,7 @@ enum SelectMode {
 	FACILITY,
 	CREATE_NEW_FACILITY,
 }
+const WAIT_TASK_UI := preload("uid://cdcdv03hk3xut")
 const FACILITY_ITEM_UI := preload("uid://3kya33kagpc7")
 @onready var description : RichTextLabel = %Description
 @onready var heading: HBoxContainer = %Heading
@@ -51,9 +52,11 @@ func set_selected_facility(facility: Facility) -> void:
 	_set_select_mode(SelectMode.FACILITY)
 	facility_information.text = """[center] {fac_name}
 	[font_size=12] Level {level}
-	[left] No description for this facility""".format(
-			{"fac_name": facility.name,
-			"level": facility.level})
+	[left] {description}""".format({
+			"fac_name": facility.name,
+			"level": facility.level,
+			"description": facility.description
+			})
 func _update_heading() -> void:
 	if !city:
 		hide()
@@ -65,7 +68,7 @@ func _update_heading() -> void:
 		"\nLat lon: ", snappedf(city.geoposition.x, 0.01), " and ", snappedf(city.geoposition.y, 0.01), ". Elevation: ", snappedf(city.geoposition.z , 0.01))
 func _update_facilities() -> void:
 	for facility in facilities_container.get_children(): 
-		if facility.name != "AddNewFacility":
+		if facility is FacilityItemUI:
 			facility.queue_free()
 	for facility in city.facilities:
 		var new_facility_item_ui: FacilityItemUI = FACILITY_ITEM_UI.instantiate()
@@ -79,5 +82,15 @@ func _facility_demolish() -> void:
 func _add_new_facility(facility_data: FacilityData) -> void:
 	var is_confirmed := await are_you_sure.request_confirmation("Build?", "Are you want to build? This will cost {price} Tr!".format({"price": facility_data.build_cost}))
 	if is_confirmed:
-		city.facilities.append(Facility.new(city, facility_data.get_modifiers()))
+		var new_wait_task := WaitTask.new(facility_data.build_time)
+		Game.planet.append_wait_task(new_wait_task)
+		new_wait_task.completed.connect(_append_new_facility.bind(city, facility_data.get_modifiers()))
+		
+		var new_wait_task_ui : WaitTaskUI = WAIT_TASK_UI.instantiate()
+		new_wait_task_ui.wait_task = new_wait_task
+		new_wait_task_ui.head_text = "Building " + facility_data.name
+		facilities_container.add_child(new_wait_task_ui)
+	_update_facilities()
+func _append_new_facility(city_: City, facility_transfer: FacilityTransfer) -> void:
+	city.facilities.append(Facility.new(city_, facility_transfer))
 	_update_facilities()

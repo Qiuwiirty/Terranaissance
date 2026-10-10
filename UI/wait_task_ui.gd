@@ -8,6 +8,7 @@ var head_text: String
 func _ready() -> void:
 	Game.planet.tick_timer.timeout.connect(_update)
 	head.text = head_text
+	wait_task.completed.connect(queue_free)
 	_update()
 func _update() -> void:
 	time_left.text = "Time left: " + Game.format_time_timer(wait_task.get_time_left())
