@@ -6,10 +6,11 @@
 [ext_resource type="PackedScene" uid="uid://dqq3t8i3dufpc" path="res://UI/create_new_city.tscn" id="2_d0vji"]
 [ext_resource type="PackedScene" uid="uid://dmrh5bp0ltmxe" path="res://UI/are_you_sure.tscn" id="2_yo3uo"]
 [ext_resource type="PackedScene" uid="uid://bn4kr6ugpqna3" path="res://UI/not_enough_money.tscn" id="4_d0vji"]
-[ext_resource type="Script" uid="uid://pm1isfkioakk" path="res://UI/buildings.gd" id="6_ix84t"]
+[ext_resource type="Texture2D" uid="uid://cwu6phsxkwliw" path="res://textures/icons/arrow.svg" id="7_c5t0d"]
 [ext_resource type="Script" uid="uid://dufy65xipdi34" path="res://UI/control_tab_related/control_tab.gd" id="7_ppb6f"]
 [ext_resource type="PackedScene" uid="uid://4iw853n2o8im" path="res://UI/control_tab_related/terraform_indicator.tscn" id="7_xfpkw"]
 [ext_resource type="Script" uid="uid://c6rcxd4fxsnwm" path="res://UI/control_tab_related/environment_container.gd" id="8_q6bn2"]
+[ext_resource type="Script" uid="uid://pm1isfkioakk" path="res://UI/buildings_panel.gd" id="9_bhshs"]
 [ext_resource type="Script" uid="uid://deidjpxmrc7gl" path="res://addons/piechart/pie_chart.gd" id="9_coab5"]
 [ext_resource type="PackedScene" uid="uid://lrksp85bj7q5" path="res://UI/control_tab_related/culture_axis_control.tscn" id="10_5gjrs"]
 [ext_resource type="Script" uid="uid://dp4k88e7s3j4a" path="res://UI/control_tab_related/culture_container.gd" id="11_imcl3"]
@@ -71,29 +72,6 @@ text = "Sun rotation"
 
 [node name="NotEnoughMoney" parent="." unique_id=1830622854 instance=ExtResource("4_d0vji")]
 pivot_offset_ratio = Vector2(0, 0)
-
-[node name="Buildings" type="PanelContainer" parent="." unique_id=356736766]
-custom_maximum_size = Vector2(200, -1)
-anchors_preset = -1
-anchor_left = 0.9
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 0
-grow_vertical = 2
-script = ExtResource("6_ix84t")
-
-[node name="BuildingsContainer" type="VBoxContainer" parent="Buildings" unique_id=1672375040]
-layout_mode = 2
-
-[node name="RichTextLabel" type="RichTextLabel" parent="Buildings/BuildingsContainer" unique_id=1214506937]
-layout_mode = 2
-bbcode_enabled = true
-text = "[font_size=20][b] Cities"
-fit_content = true
-
-[node name="Cities" type="VBoxContainer" parent="Buildings/BuildingsContainer" unique_id=1343946081]
-unique_name_in_owner = true
-layout_mode = 2
 
 [node name="ControlTab" type="TabContainer" parent="." unique_id=825178516]
 custom_maximum_size = Vector2(800, 400)
@@ -368,6 +346,40 @@ layout_mode = 2
 
 [node name="EventPopup" parent="." unique_id=667886335 instance=ExtResource("17_ppkve")]
 visible = false
+
+[node name="BuildingsPanel" type="PanelContainer" parent="." unique_id=356736766]
+custom_maximum_size = Vector2(200, -1)
+offset_left = 975.7999
+offset_right = 1151.7999
+offset_bottom = 648.0
+size_flags_horizontal = 3
+offset_transform_enabled = true
+offset_transform_pivot_ratio = Vector2(1, 0.5)
+offset_transform_visual_only = false
+script = ExtResource("9_bhshs")
+
+[node name="BuildingsContainer" type="VBoxContainer" parent="BuildingsPanel" unique_id=1672375040]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="RichTextLabel" type="RichTextLabel" parent="BuildingsPanel/BuildingsContainer" unique_id=1214506937]
+layout_mode = 2
+bbcode_enabled = true
+text = "[font_size=20][b] Cities"
+fit_content = true
+
+[node name="Cities" type="VBoxContainer" parent="BuildingsPanel/BuildingsContainer" unique_id=1343946081]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="ExpandCollapseButton" type="TextureButton" parent="BuildingsPanel" unique_id=1633513704]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+offset_transform_enabled = true
+offset_transform_position_ratio = Vector2(-1, 0)
+offset_transform_visual_only = false
+texture_normal = ExtResource("7_c5t0d")
 
 [connection signal="item_selected" from="ControlPanel/VBoxContainer/HBoxContainer/OptionButton" to="ControlPanel" method="_on_view_mode_selected"]
 [connection signal="toggled" from="ControlPanel/VBoxContainer/EnableSunLight" to="ControlPanel" method="_on_enable_sun_light_toggled"]
