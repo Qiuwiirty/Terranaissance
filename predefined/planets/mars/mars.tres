@@ -50,7 +50,6 @@ script = ExtResource("4_rd28r")
 temperature = 220000.0
 pressure = 610.0
 atmosphere_composition = SubResource("Resource_3gnlv")
-water = 14.0
 metadata/_custom_type_script = "uid://bu5bdw38wijvt"
 
 [resource]

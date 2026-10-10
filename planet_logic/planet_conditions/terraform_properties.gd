@@ -11,6 +11,8 @@ enum TerraformClassification {
 var habitability_percentage: float:
 	get:
 		return 0.
+#region temperature
+
 var _temperature := 0.0
 var greenhouse_effect := 0.0 #Inferred from atmosphere composition
 @export var temperature: float : #in mk
@@ -18,9 +20,23 @@ var greenhouse_effect := 0.0 #Inferred from atmosphere composition
 		return _temperature + greenhouse_effect
 	set(value):
 		_temperature = value
+#endregion temperature
+#region water
+@export var water := 0.0 ##In cm. If used as a starting condition, this will not correspond directly to the actual sea elevation as it will be converted to ice/vapor
+var liquid_water: float:
+	get:
+		return absf(water_vapor - ice)
+var ice: float:
+	get:
+		var coldness := smoothstep(300_000, 200_000, temperature)
+		return water * coldness
+var water_vapor: float:
+	get:
+		var hotness := smoothstep(300_000, 400_000, temperature)
+		return water * hotness
+#endregion
 @export var pressure : float = 0 ##In pa
 @export var atmosphere_composition: AtmosphereComposition
-@export var water := 0.0 ##In cm. If used as a starting condition, this will not correspond directly to the actual sea elevation as it will be converted to ice/vapor
 @export var biomass := 0.0 ##In mt (megatonnes)
 @export var revenue := 0.0 ##In terras money
 func add(other: TerraformProperties) -> void:
