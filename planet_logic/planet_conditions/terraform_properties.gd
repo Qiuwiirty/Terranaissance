@@ -44,6 +44,7 @@ func add(other: TerraformProperties) -> void:
 	if atmosphere_composition:
 		atmosphere_composition.add(other.atmosphere_composition)
 	water += other.water
+	pressure += other.pressure
 	biomass += other.biomass
 	revenue += other.revenue
 
@@ -52,6 +53,7 @@ func subtract(other: TerraformProperties) -> void:
 	if atmosphere_composition:
 		atmosphere_composition.subtract(other.atmosphere_composition)
 	water -= other.water
+	pressure -= other.pressure
 	biomass -= other.biomass
 	revenue -= other.revenue
 
@@ -60,6 +62,7 @@ func mutiply(other: TerraformProperties) -> void:
 	if atmosphere_composition:
 		atmosphere_composition.mutiply(other.atmosphere_composition)
 	water *= other.water
+	pressure *= other.pressure
 	biomass *= other.biomass
 	revenue *= other.revenue
 	
@@ -68,6 +71,7 @@ func mutiply_float(value: float) -> void:
 	if atmosphere_composition:
 		atmosphere_composition.mutiply_float(value)
 	water *= value
+	pressure *= value
 	biomass *= value
 	revenue *= value
 const HABITABILITY_RANGES : Dictionary[TerraformClassification, Dictionary] = {

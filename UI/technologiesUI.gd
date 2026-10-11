@@ -75,6 +75,7 @@ func update_available_facilities(all := false) -> void:
 				child.queue_free()
 			for facility_data: FacilityData in category_to_facility_data[category]:
 				var new_facility_data_item_ui: FacilityDataItemUI = FACILITY_DATA_ITEM_UI.instantiate()
+				new_facility_data_item_ui.icon_scale = ui_scale
 				new_facility_data_item_ui.facility_data = facility_data
 				new_facility_data_item_ui.price_mode = price_mode
 				category_container.add_child(new_facility_data_item_ui)
