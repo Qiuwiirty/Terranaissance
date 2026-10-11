@@ -26,6 +26,11 @@ var total_habitation : int:
 		return total
 var wait_tasks: Array[WaitTask]
 var events_log: Array[Event] #This does NOT include cities log. Only that are truly global
+
+## All gases that exist 
+##
+##(This will get gases from the directory AND the planet. If planet already have the gas it will not be overriden by the default gas in the directory)
+var gases: Dictionary[StringName, Gas]
 func append_wait_task(wait_task: WaitTask) -> void:
 	wait_tasks.append(wait_task)
 	wait_task.completed.connect(erase_wait_task.bind(wait_task))
@@ -78,6 +83,20 @@ func start() -> void: ##Intended for starting a new world. Which expect everythi
 		var new_event_data : EventData = load(tres_file)
 		if !is_zero_approx(new_event_data.average_interval_days):
 			all_event_data.append(new_event_data)
+	
+	#Initialize all gases list
+	for gas_data: GasData in terraform_properties.atmosphere_composition.get_elements().values():
+		if gas_data.gas.is_placeholder:
+			continue
+		gases[gas_data.gas.name] = gas_data.gas
+	
+	var gases_dir : Array[String] = Game.get_all_tres_files("res://predefined/gases/")
+	for gas_dir in gases_dir:
+		var gas : Gas = load(gas_dir)
+		if gas.is_placeholder:
+			continue
+		if !gases.has(gas.name): #DoN'T override if already existed
+			gases[gas.name] = gas
 func init_planet_properties() -> void:
 	_define_biomass_color()
 	rotation_degrees.z = planet_properties.axial_tilt

@@ -19,3 +19,5 @@ enum UniqueProperty {
 ##For example if it has 1000 ppm toxicity, 20 ppm of those will have 20_000 ppm toxicity and will add up with other toxic gas aswell
 @export var toxicity_per_ppm: float = 0.
 @export var unique_property: UniqueProperty = UniqueProperty.NONE
+##If true it won't be used in any gas facility, etc..
+@export var is_placeholder: bool = false

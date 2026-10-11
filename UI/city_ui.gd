@@ -17,11 +17,13 @@ const FACILITY_ITEM_UI := preload("uid://3kya33kagpc7")
 @onready var right_panel: PanelContainer = %RightPanel
 @onready var create_new_facility: TechnologiesUI = %CreateNewFacility
 @onready var are_you_sure: AreYouSure = $AreYouSure
+@onready var any_gas_option_button: AnyGasOptionButton = %AnyGasOptionButton
 var city: City
 var select_mode: SelectMode = SelectMode.NONE
 var _selected_facility: Facility
 
 func _ready() -> void:
+	any_gas_option_button.gas_selected.connect(_gas_selected)
 	_set_select_mode(SelectMode.NONE)
 	
 	Game.planet.tick_timer.timeout.connect(_update_heading)
@@ -50,6 +52,10 @@ func _set_select_mode(mode: SelectMode) -> void:
 func set_selected_facility(facility: Facility) -> void:
 	_selected_facility = facility
 	_set_select_mode(SelectMode.FACILITY)
+	if is_zero_approx(_selected_facility.any_gas_modifier):
+		any_gas_option_button.hide()
+	else:
+		any_gas_option_button.show()
 	facility_information.text = """[center] {fac_name}
 	[font_size=12] Level {level}
 	[left] {description}""".format({
@@ -75,6 +81,9 @@ func _update_facilities() -> void:
 		new_facility_item_ui.facility = facility
 		facilities_container.add_child(new_facility_item_ui)
 		new_facility_item_ui.button.button_up.connect(set_selected_facility.bind(facility))
+		
+		if !is_zero_approx(facility.any_gas_modifier):
+			pass
 func _facility_upgrade() -> void:
 	_selected_facility.set_level(_selected_facility.level + 1)
 func _facility_demolish() -> void:
@@ -94,3 +103,5 @@ func _add_new_facility(facility_data: FacilityData) -> void:
 func _append_new_facility(city_: City, facility_transfer: FacilityTransfer) -> void:
 	city.facilities.append(Facility.new(city_, facility_transfer))
 	_update_facilities()
+func _gas_selected(gas: Gas) -> void:
+	_selected_facility.any_gas = gas

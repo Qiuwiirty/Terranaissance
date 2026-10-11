@@ -12,7 +12,7 @@ extends Resource
 @abstract func mutiply_float(value: float) -> void
 #@abstract func divide() -> void
 
-#region Statistic purposes
+#region Statistic purposesz
 @abstract func get_custom_colors() -> Array[Color] #Used for statistics so no need to be dictionary
 @abstract func get_elements() -> Dictionary[StringName, GasData]
 @abstract func get_habitability_ranges() -> Dictionary[TerraformProperties.TerraformClassification, Dictionary]

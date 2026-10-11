@@ -61,12 +61,15 @@ void fragment() {
 		land *= mix(vec3(1.0), biomass_color, biomass_suitability);
 		vec3 sea = vec3(0.0, 0.0, 1.0);
 		vec4 cloud = get_cloud(UV);
-		vec3 land_sea = mix(land, sea, float(underwater));
-		vec3 land_sea_cloud = mix(land_sea, cloud.rgb, cloud.a * cloud_alpha); //ERROR
+		//icy stuff
 		float base_threshold = mix(0.9, 0.3, latitude);
 		float climate_threshold = base_threshold - (elevation * 0.3);
 		float ice = step(climate_threshold, ice_coverage);
-		ALBEDO = mix(land_sea_cloud, vec3(1.0) - (0.1 * vec3(elevation)), ice);
+		
+		vec3 land_sea = mix(land, sea, float(underwater));
+		vec3 land_sea_ice = mix(land_sea, mix(vec3(1.0), vec3(elevation), 0.5), ice);
+		vec3 land_sea_ice_cloud = mix(land_sea_ice, cloud.rgb, cloud.a * cloud_alpha);
+		ALBEDO = land_sea_ice_cloud;
 		
 		vec3 sun_dir_view = (VIEW_MATRIX * vec4(sun_direction, 0.0)).xyz;
 		float sunlight = dot(NORMAL, normalize(sun_dir_view));
