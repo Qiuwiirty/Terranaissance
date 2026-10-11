@@ -78,13 +78,6 @@ static func get_modifier_descriptions(fac_transfer: FacilityTransfer, any_gas_na
 		#Use abs() because nobody obviously gonna want "-- -4 temperature"
 		descriptions.append(prefix + value_str + " " + stat_name)
 		
-	if fac_transfer.terraform_modifier:
-		format_stat.call(fac_transfer.terraform_modifier.temperature, "temperature", false)
-		format_stat.call(fac_transfer.terraform_modifier.pressure, "pressure", false)
-		format_stat.call(fac_transfer.terraform_modifier.water, "water", false)
-		format_stat.call(fac_transfer.terraform_modifier.biomass, "biomass", false)
-		format_stat.call(fac_transfer.terraform_modifier.revenue, "revenue", false)
-		
 	if fac_transfer.terraform_modifier_per_tick:
 		format_stat.call(fac_transfer.terraform_modifier_per_tick.temperature, "temperature", true)
 		format_stat.call(fac_transfer.terraform_modifier_per_tick.pressure, "pressure", true)

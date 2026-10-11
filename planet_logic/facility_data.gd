@@ -6,8 +6,6 @@ class_name FacilityData
 @export var name : StringName = "Unnamed :("
 @export var category := Facility.Category.UNDEFINED
 @export var terraform_modifier_per_tick: TerraformProperties = TerraformProperties.new()
-@export var terraform_modifier: TerraformProperties = TerraformProperties.new() # Only modify when initialized, unlike per tick. Usually for habitations and permanent things
-
 @export var city_modifier_per_tick: CityProperties = CityProperties.new()
 @export var city_modifier: CityProperties = CityProperties.new()
 
@@ -49,7 +47,6 @@ func get_modifiers() -> FacilityTransfer:
 	new_facility_transfer.name = name
 	new_facility_transfer.category = category
 	
-	new_facility_transfer.terraform_modifier = terraform_modifier
 	new_facility_transfer.terraform_modifier_per_tick = terraform_modifier_per_tick
 	
 	new_facility_transfer.city_modifier = city_modifier

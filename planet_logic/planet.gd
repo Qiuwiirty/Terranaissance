@@ -201,3 +201,10 @@ func random_events(delta_time := 1.0) -> void:
 			events_log.append(adj_event_data)
 func fire() -> void:
 	pass
+
+func request_recalculation() -> void:
+	print("Request!")
+	var new_terraform_modifier_per_tick := TerraformProperties.new()
+	for city in cities:
+		new_terraform_modifier_per_tick.add(city.terraform_properties_modifier_per_tick)
+	terraform_modifier_per_tick = new_terraform_modifier_per_tick

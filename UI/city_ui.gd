@@ -101,7 +101,7 @@ func _add_new_facility(facility_data: FacilityData) -> void:
 		facilities_container.add_child(new_wait_task_ui)
 	_update_facilities()
 func _append_new_facility(city_: City, facility_transfer: FacilityTransfer) -> void:
-	city.facilities.append(Facility.new(city_, facility_transfer))
+	Facility.new(city_, facility_transfer)
 	_update_facilities()
 func _gas_selected(gas: Gas) -> void:
 	_selected_facility.any_gas = gas
