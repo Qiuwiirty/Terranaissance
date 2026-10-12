@@ -22,12 +22,15 @@ var city: City
 var select_mode: SelectMode = SelectMode.NONE
 var _selected_facility: Facility
 
+#Contain bunch of wait task ui
+var progress_upgrading_facilities_ui: Dictionary[City, Array]
+var progress_building_facilities_ui: Dictionary[City, Array]
 func _ready() -> void:
 	any_gas_option_button.gas_selected.connect(_gas_selected)
 	_set_select_mode(SelectMode.NONE)
 	
 	Game.planet.tick_timer.timeout.connect(_update_heading)
-	facility_upgrade.button_up.connect(_facility_upgrade)
+	facility_upgrade.button_up.connect(_on_facility_upgrade_pressed)
 	facility_demolish.button_up.connect(_facility_demolish)
 	add_new_facility.button_up.connect(func() -> void: _set_select_mode(SelectMode.CREATE_NEW_FACILITY))
 	create_new_facility.facility_data_selected.connect(_add_new_facility)
@@ -35,6 +38,10 @@ func _ready() -> void:
 func open_city(city_: City) -> void:
 	_set_select_mode(SelectMode.NONE)
 	city = city_
+	if !progress_building_facilities_ui.has(city):
+		progress_building_facilities_ui[city] = []
+	if !progress_upgrading_facilities_ui.has(city):
+		progress_upgrading_facilities_ui[city] = []
 	open()
 	_update_heading()
 	_update_facilities()
@@ -73,9 +80,11 @@ func _update_heading() -> void:
 		"\nHabitations: ", city.properties.habitations,
 		"\nLat lon: ", snappedf(city.geoposition.x, 0.01), " and ", snappedf(city.geoposition.y, 0.01), ". Elevation: ", snappedf(city.geoposition.z , 0.01))
 func _update_facilities() -> void:
-	for facility in facilities_container.get_children(): 
-		if facility is FacilityItemUI:
-			facility.queue_free()
+	for node in facilities_container.get_children(): 
+		if node is FacilityItemUI:
+			node.queue_free()
+		if node is WaitTaskUI:
+			facilities_container.remove_child(node)
 	for facility in city.facilities:
 		var new_facility_item_ui: FacilityItemUI = FACILITY_ITEM_UI.instantiate()
 		new_facility_item_ui.facility = facility
@@ -84,24 +93,31 @@ func _update_facilities() -> void:
 		
 		if !is_zero_approx(facility.any_gas_modifier):
 			pass
-func _facility_upgrade() -> void:
-	_selected_facility.set_level(_selected_facility.level + 1)
+	for wait_task_ui: WaitTaskUI in progress_upgrading_facilities_ui[city]:
+		facilities_container.add_child(wait_task_ui)
+	for wait_task_building_ui: WaitTaskUI in progress_building_facilities_ui[city]:
+		facilities_container.add_child(wait_task_building_ui)
+func _on_facility_upgrade_pressed() -> void:
+	var new_wait_task: WaitTask = city.add_upgrading_facility(_selected_facility)
+	new_wait_task.completed.connect(_update_facilities)
+	
+	var new_wait_task_ui : WaitTaskUI = WAIT_TASK_UI.instantiate()
+	new_wait_task_ui.wait_task = new_wait_task
+	progress_upgrading_facilities_ui[city].append(new_wait_task_ui)
+	facilities_container.add_child(new_wait_task_ui)
 func _facility_demolish() -> void:
 	city.delete_facility(_selected_facility)
 func _add_new_facility(facility_data: FacilityData) -> void:
 	var is_confirmed := await are_you_sure.request_confirmation("Build?", "Are you want to build? This will cost {price} Tr!".format({"price": facility_data.build_cost}))
 	if is_confirmed:
-		var new_wait_task := WaitTask.new(facility_data.build_time)
-		Game.planet.append_wait_task(new_wait_task)
-		new_wait_task.completed.connect(_append_new_facility.bind(city, facility_data.get_modifiers()))
+		var new_wait_task: WaitTask = city.add_building_facility(facility_data)
+		new_wait_task.completed.connect(_update_facilities)
 		
 		var new_wait_task_ui : WaitTaskUI = WAIT_TASK_UI.instantiate()
 		new_wait_task_ui.wait_task = new_wait_task
 		new_wait_task_ui.head_text = "Building " + facility_data.name
+		progress_building_facilities_ui[city].append(new_wait_task_ui)
 		facilities_container.add_child(new_wait_task_ui)
-	_update_facilities()
-func _append_new_facility(city_: City, facility_transfer: FacilityTransfer) -> void:
-	Facility.new(city_, facility_transfer)
 	_update_facilities()
 func _gas_selected(gas: Gas) -> void:
 	_selected_facility.any_gas = gas

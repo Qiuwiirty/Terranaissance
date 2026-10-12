@@ -11,3 +11,5 @@ var any_gas: Gas
 
 var city_modifier_per_tick: CityProperties = CityProperties.new()
 var city_modifier: CityProperties = CityProperties.new()
+
+var build_time: float = 0.0

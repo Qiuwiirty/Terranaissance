@@ -9,3 +9,8 @@ func add(other: CityProperties) -> void:
 func subtract(other: CityProperties) -> void:
 	population -= other.population
 	habitations -= other.habitations
+
+func mutiply_float(value: float) -> void:
+	population *= value
+	@warning_ignore("narrowing_conversion")
+	habitations *= value

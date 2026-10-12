@@ -43,8 +43,10 @@ const CATEGORY_TO_SUFFIX: Dictionary[Category, String] = {
 var city: City
 var name: StringName = &"Unnamed"
 var description: StringName
+var build_time := 0.0 #sec. This is stored and required for upgrade
 ##Upgrade, it's basically modifier multiplier (*1.5)
-var level : int = 1
+var max_level : int = 1 #Not absolute max, and if upgraded can increased
+var level : int = 1 #User can choose level (1 to max level)
 ##This will impact the displayed icon in the UI too
 var category := Category.UNDEFINED
 
@@ -69,6 +71,8 @@ func _init(city_: City, facility_transfer: FacilityTransfer) -> void:
 	
 	any_gas_modifier = facility_transfer.any_gas_modifier
 	any_gas = facility_transfer.any_gas
+	
+	build_time = facility_transfer.build_time
 	
 	city = city_
 	city.facilities.append(self)
@@ -103,4 +107,6 @@ func get_modifiers() -> FacilityTransfer:
 	new_facility_transfer.city_modifier_per_tick = city_modifier_per_tick
 	
 	new_facility_transfer.any_gas_modifier = any_gas_modifier
+	
+	new_facility_transfer.build_time = build_time
 	return new_facility_transfer
