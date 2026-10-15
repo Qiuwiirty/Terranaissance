@@ -111,17 +111,18 @@ func get_habitability() -> TerraformProperties.TerraformClassification:
 	if gases[&"Oxygen"].ppm >= 900000:
 		return TerraformProperties.TerraformClassification.HELLISH
 	return TerraformProperties.TerraformClassification.BARREN
-func add(other: SimpleAtmosphereComposition) -> void:
-	gases[&"Oxygen"].ppm += other.oxygen
+func add(other: AtmosphereComposition) -> void:
+	for element: GasData in other.get_elements().values():
+		add_or_insert(element)
 	
-func subtract(other: SimpleAtmosphereComposition) -> void:
-	gases[&"Oxygen"].ppm -= other.oxygen
+func subtract(other: AtmosphereComposition) -> void:
+	push_error("Not implemented")
 	
 func mutiply(other: AtmosphereComposition) -> void:
-	gases[&"Oxygen"].ppm *= other.oxygen
+	push_error("Not implemented")
 	
 func mutiply_float(value: float) -> void:
-	gases[&"Oxygen"].ppm *= value
+	push_error("Not implemented")
 	
 func add_new_gas(gas_data: GasData) -> void:
 	gases.set(gas_data.gas.name, gas_data)
@@ -143,3 +144,8 @@ func add_or_insert(gas_data: GasData) -> void:
 		gases[gas_data.gas.name].ppm += gas_data.ppm
 	else:
 		gases[gas_data.gas.name] = gas_data
+
+func get_gas_or_null(gas: StringName) -> GasData:
+	if gas in gases:
+		return gases[gas]
+	return null
