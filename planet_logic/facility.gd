@@ -56,10 +56,11 @@ var terraform_modifier_per_tick: TerraformProperties = TerraformProperties.new()
 var city_modifier_per_tick: CityProperties = CityProperties.new()
 var city_modifier: CityProperties = CityProperties.new()
 
-var any_gas: Gas #The selected gas
+var any_gas: Gas #The selected gas (Oxygen default)
 var any_gas_modifier: float = 0.0 #Modify any atmopshere modifier (PER TICK)that have been selected
-## Modifier definition is a human readable format in string for setting the property modifiers. Format is: "property operation value, property ..." (Operation: (+ add, - subtract. ++ add per tick, -- subtract per tick))
 func _init(city_: City, facility_transfer: FacilityTransfer) -> void:
+	if !is_zero_approx(facility_transfer.any_gas_modifier):
+		any_gas = preload("uid://dpncodof1o6e8")
 	name = facility_transfer.name
 	category = facility_transfer.category
 	description = facility_transfer.description
@@ -70,7 +71,9 @@ func _init(city_: City, facility_transfer: FacilityTransfer) -> void:
 	city_modifier_per_tick = facility_transfer.city_modifier_per_tick
 	
 	any_gas_modifier = facility_transfer.any_gas_modifier
-	any_gas = facility_transfer.any_gas
+	
+	if facility_transfer.any_gas: 
+		any_gas = facility_transfer.any_gas
 	
 	build_time = facility_transfer.build_time
 	
@@ -106,6 +109,7 @@ func get_modifiers() -> FacilityTransfer:
 	new_facility_transfer.city_modifier = city_modifier
 	new_facility_transfer.city_modifier_per_tick = city_modifier_per_tick
 	
+	new_facility_transfer.any_gas = any_gas
 	new_facility_transfer.any_gas_modifier = any_gas_modifier
 	
 	new_facility_transfer.build_time = build_time

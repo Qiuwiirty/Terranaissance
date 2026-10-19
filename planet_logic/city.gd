@@ -43,6 +43,7 @@ func request_recalculation() -> void:
 		
 		#any gas
 		if !is_zero_approx(facility.any_gas_modifier):
+			new_terraform_properties_modifier_per_tick.atmosphere_composition = ComplexAtmosphereComposition.new()
 			new_terraform_properties_modifier_per_tick.atmosphere_composition.add_or_insert(GasData.new(facility.any_gas, facility.any_gas_modifier))
 	terraform_properties_modifier_per_tick = new_terraform_properties_modifier_per_tick
 	properties_modifier_per_tick = new_properties_modifier_per_tick

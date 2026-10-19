@@ -20,16 +20,22 @@ func get_habitability() -> TerraformProperties.TerraformClassification:
 			return classification
 	return TerraformProperties.TerraformClassification.BARREN
 func add(other: AtmosphereComposition) -> void:
+	if !other:
+		return
 	var o2 := other.get_gas_or_null(&"oxygen")
 	if o2:
 		oxygen_gas_data.ppm += other.oxygen_gas_data.ppm
 	
-func subtract(other: SimpleAtmosphereComposition) -> void:
+func subtract(other: AtmosphereComposition) -> void:
+	if !other:
+		return
 	var o2 := other.get_gas_or_null(&"oxygen")
 	if o2:
 		oxygen_gas_data.ppm -= other.oxygen_gas_data.ppm
 	
 func mutiply(other: AtmosphereComposition) -> void:
+	if !other:
+		return
 	var o2 := other.get_gas_or_null(&"oxygen")
 	if o2:
 		oxygen_gas_data.ppm *= other.oxygen_gas_data.ppm

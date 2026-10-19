@@ -23,7 +23,7 @@ var select_mode: SelectMode = SelectMode.NONE
 var _selected_facility: Facility
 
 #Contain bunch of wait task ui
-var progress_upgrading_facilities_ui: Dictionary[City, Array]
+var progress_upgrading_facilities_ui: Dictionary[City, Array] #array containing WaitTaskUI
 var progress_building_facilities_ui: Dictionary[City, Array]
 func _ready() -> void:
 	any_gas_option_button.gas_selected.connect(_gas_selected)
@@ -104,6 +104,7 @@ func _on_facility_upgrade_pressed() -> void:
 	var new_wait_task_ui : WaitTaskUI = WAIT_TASK_UI.instantiate()
 	new_wait_task_ui.wait_task = new_wait_task
 	progress_upgrading_facilities_ui[city].append(new_wait_task_ui)
+	new_wait_task.completed.connect(func() -> void: progress_upgrading_facilities_ui[city].erase(new_wait_task_ui))
 	facilities_container.add_child(new_wait_task_ui)
 func _facility_demolish() -> void:
 	city.delete_facility(_selected_facility)
@@ -117,6 +118,7 @@ func _add_new_facility(facility_data: FacilityData) -> void:
 		new_wait_task_ui.wait_task = new_wait_task
 		new_wait_task_ui.head_text = "Building " + facility_data.name
 		progress_building_facilities_ui[city].append(new_wait_task_ui)
+		new_wait_task.completed.connect(func() -> void: progress_building_facilities_ui[city].erase(new_wait_task_ui))
 		facilities_container.add_child(new_wait_task_ui)
 	_update_facilities()
 func _gas_selected(gas: Gas) -> void:
