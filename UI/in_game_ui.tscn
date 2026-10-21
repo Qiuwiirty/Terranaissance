@@ -71,6 +71,10 @@ layout_mode = 2
 text = "Sun rotation"
 
 [node name="NotEnoughMoney" parent="." unique_id=1830622854 instance=ExtResource("4_d0vji")]
+offset_left = -125.0
+offset_top = -62.5
+offset_right = 125.0
+offset_bottom = 62.5
 pivot_offset_ratio = Vector2(0, 0)
 
 [node name="ControlTab" type="TabContainer" parent="." unique_id=825178516]

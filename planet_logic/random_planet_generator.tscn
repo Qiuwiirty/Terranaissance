@@ -1,0 +1,38 @@
+[gd_scene format=3 uid="uid://blqdchb4muyny"]
+
+[ext_resource type="Texture2D" uid="uid://b8877um7h72hc" path="res://textures/space_panaroma.png" id="1_rm5pl"]
+[ext_resource type="Script" uid="uid://cv6b0uyswunua" path="res://addons/lens_effects/lens_flare_compositor_effect.gd" id="2_tswlb"]
+[ext_resource type="Script" uid="uid://cmlnn8vwkbqfv" path="res://addons/lens_effects/world_environment.gd" id="3_md3e2"]
+
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_ut0n4"]
+panorama = ExtResource("1_rm5pl")
+
+[sub_resource type="Sky" id="Sky_c85ke"]
+sky_material = SubResource("PanoramaSkyMaterial_ut0n4")
+
+[sub_resource type="Environment" id="Environment_2j3si"]
+background_mode = 2
+sky = SubResource("Sky_c85ke")
+ambient_light_sky_contribution = 0.0
+
+[sub_resource type="CompositorEffect" id="CompositorEffect_vdppx"]
+resource_local_to_scene = false
+resource_name = ""
+enabled = true
+effect_callback_type = 4
+needs_motion_vectors = false
+needs_normal_roughness = false
+script = ExtResource("2_tswlb")
+metadata/_custom_type_script = "uid://cv6b0uyswunua"
+
+[sub_resource type="Compositor" id="Compositor_grfvk"]
+compositor_effects = Array[CompositorEffect]([SubResource("CompositorEffect_vdppx")])
+
+[node name="RandomPlanetGenerator" type="Node3D" unique_id=1858019274]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=380742354 node_paths=PackedStringArray("sun")]
+unique_name_in_owner = true
+environment = SubResource("Environment_2j3si")
+compositor = SubResource("Compositor_grfvk")
+script = ExtResource("3_md3e2")
+sun = NodePath("")

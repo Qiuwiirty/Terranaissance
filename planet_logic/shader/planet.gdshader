@@ -103,4 +103,5 @@ void fragment() {
 	{
 		ALBEDO = gas_giant(UV);
 	}
+	SPECULAR = 1.0
 }

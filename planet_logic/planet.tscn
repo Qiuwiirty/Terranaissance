@@ -1,29 +1,9 @@
 [gd_scene format=3 uid="uid://cou1fgfhymngy"]
 
-[ext_resource type="Material" uid="uid://rtv4nkpd0yej" path="res://planet_logic/normmas.tres" id="2_3gnlv"]
+[ext_resource type="PackedScene" uid="uid://cuf3mp08tqfxc" path="res://planet_logic/planet_render.tscn" id="2_7idgd"]
 [ext_resource type="Script" uid="uid://bxkmy3vm6sbrs" path="res://planet_logic/planet.gd" id="5_gvalx"]
-[ext_resource type="Shader" uid="uid://c1jxsncrdyogt" path="res://planet_logic/shader/atmosphere.gdshader" id="7_08blb"]
-
-[sub_resource type="SphereMesh" id="SphereMesh_op1rt"]
-material = ExtResource("2_3gnlv")
-radial_segments = 128
-rings = 64
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_qlfj0"]
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_8vgsh"]
-render_priority = 0
-shader = ExtResource("7_08blb")
-shader_parameter/atmosphere_color = Color(0, 0.6666667, 1, 1)
-shader_parameter/atmosphere_strength = 1.0
-shader_parameter/atmosphere_power = 4.0
-
-[sub_resource type="SphereMesh" id="SphereMesh_qlfj0"]
-material = SubResource("ShaderMaterial_8vgsh")
-radius = 0.501
-height = 1.002
-radial_segments = 128
-rings = 64
 
 [node name="Planet" type="Node3D" unique_id=1955991424]
 script = ExtResource("5_gvalx")
@@ -31,17 +11,13 @@ script = ExtResource("5_gvalx")
 [node name="TickTimer" type="Timer" parent="." unique_id=1354782346]
 autostart = true
 
-[node name="PlanetMesh" type="MeshInstance3D" parent="." unique_id=893211228]
-mesh = SubResource("SphereMesh_op1rt")
-
 [node name="Area3D" type="Area3D" parent="." unique_id=1266514868]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=177418550]
 visible = false
 shape = SubResource("SphereShape3D_qlfj0")
 
-[node name="AtmosphereMesh" type="MeshInstance3D" parent="." unique_id=753910632]
-mesh = SubResource("SphereMesh_qlfj0")
+[node name="PlanetRender" parent="." unique_id=456676136 instance=ExtResource("2_7idgd")]
 
 [connection signal="timeout" from="TickTimer" to="." method="_on_update_tick"]
 [connection signal="input_event" from="Area3D" to="." method="_on_planet_input_event"]

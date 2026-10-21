@@ -1,0 +1,33 @@
+[gd_scene format=3 uid="uid://cuf3mp08tqfxc"]
+
+[ext_resource type="Script" uid="uid://glpr5tpi3dtl" path="res://planet_logic/planet_render.gd" id="1_ofxd2"]
+[ext_resource type="Material" uid="uid://rtv4nkpd0yej" path="res://planet_logic/normmas.tres" id="2_4tarp"]
+[ext_resource type="Shader" uid="uid://c1jxsncrdyogt" path="res://planet_logic/shader/atmosphere.gdshader" id="3_xq3g1"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_eg6ti"]
+material = ExtResource("2_4tarp")
+radial_segments = 128
+rings = 64
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_8vgsh"]
+render_priority = 0
+shader = ExtResource("3_xq3g1")
+shader_parameter/atmosphere_color = Color(0, 0.6666667, 1, 1)
+shader_parameter/atmosphere_strength = 1.0
+shader_parameter/atmosphere_power = 4.0
+
+[sub_resource type="SphereMesh" id="SphereMesh_t4ub2"]
+material = SubResource("ShaderMaterial_8vgsh")
+radius = 0.501
+height = 1.002
+radial_segments = 128
+rings = 64
+
+[node name="PlanetRender" type="Node3D" unique_id=456676136]
+script = ExtResource("1_ofxd2")
+
+[node name="PlanetMesh" type="MeshInstance3D" parent="." unique_id=20755293]
+mesh = SubResource("SphereMesh_eg6ti")
+
+[node name="AtmosphereMesh" type="MeshInstance3D" parent="." unique_id=802475789]
+mesh = SubResource("SphereMesh_t4ub2")
