@@ -20,6 +20,10 @@ colors = PackedColorArray(0, 0, 0.39215687, 1, 0.33333334, 0.20784314, 0.1843137
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_0aoe1"]
 frequency = 0.0169
+fractal_type = 3
+domain_warp_enabled = true
+domain_warp_amplitude = 27.38
+domain_warp_fractal_lacunarity = 0.0
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_vdppx"]
 width = 2048
