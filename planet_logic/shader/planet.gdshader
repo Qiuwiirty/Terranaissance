@@ -1,6 +1,6 @@
 shader_type spatial;
-uniform sampler2D map;
-uniform sampler2D elevation_map;
+uniform sampler2D map: source_color;
+uniform sampler2D elevation_map: source_color;
 uniform sampler2D cloud_map;
 uniform sampler2D full_cloud_noise_map;
 uniform sampler2D city_light_map: filter_nearest;
@@ -18,6 +18,9 @@ uniform vec3 sun_direction = vec3(1.0, 0.0, 0.0);
 uniform vec3 biomass_color: source_color = vec3(0.0, 1.0, 0.0);
 uniform float biomass_coverage = 0.;
 uniform bool sun_active = true;
+
+uniform float specular = 0.0;
+uniform float roughness = 0.0;
 vec3 gas_giant(vec2 uv) { //I mean it is not really gas giant, but it kinda look like it
 	float noise = texture(full_cloud_noise_map, uv).r;
 	
@@ -103,5 +106,6 @@ void fragment() {
 	{
 		ALBEDO = gas_giant(UV);
 	}
-	SPECULAR = 1.0
+	SPECULAR = specular;
+	ROUGHNESS = roughness;
 }

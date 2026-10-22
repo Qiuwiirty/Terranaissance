@@ -9,11 +9,17 @@ class_name PlanetRender
 @export var biomass_color: Color:
 	set(value):
 		biomass_color = value
-		planet_mat.set_shader_parameter("biomass_color", biomass_color)
+		if planet_mat:
+			planet_mat.set_shader_parameter("biomass_color", biomass_color)
+@export var sun: Sun:
+	get:
+		if sun:
+			return sun
+		return Game.sun
 func init_planet_properties() -> void:
 	_define_biomass_color()
 	rotation_degrees.z = planet_properties.axial_tilt
-	Game.sun.sun_container.rotation_degrees.x = planet_properties.orbital_tilt
+	sun.sun_container.rotation_degrees.x = planet_properties.orbital_tilt
 	planet_mat.set_shader_parameter("map", planet_properties.map)
 	planet_mat.set_shader_parameter("elevation_map", planet_properties.elevation_map)
 	update_appearance()
@@ -22,7 +28,7 @@ func init_planet_properties() -> void:
 func _define_biomass_color() -> void:
 	var rng := RandomNumberGenerator.new()
 	rng.seed = planet_properties.name.hash()
-	var biomass_colors := Sun.sun_to_biomass_colors[Game.sun.star_type]
+	var biomass_colors := Sun.sun_to_biomass_colors[sun.star_type]
 	biomass_color = biomass_colors[rng.randi_range(0, biomass_colors.size() - 1)]
 func update_appearance() -> void:
 	update_cities_light()

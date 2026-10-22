@@ -12,12 +12,12 @@ const OXYGEN_REQUIREMENT = 210000
 @export var max_elevation := 1.0
 @export var habitable_water_level := -1. ##If left defined, it will set to max elevation / 2
 @export var starting_terraform_properties: TerraformProperties = TerraformProperties.new()
-@export_category("Misc settings") #not 100% essential but optional and good to have
+@export_category("Misc settings") ##not 100% essential but optional and good to have
 @export var axial_tilt := 0.0
 @export var orbital_tilt := 0.0
-
-#Variables that can be inferred (define in runtime) and no need to be saved
-var representative_color : Color = Color.WHITE #This is for like the gas planet color
+@export_category("Inferable settings") ##Can be inferred, optional
+#Variables that can be inferred (define in runtime) and no need to be saved (Some of it can be predefined..)
+@export var representative_color : Color #This is for like the gas planet color
 var max_biomass := 100000.0 #mt
 var _img: Image
 @export var img : Image:
@@ -28,7 +28,8 @@ var _img: Image
 		return _img
 #region One time thing you should call when _ready
 func init_stuff() -> void:
-	update_representative_color()
+	if !representative_color:
+		update_representative_color()
 	update_max_biomass()
 	@warning_ignore("incompatible_ternary")
 	if habitable_water_level < 0:

@@ -10,7 +10,7 @@ enum StarType {
 	K,
 	M
 }
-static var sun_to_biomass_colors: Dictionary[StarType, Array] = {
+const sun_to_biomass_colors: Dictionary[StarType, Array] = {
 	StarType.O: [Color.WHITE, Color.ANTIQUE_WHITE, Color.CYAN],
 	StarType.B: [Color.MISTY_ROSE, Color.PALE_GREEN, Color.BLANCHED_ALMOND],
 	StarType.A: [Color.PINK, Color.LIGHT_GREEN, Color.LIGHT_CORAL],

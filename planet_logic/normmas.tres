@@ -4,7 +4,6 @@
 [ext_resource type="Texture2D" uid="uid://bdvrkedru28bt" path="res://textures/city_light.tres" id="2_nq76w"]
 [ext_resource type="Texture2D" uid="uid://by223urmvg2w" path="res://textures/cloud_related/cloudmap.png" id="3_ov4ru"]
 [ext_resource type="Texture2D" uid="uid://c5v61glibq5lm" path="res://predefined/planets/mars/mars_elevation.jpg" id="4_edjyj"]
-[ext_resource type="Texture2D" uid="uid://bsas3wag8j7cs" path="res://predefined/planets/mars/2k_mars.jpg" id="5_tok8b"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_otdea"]
 seed = 3
@@ -15,23 +14,39 @@ domain_warp_enabled = true
 noise = SubResource("FastNoiseLite_otdea")
 seamless = true
 
+[sub_resource type="Gradient" id="Gradient_1jn1w"]
+offsets = PackedFloat32Array(0, 0.21182266, 1)
+colors = PackedColorArray(0, 0, 0.39215687, 1, 0.33333334, 0.20784314, 0.18431373, 1, 0.79607844, 0.34509805, 0.2, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_0aoe1"]
+frequency = 0.0169
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_vdppx"]
+width = 2048
+height = 1024
+noise = SubResource("FastNoiseLite_0aoe1")
+color_ramp = SubResource("Gradient_1jn1w")
+seamless = true
+
 [resource]
 render_priority = 0
 shader = ExtResource("1_cl0l2")
-shader_parameter/map = ExtResource("5_tok8b")
+shader_parameter/map = SubResource("NoiseTexture2D_vdppx")
 shader_parameter/elevation_map = ExtResource("4_edjyj")
 shader_parameter/cloud_map = ExtResource("3_ov4ru")
 shader_parameter/full_cloud_noise_map = SubResource("NoiseTexture2D_psk0j")
 shader_parameter/city_light_map = ExtResource("2_nq76w")
-shader_parameter/normalized_sea_level = 0.41600001976
+shader_parameter/normalized_sea_level = 0.0
 shader_parameter/normalized_temperature = 0.0
 shader_parameter/ice_coverage = 0.0
-shader_parameter/cloud_alpha = 1.0
+shader_parameter/cloud_alpha = 0.0
 shader_parameter/band_count = 5.0
 shader_parameter/color_band1 = Color(0.75, 0.75, 0.75, 1)
 shader_parameter/color_band2 = Color(0.5, 0.5, 0.5, 1)
 shader_parameter/cities = PackedVector3Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
 shader_parameter/sun_direction = Vector3(1, 0, 0)
 shader_parameter/biomass_color = Color(0, 1, 0, 1)
-shader_parameter/biomass_coverage = 1.0
+shader_parameter/biomass_coverage = 0.0
 shader_parameter/sun_active = false
+shader_parameter/specular = 0.0
+shader_parameter/roughness = 0.0

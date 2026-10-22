@@ -1,8 +1,12 @@
 [gd_scene format=3 uid="uid://blqdchb4muyny"]
 
+[ext_resource type="Script" uid="uid://djy201li5bsga" path="res://planet_logic/random_planet_generator.gd" id="1_md3e2"]
 [ext_resource type="Texture2D" uid="uid://b8877um7h72hc" path="res://textures/space_panaroma.png" id="1_rm5pl"]
 [ext_resource type="Script" uid="uid://cv6b0uyswunua" path="res://addons/lens_effects/lens_flare_compositor_effect.gd" id="2_tswlb"]
 [ext_resource type="Script" uid="uid://cmlnn8vwkbqfv" path="res://addons/lens_effects/world_environment.gd" id="3_md3e2"]
+[ext_resource type="Script" uid="uid://bte5lj7n5wt1e" path="res://sun.gd" id="5_4jqyh"]
+[ext_resource type="PackedScene" uid="uid://cuf3mp08tqfxc" path="res://planet_logic/planet_render.tscn" id="5_f26c6"]
+[ext_resource type="Script" uid="uid://dwxp7q0tdvnyo" path="res://camera.gd" id="7_o2uei"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_ut0n4"]
 panorama = ExtResource("1_rm5pl")
@@ -29,10 +33,51 @@ metadata/_custom_type_script = "uid://cv6b0uyswunua"
 compositor_effects = Array[CompositorEffect]([SubResource("CompositorEffect_vdppx")])
 
 [node name="RandomPlanetGenerator" type="Node3D" unique_id=1858019274]
+script = ExtResource("1_md3e2")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=380742354 node_paths=PackedStringArray("sun")]
 unique_name_in_owner = true
 environment = SubResource("Environment_2j3si")
 compositor = SubResource("Compositor_grfvk")
 script = ExtResource("3_md3e2")
-sun = NodePath("")
+sun = NodePath("../Sun")
+
+[node name="Sun" type="DirectionalLight3D" parent="." unique_id=374482466]
+transform = Transform3D(1, 0, 0, 0, 0.9396926, 0.34202012, 0, -0.34202012, 0.9396926, 0, 0, 0)
+script = ExtResource("5_4jqyh")
+
+[node name="PlanetRender" parent="." unique_id=456676136 node_paths=PackedStringArray("sun") instance=ExtResource("5_f26c6")]
+biomass_color = Color(0, 0.7490196, 1, 1)
+sun = NodePath("../Sun")
+
+[node name="RandomPlanetGeneratorUI" type="CanvasLayer" parent="." unique_id=1604639348]
+
+[node name="RandomPlanetGeneratorControlPanel" type="PanelContainer" parent="RandomPlanetGeneratorUI" unique_id=1318598573]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="RandomPlanetGeneratorUI/RandomPlanetGeneratorControlPanel" unique_id=1076245179]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="RandomPlanetGeneratorUI/RandomPlanetGeneratorControlPanel/VBoxContainer" unique_id=2142739059]
+layout_mode = 2
+text = "RANDOM PLANET GENERATOR"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="RandomPlanetGeneratorUI/RandomPlanetGeneratorControlPanel/VBoxContainer" unique_id=55725610]
+layout_mode = 2
+
+[node name="Generate" type="Button" parent="RandomPlanetGeneratorUI/RandomPlanetGeneratorControlPanel/VBoxContainer/HBoxContainer" unique_id=634889528]
+unique_name_in_owner = true
+layout_mode = 2
+text = "[Generate]"
+alignment = 0
+
+[node name="Save" type="Button" parent="RandomPlanetGeneratorUI/RandomPlanetGeneratorControlPanel/VBoxContainer/HBoxContainer" unique_id=1541364342]
+unique_name_in_owner = true
+layout_mode = 2
+text = "[Save]"
+alignment = 0
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=1260907918]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.06946796, 0.0027344525, 1.2735896)
+script = ExtResource("7_o2uei")

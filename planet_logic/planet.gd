@@ -69,11 +69,6 @@ func _get_greenhouse_and_ppm_sum() -> Array[float]:
 		sum_greenhouse += gas_data.gas.greenhouse
 		sum_ppm += gas_data.ppm
 	return [sum_greenhouse, sum_ppm]
-func _define_biomass_color() -> void:
-	var rng := RandomNumberGenerator.new()
-	rng.seed = planet_properties.name.hash()
-	var biomass_colors := Sun.sun_to_biomass_colors[Game.sun.star_type]
-	biomass_color = biomass_colors[rng.randi_range(0, biomass_colors.size() - 1)]
 func start() -> void: ##Intended for starting a new world. Which expect everything to be empty so it will override some things (which can definetly reset the data so use carefully)
 	planet_state = PlanetState.new()
 	planet_state.terras = 10_000_000

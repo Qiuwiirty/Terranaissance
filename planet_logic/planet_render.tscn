@@ -30,4 +30,5 @@ script = ExtResource("1_ofxd2")
 mesh = SubResource("SphereMesh_eg6ti")
 
 [node name="AtmosphereMesh" type="MeshInstance3D" parent="." unique_id=802475789]
+visible = false
 mesh = SubResource("SphereMesh_t4ub2")
