@@ -18,6 +18,8 @@ class_name PlanetRender
 		return Game.sun
 func init_planet_properties() -> void:
 	_define_biomass_color()
+	atmosphere_mat.set_shader_parameter("atmosphere_strength", 0.0)
+	atmosphere_mat.set_shader_parameter("atmosphere_color", 0.0)
 	rotation_degrees.z = planet_properties.axial_tilt
 	sun.sun_container.rotation_degrees.x = planet_properties.orbital_tilt
 	planet_mat.set_shader_parameter("map", planet_properties.map)
@@ -28,7 +30,7 @@ func init_planet_properties() -> void:
 func _define_biomass_color() -> void:
 	var rng := RandomNumberGenerator.new()
 	rng.seed = planet_properties.name.hash()
-	var biomass_colors := Sun.sun_to_biomass_colors[sun.star_type]
+	var biomass_colors := Sun.sun_to_biomass_colors[sun.properties.star_type]
 	biomass_color = biomass_colors[rng.randi_range(0, biomass_colors.size() - 1)]
 func update_appearance() -> void:
 	update_cities_light()
@@ -57,7 +59,7 @@ func update_cities_light() -> void:
 	planet_mat.set_shader_parameter("cities", cities_light)
 func prepare_gas_giant_appearance() -> void: #Not actually turning into gas giant but the appearance look like gas giant
 	#Might be an overkill just to create gas giant cloud, but i don't care lol (also: it adds variety :D )
-	var frequency_curve : Curve = load("uid://chkym846di8e3")
+	var frequency_curve : Curve = load("uid://xgj3o3t3eli7")
 	var rng := RandomNumberGenerator.new()
 	rng.seed = planet_properties.name.hash()
 	var new_noise_tex := NoiseTexture2D.new()

@@ -10,5 +10,6 @@ class_name PlanetSave
 @export var cities : Array[City]
 
 @export var planet_state: PlanetState
+@warning_ignore("unused_parameter")
 func serialize(planet: Planet) -> void:
 	pass

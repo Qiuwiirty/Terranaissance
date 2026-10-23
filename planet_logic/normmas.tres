@@ -7,7 +7,7 @@
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_otdea"]
 seed = 3
-frequency = 0.0899
+frequency = 0.0038
 domain_warp_enabled = true
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_psk0j"]
@@ -43,7 +43,7 @@ shader_parameter/city_light_map = ExtResource("2_nq76w")
 shader_parameter/normalized_sea_level = 0.0
 shader_parameter/normalized_temperature = 0.0
 shader_parameter/ice_coverage = 0.0
-shader_parameter/cloud_alpha = 0.0
+shader_parameter/cloud_alpha = 10.695
 shader_parameter/band_count = 5.0
 shader_parameter/color_band1 = Color(0.75, 0.75, 0.75, 1)
 shader_parameter/color_band2 = Color(0.5, 0.5, 0.5, 1)

@@ -92,9 +92,10 @@ func decrease_gas(gas: StringName, amount: float) -> void:
 	set(gas, new_amount)
 func get_atmosphere_color() -> Color:
 	var gas_colors: Color = Color.BLACK
-	for gas_color in get_custom_colors():
+	var custom_colors := get_custom_colors()
+	for gas_color in custom_colors:
 		gas_colors += gas_color
-	return gas_colors / 1_000_000
+	return gas_colors / custom_colors.size()
 func get_habitability() -> TerraformProperties.TerraformClassification:
 	if gases[&"Oxygen"].ppm >= 190000 and gases[&"Oxygen"].ppm <= 220000:
 		return TerraformProperties.TerraformClassification.PERFECT
@@ -115,12 +116,15 @@ func add(other: AtmosphereComposition) -> void:
 	for element: GasData in other.get_elements().values():
 		add_or_insert(element)
 	
+@warning_ignore("unused_parameter")
 func subtract(other: AtmosphereComposition) -> void:
 	push_error("Not implemented")
 	
+@warning_ignore("unused_parameter")
 func mutiply(other: AtmosphereComposition) -> void:
 	push_error("Not implemented")
 	
+@warning_ignore("unused_parameter")
 func mutiply_float(value: float) -> void:
 	push_error("Not implemented")
 	
@@ -132,8 +136,8 @@ func get_elements() -> Dictionary[StringName, GasData]:
 	
 func get_custom_colors() -> Array[Color]:
 	var colors : Array[Color]
-	for gas_data in gases.values():
-		colors.append(gas_data.name)
+	for gas_data: GasData in gases.values():
+		colors.append(gas_data.gas.color)
 	return colors
 
 func get_habitability_ranges() -> Dictionary[TerraformProperties.TerraformClassification, Dictionary]:

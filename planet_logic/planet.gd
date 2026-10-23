@@ -1,6 +1,7 @@
 extends Node3D
 class_name Planet
 signal city_created(city: City)
+@warning_ignore("unused_signal")
 signal city_destroyed(city: City)
 const OXYGEN_GRADIENT: Gradient = preload("uid://w3mrnkqo8pl2")
 @onready var tick_timer : Timer = $TickTimer
@@ -73,6 +74,7 @@ func start() -> void: ##Intended for starting a new world. Which expect everythi
 	planet_state = PlanetState.new()
 	planet_state.terras = 10_000_000
 	##FIX THIS:: vvv 
+	@warning_ignore("incompatible_ternary")
 	terraform_properties.atmosphere_composition = SimpleAtmosphereComposition.new() if planet_state.terra_mode == PlanetState.TerraMode.SIMPLE else ComplexAtmosphereComposition.new()
 	terraform_properties.load_from_starting_terraform_properties(planet_properties.starting_terraform_properties)
 	planet_render.terraform_properties = terraform_properties

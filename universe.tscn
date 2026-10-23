@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://b8877um7h72hc" path="res://textures/space_panaroma.png" id="1_onkyh"]
 [ext_resource type="Script" uid="uid://cv6b0uyswunua" path="res://addons/lens_effects/lens_flare_compositor_effect.gd" id="2_d0y5q"]
-[ext_resource type="Script" uid="uid://bte5lj7n5wt1e" path="res://sun.gd" id="3_tcg2k"]
+[ext_resource type="Script" uid="uid://bte5lj7n5wt1e" path="res://sun_system/sun.gd" id="3_tcg2k"]
 [ext_resource type="Script" uid="uid://cmlnn8vwkbqfv" path="res://addons/lens_effects/world_environment.gd" id="3_wp8oq"]
 [ext_resource type="Script" uid="uid://dwxp7q0tdvnyo" path="res://camera.gd" id="5_asrgw"]
 [ext_resource type="PackedScene" uid="uid://cou1fgfhymngy" path="res://planet_logic/planet.tscn" id="5_sraih"]

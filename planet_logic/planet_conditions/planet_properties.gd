@@ -12,6 +12,7 @@ const OXYGEN_REQUIREMENT = 210000
 @export var max_elevation := 1.0
 @export var habitable_water_level := -1. ##If left defined, it will set to max elevation / 2
 @export var starting_terraform_properties: TerraformProperties = TerraformProperties.new()
+@export var resource_abundance: float = 1.0 #1.0 is normal. 0.0 is nonexistent
 @export_category("Misc settings") ##not 100% essential but optional and good to have
 @export var axial_tilt := 0.0
 @export var orbital_tilt := 0.0

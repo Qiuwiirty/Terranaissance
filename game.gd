@@ -6,7 +6,15 @@ static var planet: Planet
 static var current_planet_save: PlanetSave
 static var sun: Sun
 static var in_game_ui: InGameUI
+static var name_to_gas: Dictionary[StringName, Gas]
 ##set the main planet
+func _ready() -> void:
+	var gases_dir : Array[String] = Game.get_all_tres_files("res://predefined/gases/")
+	for gas_dir in gases_dir:
+		var gas : Gas = load(gas_dir)
+		if gas.is_placeholder:
+			continue
+		name_to_gas[gas.name] = gas
 func set_planet(new_planet: Planet) -> void:
 	planet = new_planet
 	planet_available.emit()
